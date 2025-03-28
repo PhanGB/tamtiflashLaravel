@@ -1,4 +1,4 @@
-@extends('Layouts.layout')
+@extends('layouts.app')
 @section('content')
 <main>
     <link rel="stylesheet" href="/css/product_detail.css">

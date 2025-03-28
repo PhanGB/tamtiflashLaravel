@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
     @vite(['resources/css/grid.css'])
     @vite(['resources/css/base.css'])
-    
+
 
 </head>
 
@@ -29,20 +29,19 @@
         </a>
         <ul class="header-menu">
             <li class="header-menu__item header-menu__item--active">
-                <a href="/tamtiflash/">Trang chủ</a>
+                <a href="/">Trang chủ</a>
             </li>
             <li class="header-menu__item">
-                <a href="/tamtiflash/products">Sản phẩm</a>
-            </li>
-            <li class="header-menu__item">
-                <a href="/tamtiflash/shop">Cửa hàng</a>
+                <a href="/shop">Cửa hàng</a>
             </li>
         </ul>
         <div class="header-search">
-            <input type="text" class="header-search__input" placeholder="Bạn đang tìm kiếm ..." />
-            <button class="header-search__btn">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+            <form action="{{ route('products.search') }}" method="get">
+                <input type="text" class="header-search__input" name="keyword" placeholder="Bạn đang tìm kiếm ..." />
+                <button class="header-search__btn" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
         </div>
         <ul class="header-menu">
             <li class="header-menu__item">
@@ -60,9 +59,9 @@
                 </ul>
             </li>
         </ul>
-        <a href="" class="primary-btn">MARKET AT HOME</a>
+        <a href="/MAH" class="primary-btn">MARKET AT HOME</a>
         <ul class="header-right">
-            
+
                 <!-- <li class="header-right__item">
                     <i class="fa-solid fa-circle-user"></i>
                     <div class="user-action">
@@ -70,7 +69,7 @@
                         <a href="/tamtiflash/signout">Đăng xuất</a>
                     </div>
                 </li> -->
-          
+
                 <!-- <li class="header-right__item">
                     <i class="fa-solid fa-circle-user"></i>
                     <div class="user-action">
@@ -78,7 +77,7 @@
                         <a href="/tamtiflash/signup">Đăng ký</a>
                     </div>
                 </li> -->
-          
+
             <li class="header-right__item">
                 <i class="fa-solid fa-circle-user"></i>
                 <div class="user-action">
@@ -87,7 +86,7 @@
                 </div>
             </li>
             <li class="header-right__item">
-                <a href="">
+                <a href="/cart">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span class="cart-quantity">1</span>
                 </a>
@@ -133,9 +132,8 @@
                     <span class="cart-quantity mobile">1</span>
                 </a>
             </li>
-            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Trang chủ</a></li>
-            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Sản phẩm</a></li>
-            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Cửa hàng</a></li>
+            <li class="modal-menu__item"><a href="/" class="modal-menu__item-text">Trang chủ</a></li>
+            <li class="modal-menu__item"><a href="/shop" class="modal-menu__item-text">Cửa hàng</a></li>
             <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li> -->
             <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Mã giới thiệu</a></li>
             <li class="modal-menu__item"><a href="/tamtiflash/signout" class="modal-menu__item-text">Đăng xuất</a></li>

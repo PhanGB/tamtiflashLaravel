@@ -12,7 +12,7 @@ class ShopController extends Controller
         $shops = Shop::all();
         return view('pages.shop', compact('shops'));
     }
-    public function shopDetail($id)
+    public function shop_detail($id)
     {
         // Tìm cửa hàng theo ID
         $shop = Shop::findOrFail($id);
