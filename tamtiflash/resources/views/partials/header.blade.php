@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tam Ti Flash</title>
-    <!-- <base href="http://localhost/tamtiflash/"> -->
+    <!-- <base href="http://localhost /"> -->
     <!-- <link rel="stylesheet" href="public/bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/fonts/fontawesome-free-6.7.2-web/css/all.min.css" />
     <link rel="stylesheet" href="public/css/grid.css" />
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
     @vite(['resources/css/grid.css'])
     @vite(['resources/css/base.css'])
-    
+
 
 </head>
 
@@ -24,18 +24,18 @@
     <!-- Start Header -->
     <!-- Desktop -->
     <header>
-        <a href="/tamtiflash/">
+        <a href=" /">
             <img src="{{ asset('images/logo/logo.png') }}" alt="TamTiFlash" class="header-logo" />
         </a>
         <ul class="header-menu">
             <li class="header-menu__item header-menu__item--active">
-                <a href="/tamtiflash/">Trang chủ</a>
+                <a href="/">Trang chủ</a>
             </li>
             <li class="header-menu__item">
-                <a href="/tamtiflash/products">Sản phẩm</a>
+                <a href=" /products">Sản phẩm</a>
             </li>
             <li class="header-menu__item">
-                <a href="/tamtiflash/shop">Cửa hàng</a>
+                <a href=" /shop">Cửa hàng</a>
             </li>
         </ul>
         <div class="header-search">
@@ -62,28 +62,28 @@
         </ul>
         <a href="" class="primary-btn">MARKET AT HOME</a>
         <ul class="header-right">
-            
+
                 <!-- <li class="header-right__item">
                     <i class="fa-solid fa-circle-user"></i>
                     <div class="user-action">
-                        <a href="/tamtiflash/infor">Thông tin</a>
-                        <a href="/tamtiflash/signout">Đăng xuất</a>
+                        <a href=" /infor">Thông tin</a>
+                        <a href=" /signout">Đăng xuất</a>
                     </div>
                 </li> -->
-          
+
                 <!-- <li class="header-right__item">
                     <i class="fa-solid fa-circle-user"></i>
                     <div class="user-action">
-                        <a href="/tamtiflash/signin">Đăng nhập</a>
-                        <a href="/tamtiflash/signup">Đăng ký</a>
+                        <a href=" /signin">Đăng nhập</a>
+                        <a href=" /signup">Đăng ký</a>
                     </div>
                 </li> -->
-          
+
             <li class="header-right__item">
                 <i class="fa-solid fa-circle-user"></i>
                 <div class="user-action">
-                    <a href="/tamtiflash/signin">Đăng nhập</a>
-                    <a href="/tamtiflash/signup">Đăng ký</a>
+                    <a href=" /signin">Đăng nhập</a>
+                    <a href=" /signup">Đăng ký</a>
                 </div>
             </li>
             <li class="header-right__item">
@@ -102,7 +102,7 @@
                     <a href="" class="primary-btn">MAH</a>
                 </div>
                 <div class="col l-4 c-3 m-3">
-                    <a href="/tamtiflash/app">
+                    <a href=" /app">
                         <img src="{{ asset('images/logo/logo.png')}}" alt="TamTiFlash" class="header-logo" />
                     </a>
                 </div>
@@ -125,7 +125,7 @@
     <?php  ?>
         <ul class="modal-menu" id="modalMenu">
             <li class="modal-menu__item">
-                <a href="/tamtiflash/infor" class="modal-menu__item-icon">
+                <a href=" /infor" class="modal-menu__item-icon">
                     <i class="fa-solid fa-circle-user"></i>
                 </a>
                 <a href="" class="modal-menu__item-icon">
@@ -138,12 +138,12 @@
             <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Cửa hàng</a></li>
             <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li> -->
             <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Mã giới thiệu</a></li>
-            <li class="modal-menu__item"><a href="/tamtiflash/signout" class="modal-menu__item-text">Đăng xuất</a></li>
+            <li class="modal-menu__item"><a href=" /signout" class="modal-menu__item-text">Đăng xuất</a></li>
         </ul>
     <?php ?>
         <ul class="modal-menu" id="modalMenu">
             <li class="modal-menu__item">
-                <a href="/tamtiflash/infor" class="modal-menu__item-icon">
+                <a href=" /infor" class="modal-menu__item-icon">
                     <i class="fa-solid fa-circle-user"></i>
                 </a>
                 <a href="" class="modal-menu__item-icon">
@@ -151,11 +151,11 @@
                     <span class="cart-quantity mobile">1</span>
                 </a>
             </li>
-            <li class="modal-menu__item"><a href="/tamtiflash/" class="modal-menu__item-text">Trang chủ</a></li>
+            <li class="modal-menu__item"><a href=" /" class="modal-menu__item-text">Trang chủ</a></li>
             <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Sản phẩm</a></li>
             <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Cửa hàng</a></li>
             <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li> -->
-            <li class="modal-menu__item"><a href="/tamtiflash/signin" class="modal-menu__item-text">Đăng nhập</a></li>
+            <li class="modal-menu__item"><a href=" /signin" class="modal-menu__item-text">Đăng nhập</a></li>
         </ul>
     <?php ?>
     <!-- Modal Search -->
