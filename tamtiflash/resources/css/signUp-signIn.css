@@ -10,6 +10,13 @@
     margin: 0px 25%;
 }
 
+.error{
+    color: red;
+    font-size: 14px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
 .signIn__title {
     text-align: center;
 }

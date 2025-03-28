@@ -82,8 +82,8 @@
             <li class="header-right__item">
                 <i class="fa-solid fa-circle-user"></i>
                 <div class="user-action">
-                    <a href="/tamtiflash/signin">Đăng nhập</a>
-                    <a href="/tamtiflash/signup">Đăng ký</a>
+                    <a href="/login">Đăng nhập</a>
+                    <a href="/register">Đăng ký</a>
                 </div>
             </li>
             <li class="header-right__item">
