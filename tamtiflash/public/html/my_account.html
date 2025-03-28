@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tam Ti Flash - Trang Sản phẩm</title>
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <link rel="stylesheet" href="../fonts/fontawesome-free-6.7.2-web/css/all.min.css" />
+    <link rel="stylesheet" href="../css/grid.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/products.css" />
+    <link rel="stylesheet" href="../css/my_account.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Start Header -->
+    <!-- Desktop -->
+    <header>
+        <a href="/">
+            <img src="../images/logo/logo.png" alt="TamTiFlash" class="header-logo" />
+        </a>
+        <ul class="header-menu">
+            <li class="header-menu__item header-menu__item--active">
+                <a href="">Trang chủ</a>
+            </li>
+            <li class="header-menu__item">
+                <a href="">Sản phẩm</a>
+            </li>
+            <li class="header-menu__item">
+                <a href="">Cửa hàng</a>
+            </li>
+        </ul>
+        <div class="header-search">
+            <input type="text" class="header-search__input" placeholder="Bạn đang tìm kiếm ..." />
+            <button class="header-search__btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <ul class="header-menu">
+            <li class="header-menu__item">
+                <a href="">
+                    Khác
+                    <i class="fa-solid fa-chevron-down"></i>
+                </a>
+                <ul class="header-sub-menu">
+                    <li class="header-sub-menu__item">
+                        <a href="">Liên hệ</a>
+                    </li>
+                    <li class="header-sub-menu__item">
+                        <a href="">Mã giới thiệu</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <a href="" class="primary-btn">MARKET AT HOME</a>
+        <ul class="header-right">
+            <li class="header-right__item">
+                <i class="fa-solid fa-circle-user"></i>
+                <div class="user-action">
+                    <a href="">Đăng nhập</a>
+                    <a href="">Đăng ký</a>
+                </div>
+            </li>
+            <li class="header-right__item">
+                <a href="">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-quantity">1</span>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <!-- Mobile / Tablet -->
+    <header class="header-mobile">
+        <div class="grid wide">
+            <div class="row">
+                <div class="col l-4 c-4 m-3">
+                    <a href="" class="primary-btn">MAH</a>
+                </div>
+                <div class="col l-4 c-3 m-3">
+                    <a href="/">
+                        <img src="../images/logo/logo.png" alt="TamTiFlash" class="header-logo" />
+                    </a>
+                </div>
+                <div class="col l-4 c-3 m-2">
+                    <div class="header-right-mobile">
+                        <span class="header-search-mobile" id="searchToggle">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <span class="header-menu-mobile" id="menuToggle">
+                            <i class="fa-solid fa-bars"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+    <!-- Modal menu -->
+    <ul class="modal-menu" id="modalMenu">
+        <li class="modal-menu__item">
+            <a href="" class="modal-menu__item-icon">
+                <i class="fa-solid fa-circle-user"></i>
+            </a>
+            <a href="" class="modal-menu__item-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-quantity mobile">1</span>
+            </a>
+        </li>
+        <li class="modal-menu__item"><a href="index.html" class="modal-menu__item-text">Trang chủ</a></li>
+        <li class="modal-menu__item"><a href="products.html" class="modal-menu__item-text">Sản phẩm</a></li>
+        <li class="modal-menu__item"><a href="shop.html" class="modal-menu__item-text">Cửa hàng</a></li>
+        <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li>
+        <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Mã giới thiệu</a></li>
+    </ul>
+    <!-- Modal Search -->
+    <div class="modal-search" id="modalSearch">
+        <input type="text" class="modal-search__input" placeholder="Bạn đang tìm kiếm ..." />
+        <button class="modal-search__btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </div>
+    <!-- End Header -->
+
+    <!-- Start main -->
+    <!-- Start my account -->
+    <main class="myAccount">
+        <h1 class="title_myAccount" style="text-align: center; font-size: 30px; padding: 0 50px;">Tài Khoản Của Tôi</h1> <hr>
+        <section class="grid wide">
+            <div class="row">
+                <!-- Start Menu Desktop -->
+                <div class="col l-3 m-0 c-0">
+                    <nav class="myAccount__nav-desktop">
+                        <div class="myAccount__item">
+                            <h1 class="myAccount__title-h1">Tài khoản của tôi</h1>
+                        </div>
+                        <ul class="myAccount__menu">
+                            <li class="myAccount__menu-item">
+                                <a href="" class="myAccount__menu-link">Quản lý tài khoản</a>
+                            </li>
+                            <li class="myAccount__menu-item">
+                                <a href="" class="myAccount__menu-link">Đơn hàng của tôi</a>
+                            </li>
+                            <li class="myAccount__menu-item border-bottom-radius">
+                                <a href="" class="myAccount__menu-link">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- End Menu Desktop -->
+
+
+                <!-- Start Menu Mobile -->
+                <div class="col l-0 m-12 c-12">
+                    <nav class="myAccount__nav-mobile">
+                        <div class="myAccount__title ">
+                            <h1 class="myAccount__title-h1">Tài khoản của tôi</h1>
+                        </div>
+                        <ul class="myAccount__menu row">
+                            <li class="myAccount__menu-item col m-6 c-6">
+                                <a href="" class="myAccount__menu-link">Quản lý tài khoản</a>
+                            </li>
+                            <li class="myAccount__menu-item col m-6 c-6">
+                                <a href="" class="myAccount__menu-link">Đơn hàng của tôi</a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <!-- End Menu Mobile -->
+
+                <!-- Start content -->
+                <div class="myAccount__content col l-9 m-12 c-12">
+                    <div class="myAccount__content-title">
+                        <h1>Quản lý tài khoản</h1>
+                    </div>
+
+                    <!-- Start content info -->
+                    <div class="myAccount__content-info l-12 m-12 c-12">
+                        <div class="myAccount__info-title border-top-radius">
+                            <h2>Thông tin tài khoản</h2>
+                        </div>
+
+                        <div class="myAccount__info-item">
+                            <strong>Họ và tên: </strong> <span>Trần Chí Minh</span>
+                        </div>
+
+                        <div class="myAccount__info-item">
+                            <strong>Số điện thoại: </strong> <span>0933123123</span>
+                        </div>
+
+                        <div class="myAccount__info-item">
+                            <strong>Mã giới thiệu: </strong> <strong>ABC123</strong>
+                        </div>
+                        <div class="row myAccount__info-item">
+                            <a class="col l-6 m-6 c-6 myAccount__item-link" href="#edit-info">Chỉnh sửa</a>
+                            <a class="col l-6 m-6 c-6 myAccount__item-link" href="#change-pass">Thay đổi mật khẩu</a>
+                        </div>
+
+                    </div>
+                    <!-- End content info -->
+
+
+                    <!-- Start content address -->
+                    <div class="myAccount__content-address l-12 m-12 c-12">
+                        <div class="myAccount__info-title border-top-radius">
+                            <h2>Địa chỉ</h2>
+                        </div>
+
+                        <div class="row myAccount__info-item">
+                            <span class="col l-11 m-11 c-11"><strong>1. </strong>51/17 Tân Lập 2, Hiệp Phú, TP Thủ Đức,
+                                TPHCM</span>
+                            <a class="col l-1 m-1 c-1 myAccount__item-btn" href="">Xoá</a>
+                        </div>
+
+                        <div class="row myAccount__info-item">
+                            <span class="col l-11 m-11 c-11"><strong>2. </strong>51/17 Tân Lập 2, Hiệp Phú, TP Thủ Đức,
+                                TPHCM</span>
+                            <a class="col l-1 m-1 c-1 myAccount__item-btn" href="">Xoá</a>
+                        </div>
+
+                        <div class="row myAccount__info-item">
+                            <span class="col l-11 m-11 c-11"><strong>3. </strong>51/17 Tân Lập 2, Hiệp Phú, TP Thủ Đức,
+                                TPHCM</span>
+                            <a class="col l-1 m-1 c-1 myAccount__item-btn" href="">Xoá</a>
+                        </div>
+
+                        <div class="myAccount__info-item">
+                            <a class="myAccount__item-link" href="#add-address">Thêm địa chỉ</a>
+                        </div>
+                    </div>
+                    <!-- End content address -->
+                </div>
+                <!-- End content -->
+
+                <!-- Start Modal Edit Infomation -->
+                <div class="myAccount__dialog myAccount__overlay col l-12 m-12 c-12" id="edit-info">
+                    <a href="" class="myAccount__close-overlay"></a>
+                    <div class="myAccount__dialog-form">
+                        <a class="myAccount__close-btn" href="">&times;</a>
+                        <div class="myAccount__dialog-title">
+                            <h1 class="myAccount__dialog-title-h1">Chỉnh sửa thông tin</h1>
+                        </div>
+                        <div class="myAccount__form-container">
+                            <form class="myAccount__form-edit-info col l-12 m-12 c-12" action="" method="post">
+                                <div class="myAccount__form-edit-info-input">
+                                    <input class="type-input" type="text" name="name" placeholder="Trần Chí Minh"
+                                        id="myAccount__edit-name-txt">
+                                    <input class="type-input" type="text" name="phone" placeholder="0933123123"
+                                        id="myAccount__edit-phone-txt">
+                                    <input type="submit" value="Chỉnh sửa" class="form-sign-btn">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Start Modal Edit Infomation -->
+
+                <!-- Start Modal Change Password -->
+                <div class="myAccount__dialog myAccount__overlay col l-12 m-12 c-12" id="change-pass">
+                    <a href="" class="myAccount__close-overlay"></a>
+                    <div class="myAccount__dialog-form">
+                        <a class="myAccount__close-btn" href="">&times;</a>
+                        <div class="myAccount__dialog-title">
+                            <h1 class="myAccount__dialog-title-h1">Thay đổi mật khẩu</h1>
+                        </div>
+                        <div class="myAccount__form-container">
+                            <form class="myAccount__form-edit-info col l-12 m-12 c-12" action="" method="post">
+                                <div class="myAccount__form-edit-info-input">
+                                    <input class="type-input" type="text" name="old-pass"
+                                        placeholder="Mật khẩu hiện tại" id="myAccount__edit-oldpass-txt">
+                                    <input class="type-input" type="text" name="new-pass" placeholder="Mật khẩu mới"
+                                        id="myAccount__edit-newpass-txt">
+                                    <input class="type-input" type="text" name="re-pass"
+                                        placeholder="Xác nhận mật khẩu mới" id="myAccount__edit-repass-txt">
+                                    <input type="submit" value="Đổi mật khẩu" class="form-sign-btn">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Start Modal Change Password -->
+
+
+
+                <!-- Start Modal Add Address -->
+                <div class="myAccount__dialog myAccount__overlay col l-12 m-12 c-12" id="add-address">
+                    <a href="" class="myAccount__close-overlay"></a>
+                    <div class="myAccount__dialog-form">
+                        <a class="myAccount__close-btn" href="">&times;</a>
+                        <div class="myAccount__dialog-title">
+                            <h1 class="myAccount__dialog-title-h1">Thêm địa chỉ mới</h1>
+                        </div>
+                        <div class="myAccount__form-container">
+                            <form class="myAccount__form-edit-info col l-12 m-12 c-12" action="" method="post">
+                                <div class="myAccount__form-edit-info-input">
+                                    <input class="type-input" type="text" name="new-address"
+                                        placeholder="Nhập địa chỉ mới" id="myAccount__edit-oldpass-txt">
+                                    
+                                    <input type="submit" value="Thêm vào" class="form-sign-btn">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Start Modal Add Address -->
+
+
+
+            </div>
+        </section>
+    </main>
+    <!-- End my account -->
+      <!-- Start footer -->
+      <footer>
+        <div class="main-footer">
+            <div class="grid wide">
+                <div class="row">
+                    <div class="col l-3 m-6 c-12">
+                        <img src="../images/logo/logo.png" alt="" class="footer-logo" />
+                    </div>
+                    <div class="col l-3 m-6 c-12 footer-address">
+                        <h3 class="footer-heading">Địa chỉ</h3>
+                        <ul class="footer-address__list">
+                            <li class="footer-address__item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                123 Street, New York, USA
+                            </li>
+                            <li class="footer-address__item">
+                                <i class="fa-solid fa-phone"></i>
+                                +012 345 67890
+                            </li>
+                            <li class="footer-address__item">
+                                <i class="fa-solid fa-envelope"></i>
+                                info@example.com
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col l-3 m-6 c-6 footer-none">
+                        <h3 class="footer-heading">Điều hướng nhanh</h3>
+                        <ul class="footer-menu__list">
+                            <li class="footer-menu__item">
+                                <i class="fa-solid fa-chevron-right"></i>
+                                <a href="">Trang chủ</a>
+                            </li>
+                            <li class="footer-menu__item">
+                                <i class="fa-solid fa-chevron-right"></i>
+                                <a href="">Sản phẩm</a>
+                            </li>
+                            <li class="footer-menu__item">
+                                <i class="fa-solid fa-chevron-right"></i>
+                                <a href="">Cửa hàng</a>
+                            </li>
+                            <li class="footer-menu__item">
+                                <i class="fa-solid fa-chevron-right"></i>
+                                <a href="">Market at home</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col l-3 m-6 c-6 footer-none">
+                        <h3 class="footer-heading">Khác</h3>
+                        <ul class="footer-menu__list">
+                            <li class="footer-menu__item">
+                                <i class="fa-solid fa-chevron-right"></i>
+                                <a href="">Liên hệ</a>
+                            </li>
+                            <li class="footer-menu__item">
+                                <i class="fa-solid fa-chevron-right"></i>
+                                <a href="">Tài khoản</a>
+                            </li>
+                            <li class="footer-menu__item">
+                                <i class="fa-solid fa-chevron-right"></i>
+                                <a href="">Giỏ hàng</a>
+                            </li>
+                            <li class="footer-menu__item">
+                                <i class="fa-solid fa-chevron-right"></i>
+                                <a href="">Mã giới thiệu</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sub-footer">
+            <div class="grid wide">
+                <span class="copyright-title">Copyright © 2025 | Tam Ti Flash</span>
+                <div class="social-box">
+                    <a class="social-link" href=""><i class="social-icon fa-brands fa-facebook"></i></a>
+                    <a class="social-link" href=""><i class="social-icon fa-brands fa-instagram"></i></a>
+                    <a class="social-link" href=""><i class="social-icon fa-brands fa-youtube"></i></a>
+                    <a class="social-link" href=""><i class="social-icon fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer -->
+
+    <script src="../js/base.js"></script>
+    <script src="../js/home.js"></script>
+</body>
+
+</html>

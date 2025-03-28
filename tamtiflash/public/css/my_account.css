@@ -1,0 +1,467 @@
+
+
+
+/* Start Menu account desktop */
+.myAccount {
+    margin: 100px 0;
+}
+
+.myAccount__nav-desktop{
+    margin-top: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.myAccount__menu{
+    padding: 0;
+    margin: 0;
+}
+.myAccount__item{
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0;
+    margin: 0;
+}
+
+.myAccount__menu-item{
+    list-style: none;
+    padding: 20px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.myAccount__menu-item:hover{
+    background-color: #007C2B;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.myAccount__menu-item .myAccount__menu-link{
+    text-decoration: none;
+    color: black;
+}
+
+.myAccount__menu-item:hover .myAccount__menu-link{
+    color: #ffffff;
+}
+
+/* End Menu account desktop */
+
+
+
+
+
+/* Start content */
+.myAccount__content-title,
+.myOrder__content-title{
+    text-transform: uppercase;
+    margin: 10px;
+}
+
+.myAccount__content-info, 
+.myAccount__content-address,
+.myOrder__content-info{
+    border:1px solid #ccc;
+    padding: 0;
+    margin: 10px;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+.myAccount__info-title,
+.myOrder__info-title{
+    border-bottom: 1px solid #ccc;
+    background-color: #007C2B;
+}
+
+.myAccount__info-title h2,
+.myOrder__info-title h2{
+    font-size: 18px;
+    padding: 20px 10px;
+    color: #fff;
+    margin: 0;
+}
+.myAccount__info-item,
+.myOrder__info-item{
+    font-size: 16px;
+    padding: 10px;
+}
+/* End contect */
+
+
+/* Start my order Filter */
+.myOrder__filter{
+    border:1px solid #ccc;
+    padding: 0;
+    margin: 10px;
+    max-width: 100%;
+    border-radius: 2px;
+}
+
+.myOrder__filter-btn{
+    min-width: 100px;
+    height: 34px;
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 1.5rem;
+    padding: 0 12px;
+    outline: none;
+    cursor: pointer;
+    color: #005623;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.6rem;
+    margin-right: 12px;
+    background-color: #fff;
+}
+
+.myOrder__filter-item{
+    display: flex;
+    align-items: center;    
+    padding: 12px 22px;
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.myOrder__filter-page{
+    display: flex;  
+    align-items: center;    
+
+}
+
+
+.myOrder__filter-label{
+    font-size: 1.4rem;
+    color: #555;
+    margin-right: 16px;
+}
+
+.myOrder__filter-page{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.myOrder__filter-page-num{
+    font-size: 1.5rem;
+    color: #005623;
+    margin-right: 22px;
+}
+
+.myOrder__filter-page-current{
+    color: #FF0000;
+}
+
+.myOrder__filter-page-control{
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    width: 72px;
+    height: 36px;
+}
+
+.myOrder__filter-page-btn{
+    flex: 1;
+    background-color: #fff;
+    display: flex;
+    text-decoration: none;
+}
+
+.myOrder__filter-page-btn:first-child{
+    border-right: 1px solid #eee;
+}
+
+.myOrder__filter-page-btn--disabled{
+    background-color: #f9f9f9;
+    cursor: default;
+}
+
+.myOrder__filter-page-btn--disabled .myOrder__filter-page-icon{
+    color: #ccc;
+}
+
+.myOrder__filter-page-icon{
+    margin: auto;
+    font: 1.4rem;
+    color: #555;
+}
+/* filter mobile */
+.myOrder__filter-mobile-btn{
+    border: 1px solid #ccc;
+    padding: 15px 5px;
+    background-color: #fff;
+}
+/* End my order Filter */
+
+
+
+
+/* start button and link */
+.myAccount__item-btn{
+    /* color: #FF0000;
+    text-decoration: underline; */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    background-color: #e53935; /* Màu đỏ tươi */
+    font-size: 15px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.myAccount__item-btn:hover {
+    background-color: #c62828; /* Màu đỏ đậm hơn khi hover */
+    transform: scale(1.05);
+}
+.myAccount__item-btn:active {
+    background-color: #b71c1c; /* Màu đậm hơn khi nhấn */
+    transform: scale(0.95);
+}
+
+.myAccount__item-link,
+.myOrder__item-link{
+    color: #007C2B;
+    text-decoration: underline;
+}
+/* End button and link */
+
+
+
+/* start style border */
+.border-bottom-radius{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.border-top-radius{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+/* End style border */
+
+
+
+
+/* Mobile / Tablet */
+@media (max-width: 1024px){
+/* Start Menu account mobile */
+
+    .myAccount {
+        margin: 50px 0;
+    }
+
+    .title_myAccount{
+        display: none;
+    }
+    .myAccount__nav-mobile{
+        text-align: center;
+        margin: 50px 20px;
+    }
+    .myAccount__title{
+        border-bottom: 1px solid #ccc;
+    }
+    .myAccount__menu-item{
+        border-right: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+    }
+    
+/* End Menu account mobile */
+}
+
+
+
+/* Start page my order in account */
+.myOrder-success{
+    color: #007C2B;
+    font-weight: bold;
+}
+.myOrder-in-progress{
+    color: #DC8000;
+    font-weight: bold;
+}
+.myOrder-cancel{
+    color: #FF0000;
+    font-weight: bold;
+}
+/* End page my order in account */
+
+
+
+
+
+/* Start CSS my account */
+
+
+
+/* Start modal edit info */
+/* ẩn hiện overlay */
+.myAccount__dialog{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.myAccount__dialog:target{
+    visibility: visible;
+    opacity: 1;
+    transition: opacity ease-in-out 0.2s;
+}
+
+
+.myAccount__overlay{
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.myAccount__dialog-form {
+    border: 1px solid #F4F6F8;
+    background-color: #F4F6F8;
+    padding: 50px 10%;
+    border-radius: 10px;
+    position: relative;
+}
+
+.myAccount__close-btn{
+    position: absolute; 
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: #000;
+}
+
+.myAccount__close-overlay{
+    position: absolute; 
+    width: 100%;
+    height: 100%;
+    cursor: default;
+}
+
+
+.myAccount__dialog-title {
+    text-align: center;
+}
+
+.myAccount__dialog-title-h1 {
+    font-size: 30px;
+}
+
+.myAccount__form-edit-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.myAccount__form-edit-info-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.type-input {
+    width: 440px;
+    height: 54px;
+    border: 1px solid #CED4DA;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    padding: 16px 30px;
+    font-size: 16px;
+
+}
+
+.type-text {
+    margin-bottom: 24px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.type-text a {
+    color: #007C2B;
+}
+
+.form-sign-btn {
+    width: 440px;
+    height: 55px;
+    background-color: #007C2B;
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 20px;
+}
+
+.form-sign-btn:hover {
+    background-color: #005623;
+    transition: all 0.2s ease;
+}
+
+@media (max-width: 1024px) {
+
+    .myAccount__dialog-form {
+        border: 1px solid #F4F6F8;
+        background-color: #F4F6F8;
+        padding: 50px 0px;
+        border-radius: 10px;
+    }
+
+    .myAccount__dialog-title-h1 {
+        font-size: 25px;
+    }
+    .myAccount__form-edit-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+    }
+    
+    .myAccount__form-edit-info-input {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+    
+    .type-input {
+        width: 360px;
+        height: 47px;
+        border: 1px solid #CED4DA;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        padding: 14px 10px;
+        font-size: 14px;
+    
+    }
+    
+    .type-text {
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .form-sign-btn {
+        width: 360px;
+        height: 47px;
+        background-color: #007C2B;
+        font-weight: 400;
+        font-size: 16px;
+    }
+    
+    .form-sign-btn:hover {
+        background-color: #005623;
+        transition: all 0.2s ease;
+    }
+}
+
+
+/* End modal edit info */

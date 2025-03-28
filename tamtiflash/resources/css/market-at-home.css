@@ -1,0 +1,138 @@
+
+/* Market at home */
+.food-collection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e4e4e4;
+}
+.food-collection img {
+    /* width: 100%;
+    height: 100%; */
+    object-fit: cover;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.food-collection p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin-top: -149px;
+    margin-left: 26px;
+    position: absolute;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.499), rgba(137, 137, 137, 0.273));
+    padding-top: 80px;
+    width: 265px;
+    height: 128px;
+    border-radius: 10px 10px;
+}
+#product-market-at-home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    /* width: 150%; */
+    border-bottom: 1px solid #e4e4e4;
+    /* background-color: red; */
+}
+.market-title {
+    font-weight: 700;
+}
+.banner-sale {
+  width: 100%;
+  height: 170px;
+  /* background-color: red; */
+  margin-left: -15px;
+}
+.banner-sale img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mobile (dưới 768px) */
+@media screen and (max-width: 767px) {
+    .food-collection {
+        display: flex;
+        flex-wrap: wrap;
+        /* justify-content: center; */
+        /* gap: 10px; */
+        text-align: center;
+        width: 100%;
+    }
+
+    .food-collection div {
+        position: relative;
+        /* width: calc(50% - 10px); */
+        /* max-width: 170px; */
+    }
+
+    .food-collection img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        display: block;
+        color: rgb(0, 0, 0);
+    }
+
+    .food-collection p {
+        font-size: 1.4rem;
+        position: absolute;
+        bottom: 10px;
+        left: -18px;
+        width: 80px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        border-radius: 10px 10px 10px 10px;
+        padding: 0 0.5px;
+    }
+
+    #product-market-at-home {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .banner-sale {
+        height: 120px;
+        margin-left: 0;
+    }
+}
+
+/* Tablet (768px - 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .food-collection {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .food-collection img {
+        width: 90%;
+        height: auto;
+    }
+
+    .food-collection p {
+        font-size: 1.8rem;
+        margin-top: -90px;
+        margin-left: 10px;
+        width: 145px;
+        height: 70px;
+        padding-top: 40px;
+        border-radius: 10px 10px;
+    }
+
+    #product-market-at-home {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .banner-sale {
+        height: 150px;
+    }
+}

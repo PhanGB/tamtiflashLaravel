@@ -1,0 +1,486 @@
+.banner {
+    background-image: url('/public/images/background/banner.jpg');
+    background-position: top center;
+    background-size: cover;
+    height: 700px;
+    display: flex;
+    align-items: center;
+}
+
+.banner > div {
+    margin-left: 150px;
+}
+
+.banner-title {
+    font-family: 'Lora', serif;
+    font-size: 5rem;
+    line-height: 6.4rem;
+    font-weight: 700;
+    width: 560px;
+    margin-bottom: 50px;
+}
+
+.primary-btn.banner-btn {
+    padding: 15px 20px;
+}
+
+section {
+    text-align: center;
+    margin: 120px 0;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 4.8rem;
+    line-height: 6.1rem;
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    position: relative;
+    margin: 0;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100px;
+    height: 2px;
+    background-color: #ccc;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 200px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.filter-btn {
+    background-color: white;
+    border: 2px solid var(--primary-color);
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    font-weight: 600;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.products-box {
+    display: none;
+    margin-bottom: 10px;
+}
+
+.products-box.active {
+    display: flex;
+}
+
+.product-card {
+    background-color: white;
+    box-shadow: 0 0 45px 0 rgba(0, 0, 0, 0.07);
+    text-align: center;
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.03);
+}
+
+.product-img {
+    padding-top: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    transition: all 0.3s ease;
+}
+
+.product-name {
+    font-size: 2rem;
+    line-height: 2.6rem;
+    font-weight: 700;
+    font-family: 'Lora', serif;
+    margin: 20px 0 10px;
+    color: black;
+}
+
+.product-price {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    margin: 0 0 20px 0;
+}
+
+.product-price__new {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-right: 15px;
+}
+
+.product-price__old {
+    text-decoration: line-through;
+    font-weight: lighter;
+}
+
+.product-footer {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.product-footer > div {
+    width: 60%;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.product-footer > div > span {
+    font-size: 1.4rem;
+    display: inline-block;
+    max-height: 2rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.product-footer > div > span > a {
+    color: black;
+}
+
+.product-footer > div > span > a > i {
+    margin-right: 5px;
+    color: var(--primary-color);
+}
+
+.cart-btn {
+    padding: 10px;
+    width: 40%;
+    border: none;
+    background-color: white;
+    font-size: 1.7rem;
+    border-top: 1px solid #ccc;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.cart-btn:hover {
+    color: white;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+    border-top: 1px solid var(--primary-color);
+}
+
+.primary-btn.section-btn {
+    font-weight: 400;
+    padding: 10px 20px;
+}
+
+.restaurant-section {
+    padding: 120px 0;
+    background: linear-gradient(rgba(247, 248, 252, 0.5), rgba(247, 248, 252, 0.5)), url('../images/background/bg-icon.png');
+}
+
+.restaurant-section .section-heading,
+.review-section .section-heading {
+    justify-content: center;
+}
+
+.restaurant-section .section-title::before,
+.restaurant-section .section-title::after,
+.review-section .section-title::before,
+.review-section .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.restaurant-card {
+    background-color: white;
+    box-shadow: 0 0 45px 0 rgba(0, 0, 0, 0.07);
+    padding: 45px 70px;
+}
+
+.restaurant-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.restaurant-card h3 {
+    font-family: 'Lora', serif;
+    font-size: 2.4rem;
+    line-height: 3.1rem;
+    margin: 0;
+}
+
+.restaurant-card p {
+    margin: 15px 0 0;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    color: #555;
+}
+
+.open-time {
+    font-weight: 700;
+}
+
+.primary-btn.restaurant-btn {
+    margin-top: 30px;
+    background-color: white;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.primary-btn.restaurant-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.review-section {
+    text-align: left;
+}
+
+.review-section .section-heading {
+    margin-bottom: 80px;
+}
+
+.review-card {
+    padding: 25px;
+    background-color: white;
+    box-shadow: 0 0 45px 0 rgba(0, 0, 0, 0.07);
+    position: relative;
+}
+
+.quote-icon {
+    font-size: 6rem;
+    color: var(--primary-color);
+    position: absolute;
+    top: -30px;
+    left: 25px;
+}
+
+.review-card p {
+    margin: 20px 0;
+    color: #555;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    text-align: left;
+}
+
+.review-card strong {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    font-weight: 600;
+    font-family: 'Lora', serif;
+}
+
+/* Tablet - PC low resolution */
+@media (min-width: 740px) and (max-width: 1024px) {
+    .banner {
+        height: 600px;
+    }
+
+    .banner > div {
+        margin-left: 50px;
+    }
+
+    .banner-title {
+        font-size: 4rem;
+        line-height: 5rem;
+        width: 450px;
+        margin-bottom: 45px;
+    }
+
+    .primary-btn.banner-btn {
+        padding: 12px 16px;
+        font-size: 1.5rem;
+        line-height: 2.1rem;
+    }
+
+    .section-heading {
+        display: block;
+        text-align: left;
+    }
+
+    .filter-buttons {
+        margin-top: 30px;
+    }
+
+    .restaurant-section .section-heading,
+    .review-section .section-heading {
+        text-align: center;
+    }
+
+    .restaurant-card {
+        margin-bottom: 40px;
+    }
+
+    .review-card {
+        margin-bottom: 50px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+    .banner {
+        height: 500px;
+    }
+
+    .banner > div {
+        margin-left: 25px;
+    }
+
+    .banner-title {
+        font-size: 3rem;
+        line-height: 4rem;
+        width: 250px;
+        margin-bottom: 40px;
+    }
+
+    .primary-btn.banner-btn {
+        padding: 10px 12px;
+        font-size: 1.4rem;
+        line-height: 2rem;
+    }
+
+    section {
+        padding: 0 20px;
+        margin: 70px 0;
+    }
+
+    .section-heading {
+        display: block;
+        text-align: left;
+    }
+
+    .section-title {
+        font-size: 3rem;
+        line-height: 3.8rem;
+    }
+
+    .section-title::before {
+        width: 75px;
+    }
+
+    .section-title::after {
+        width: 150px;
+    }
+
+    .filter-buttons {
+        margin-top: 30px;
+        gap: 15px;
+    }
+
+    .filter-btn {
+        font-size: 1.4rem;
+        line-height: 2rem;
+    }
+
+    .products-box {
+        margin-bottom: 20px;
+    }
+
+    .product-card {
+        margin-bottom: 20px;
+    }
+
+    .product-name {
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        margin: 15px 0 5px;
+    }
+
+    .product-price {
+        font-size: 1.4rem;
+        line-height: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .product-price__new {
+        margin-right: 10px;
+    }
+
+    .product-footer > div {
+        padding: 5px;
+    }
+
+    .product-footer > div > span {
+        font-size: 1.2rem;
+        line-height: 1.9rem;
+    }
+
+    .cart-btn {
+        padding: 5px;
+        font-size: 1.6rem;
+    }
+
+    .restaurant-section {
+        padding: 100px 20px;
+    }
+
+    .restaurant-section .section-heading {
+        text-align: center;
+    }
+
+    .restaurant-section .row {
+        gap: 20px;
+    }
+
+    .restaurant-card {
+        padding: 30px 60px;
+    }
+
+    .restaurant-card img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 5px;
+    }
+
+    .restaurant-card h3 {
+        font-size: 2rem;
+        line-height: 2.6rem;
+    }
+
+    .restaurant-card p {
+        font-size: 1.4rem;
+        line-height: 2rem;
+        margin: 10px 0 0;
+    }
+
+    .primary-btn.restaurant-btn {
+        margin-top: 20px;
+    }
+
+    .review-section .section-heading {
+        text-align: center;
+    }
+
+    .review-section .row {
+        gap: 50px;
+    }
+}

@@ -1,0 +1,270 @@
+/* Start PC form sign In */
+.signIn{
+    margin: 100px 0;
+}
+.form__signIn {
+    border: 1px solid #F4F6F8;
+    background-color: #F4F6F8;
+    padding: 50px 0;
+    border-radius: 10px;
+    margin: 0px 25%;
+}
+
+.signIn__title {
+    text-align: center;
+}
+
+.signIn__title-h1 {
+    font-size: 50px;
+}
+
+.signIn__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.signIn__form-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.type-input {
+    width: 440px;
+    height: 54px;
+    border: 1px solid #CED4DA;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    padding: 16px 30px;
+    font-size: 16px;
+
+}
+
+.type-text {
+    margin-bottom: 24px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.type-text a {
+    color: #007C2B;
+}
+
+.form-sign-btn {
+    width: 440px;
+    height: 55px;
+    background-color: #007C2B;
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 20px;
+}
+
+.form-sign-btn:hover {
+    background-color: #005623;
+    transition: all 0.2s ease;
+}
+
+/* Mobile / Tablet */
+@media (max-width: 1024px) {
+    .signIn{
+        margin: 50px 0;
+    }
+    .form__signIn {
+        border: 1px solid #F4F6F8;
+        background-color: #F4F6F8;
+        padding: 50px 0;
+        border-radius: 10px;
+        margin: 0px 5%;
+    }
+
+    .signIn__title-h1 {
+        font-size: 40px;
+    }
+    .signIn__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+    }
+    
+    .signIn__form-input {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+    
+    .type-input {
+        width: 300px;
+        height: 47px;
+        border: 1px solid #CED4DA;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        padding: 14px 10px;
+        font-size: 14px;
+    
+    }
+    
+    .type-text {
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .form-sign-btn {
+        width: 300px;
+        height: 47px;
+        background-color: #007C2B;
+        font-weight: 400;
+        font-size: 20px;
+    }
+    
+    .form-sign-btn:hover {
+        background-color: #005623;
+        transition: all 0.2s ease;
+    }
+}
+
+/* End PC form sign in */
+
+
+
+
+
+
+/* Start PC form sign up */
+.signUp{
+    margin: 100px 0;
+}
+.form__signUp {
+    border: 1px solid #F4F6F8;
+    background-color: #F4F6F8;
+    padding: 50px 0;
+    border-radius: 10px;
+    margin: 0px 25%;
+}
+
+.signUp__title {
+    text-align: center;
+}
+
+.signUp__title-h1 {
+    font-size: 50px;
+}
+
+.signUp__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.signUp__form-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.type-input {
+    width: 440px;
+    height: 54px;
+    border: 1px solid #CED4DA;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    padding: 16px 30px;
+    font-size: 16px;
+
+}
+
+.type-text {
+    margin-bottom: 24px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.type-text a {
+    color: #007C2B;
+}
+
+.form-sign-btn {
+    width: 440px;
+    height: 55px;
+    background-color: #007C2B;
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 20px;
+}
+
+.form-sign-btn:hover {
+    background-color: #005623;
+    transition: all 0.2s ease;
+}
+
+/* Mobile / Tablet */
+@media (max-width: 1024px) {
+    .signUp{
+        margin: 50px 0;
+    }
+    .form__signUp {
+        border: 1px solid #F4F6F8;
+        background-color: #F4F6F8;
+        padding: 50px 0;
+        border-radius: 10px;
+        margin: 0px 5%;
+    }
+
+    .signUp__title-h1 {
+        font-size: 40px;
+    }
+    .signUp__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+    }
+    
+    .signUp__form-input {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+    
+    .type-input {
+        width: 300px;
+        height: 47px;
+        border: 1px solid #CED4DA;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        padding: 14px 10px;
+        font-size: 14px;
+    
+    }
+    
+    .type-text {
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .form-sign-btn {
+        width: 300px;
+        height: 47px;
+        background-color: #007C2B;
+        font-weight: 400;
+        font-size: 20px;
+    }
+    
+    .form-sign-btn:hover {
+        background-color: #005623;
+        transition: all 0.2s ease;
+    }
+}
+
+/* End PC form sign up */

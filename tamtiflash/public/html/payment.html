@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tam Ti Flash - Thanh toán</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+        <link rel="stylesheet" href="../fonts/fontawesome-free-6.7.2-web/css/all.min.css" />
+        <link rel="stylesheet" href="../css/grid.css" />
+        <link rel="stylesheet" href="../css/base.css" />
+        <link rel="stylesheet" href="../css/payment.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <!-- Start Header -->
+        <!-- Desktop -->
+        <header>
+            <a href="/">
+                <img src="../images/logo/logo.png" alt="TamTiFlash" class="header-logo" />
+            </a>
+            <ul class="header-menu">
+                <li class="header-menu__item header-menu__item--active">
+                    <a href="">Trang chủ</a>
+                </li>
+                <li class="header-menu__item">
+                    <a href="">Sản phẩm</a>
+                </li>
+                <li class="header-menu__item">
+                    <a href="">Cửa hàng</a>
+                </li>
+            </ul>
+            <div class="header-search">
+                <input type="text" class="header-search__input" placeholder="Bạn đang tìm kiếm ..." />
+                <button class="header-search__btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+            <ul class="header-menu">
+                <li class="header-menu__item">
+                    <a href="">
+                        Khác
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <ul class="header-sub-menu">
+                        <li class="header-sub-menu__item">
+                            <a href="">Liên hệ</a>
+                        </li>
+                        <li class="header-sub-menu__item">
+                            <a href="">Mã giới thiệu</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <a href="" class="primary-btn">MARKET AT HOME</a>
+            <ul class="header-right">
+                <li class="header-right__item">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <div class="user-action">
+                        <a href="">Đăng nhập</a>
+                        <a href="">Đăng ký</a>
+                    </div>
+                </li>
+                <li class="header-right__item">
+                    <a href="">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-quantity">1</span>
+                    </a>
+                </li>
+            </ul>
+        </header>
+        <!-- Mobile / Tablet -->
+        <header class="header-mobile">
+            <div class="grid wide">
+                <div class="row">
+                    <div class="col l-4 c-4 m-4">
+                        <a href="" class="primary-btn">MAH</a>
+                    </div>
+                    <div class="col l-4 c-4 m-4">
+                        <a href="/">
+                            <img src="../images/logo/logo.png" alt="TamTiFlash" class="header-logo" />
+                        </a>
+                    </div>
+                    <div class="col l-4 c-4 m-4">
+                        <div class="header-right-mobile">
+                            <span class="header-search-mobile" id="searchToggle">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </span>
+                            <span class="header-menu-mobile" id="menuToggle">
+                                <i class="fa-solid fa-bars"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
+        <!-- Modal menu -->
+        <ul class="modal-menu" id="modalMenu">
+            <li class="modal-menu__item">
+                <a href="" class="modal-menu__item-icon">
+                    <i class="fa-solid fa-circle-user"></i>
+                </a>
+                <a href="" class="modal-menu__item-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-quantity mobile">1</span>
+                </a>
+            </li>
+            <li class="modal-menu__item"><a href="index.html" class="modal-menu__item-text">Trang chủ</a></li>
+            <li class="modal-menu__item"><a href="products.html" class="modal-menu__item-text">Sản phẩm</a></li>
+            <li class="modal-menu__item"><a href="shop.html" class="modal-menu__item-text">Cửa hàng</a></li>
+            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li>
+            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Mã giới thiệu</a></li>
+        </ul>
+        <!-- Modal Search -->
+        <div class="modal-search" id="modalSearch">
+            <input type="text" class="modal-search__input" placeholder="Bạn đang tìm kiếm ..." />
+            <button class="modal-search__btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <!-- End Header -->
+
+        <!-- Start main -->
+        <div class="banner">
+            <h2 class="banner-title">Thanh toán</h2>
+        </div>
+
+        <div class="payment-body">
+            <div class="grid wide">
+                <div class="row">
+                    <div class="col l-7 m-12 c-12">
+                        <form class="checkout-form">
+                            <div class="address">
+                                <div class="address-bar">
+                                    <span class="address-icon"><i class="fa-solid fa-location-dot"></i></span>
+                                    <span class="address-text"
+                                        >141 - 143, đường Lê Thị Nho, phường Trung Mỹ Tây, quận 12, thành phố Hồ Chí Minh...</span
+                                    >
+                                </div>
+                                <button class="refresh-btn"><i class="fa-solid fa-arrows-rotate"></i></button>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group-half">
+                                    <label>Họ và tên <span class="required">*</span></label>
+                                    <input type="text" required />
+                                </div>
+                                <div class="input-group-half">
+                                    <label>Số điện thoại <span class="required">*</span></label>
+                                    <input type="text" required />
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Ghi chú</label>
+                                <input type="text" />
+                            </div>
+
+                            <div class="payment-method">
+                                <label>Phương thức thanh toán <span class="required">*</span></label>
+                                <div class="payment-options">
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" required />
+                                        <img src="../images/icons/cod-icon.svg" alt="COD" />
+                                        Thanh toán khi giao hàng (COD)
+                                    </label>
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" />
+                                        <img src="../images/icons/bank-icon.svg" alt="Bank Transfer" />
+                                        Chuyển khoản qua ngân hàng
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="buttons">
+                                <a href="#" class="back-link">Quay lại giỏ hàng</a>
+                                <button type="submit" class="submit-btn">Thanh toán</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col l-5 m-12 c-12">
+                        <div class="cart-container">
+                            <div class="cart-item">
+                                <div class="item-box">
+                                    <div class="item-thumbnail">
+                                        <img
+                                            src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
+                                            alt=""
+                                            class="item-img"
+                                        />
+                                        <span class="item-quantity">1</span>
+                                    </div>
+                                    <div class="item-info">
+                                        <h3 class="item-name">Bánh tráng cuốn</h3>
+                                        <span class="item-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
+                                    </div>
+                                </div>
+                                <span class="item-price">25.000đ</span>
+                            </div>
+                            <div class="cart-item">
+                                <div class="item-box">
+                                    <div class="item-thumbnail">
+                                        <img
+                                            src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
+                                            alt=""
+                                            class="item-img"
+                                        />
+                                        <span class="item-quantity">1</span>
+                                    </div>
+                                    <div class="item-info">
+                                        <h3 class="item-name">Bánh tráng cuốn</h3>
+                                        <span class="item-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
+                                    </div>
+                                </div>
+                                <span class="item-price">25.000đ</span>
+                            </div>
+                            <div class="cart-item">
+                                <div class="item-box">
+                                    <div class="item-thumbnail">
+                                        <img
+                                            src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
+                                            alt=""
+                                            class="item-img"
+                                        />
+                                        <span class="item-quantity">1</span>
+                                    </div>
+                                    <div class="item-info">
+                                        <h3 class="item-name">Bánh tráng cuốn</h3>
+                                        <span class="item-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
+                                    </div>
+                                </div>
+                                <span class="item-price">25.000đ</span>
+                            </div>
+
+                            <div class="discount-section">
+                                <input type="text" placeholder="Nhập mã giảm giá..." class="discount-input" />
+                                <button class="apply-button">Sử dụng</button>
+                            </div>
+
+                            <div class="payment-details">
+                                <div class="provisional">
+                                    <span class="provisional-title">Tạm tính</span>
+                                    <span class="provisional-price">150.000đ</span>
+                                </div>
+                                <div class="transport-fee">
+                                    <span class="transport-fee__title">Phí vận chuyển</span>
+                                    <span class="transport-fee__price">-</span>
+                                </div>
+                            </div>
+                            <div class="total-payment">
+                                <span class="total-payment__title">Tổng cộng</span>
+                                <span class="total-payment__price">
+                                    <span class="total-payment__price-unit">VND</span>
+                                    <span id="total-payment" class="total-payment__price-main">150.000đ</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End main -->
+
+        <!-- Start footer -->
+        <footer>
+            <div class="main-footer">
+                <div class="grid wide">
+                    <div class="row">
+                        <div class="col l-3 m-6 c-12">
+                            <img src="../images/logo/logo.png" alt="" class="footer-logo" />
+                        </div>
+                        <div class="col l-3 m-6 c-12 footer-address">
+                            <h3 class="footer-heading">Địa chỉ</h3>
+                            <ul class="footer-address__list">
+                                <li class="footer-address__item">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    123 Street, New York, USA
+                                </li>
+                                <li class="footer-address__item">
+                                    <i class="fa-solid fa-phone"></i>
+                                    +012 345 67890
+                                </li>
+                                <li class="footer-address__item">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    info@example.com
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col l-3 m-6 c-6 footer-none">
+                            <h3 class="footer-heading">Điều hướng nhanh</h3>
+                            <ul class="footer-menu__list">
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Trang chủ</a>
+                                </li>
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Sản phẩm</a>
+                                </li>
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Cửa hàng</a>
+                                </li>
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Market at home</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col l-3 m-6 c-6 footer-none">
+                            <h3 class="footer-heading">Khác</h3>
+                            <ul class="footer-menu__list">
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Liên hệ</a>
+                                </li>
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Tài khoản</a>
+                                </li>
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Giỏ hàng</a>
+                                </li>
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Mã giới thiệu</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-footer">
+                <div class="grid wide">
+                    <span class="copyright-title">Copyright © 2025 | Tam Ti Flash</span>
+                    <div class="social-box">
+                        <a class="social-link" href=""><i class="social-icon fa-brands fa-facebook"></i></a>
+                        <a class="social-link" href=""><i class="social-icon fa-brands fa-instagram"></i></a>
+                        <a class="social-link" href=""><i class="social-icon fa-brands fa-youtube"></i></a>
+                        <a class="social-link" href=""><i class="social-icon fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End footer -->
+
+        <script src="../js/base.js"></script>
+    </body>
+</html>

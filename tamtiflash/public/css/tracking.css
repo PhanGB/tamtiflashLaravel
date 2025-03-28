@@ -1,0 +1,166 @@
+/* Add your CSS styles here to match the design shown in the provided image */
+
+/* Example styles based on the provided image */
+.order-info {
+    background-color: #f8f9fa; /* Light background */
+    border: 1px solid #dee2e6; /* Border color */
+    padding: 20px; /* Padding around the content */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.product-details {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #dee2e6; /* Border color */
+    padding: 20px; /* Padding around the content */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.tracking-progress {
+    display: flex; /* Flexbox for layout */
+    justify-content: space-between; /* Space between items */
+}
+
+.step {
+    padding: 10px; /* Padding for each step */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.step.completed {
+    background-color: #28a745; /* Green for completed */
+    color: white; /* White text */
+}
+
+.step.active {
+    background-color: #ffc107; /* Yellow for active */
+    color: black; /* Black text */
+}
+
+.step:not(.completed):not(.active) {
+    background-color: #e9ecef; /* Light gray for inactive */
+    color: black; /* Black text */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Primary button color */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding for button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+/* Existing styles... */
+
+/* Updated styles for order tracking layout */
+.grid-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between columns */
+}
+
+.order-info, .product-details {
+    flex: 1; /* Allow both sections to take equal space */
+    font-size: 30px;
+    margin: 10px; /* Add margin for spacing */
+    padding: 20px; /* Add padding for content */
+    border: 1px solid #dee2e6; /* Border for visual separation */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #f8f9fa; /* Light background */
+}
+
+/* Additional styles for responsiveness */
+@media (max-width: 768px) {
+    .grid-container {
+        flex-direction: column; /* Stack columns on smaller screens */
+    }
+}
+
+/* Header Mobile */
+.header-mobile {
+    display: none;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header-mobile__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-mobile__logo {
+    height: 40px;
+}
+
+.header-mobile__icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-mobile__cart {
+    position: relative;
+    color: #333;
+    font-size: 20px;
+}
+
+.header-mobile__menu-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+.header-mobile__menu {
+    display: none;
+    margin-top: 10px;
+}
+
+.header-mobile__menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.header-mobile__menu-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.header-mobile__menu-item a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.header-mobile__user {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.header-mobile__user a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Responsive Header */
+@media (max-width: 768px) {
+    .header-desktop {
+        display: none;
+    }
+    
+    .header-mobile {
+        display: block;
+    }
+}

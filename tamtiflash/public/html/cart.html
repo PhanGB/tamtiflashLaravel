@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tam Ti Flash - Giỏ hàng</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+        <link rel="stylesheet" href="../fonts/fontawesome-free-6.7.2-web/css/all.min.css" />
+        <link rel="stylesheet" href="../css/grid.css" />
+        <link rel="stylesheet" href="../css/base.css" />
+        <link rel="stylesheet" href="../css/cart.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <!-- Start Header -->
+        <!-- Desktop -->
+        <header>
+            <a href="/">
+                <img src="../images/logo/logo.png" alt="TamTiFlash" class="header-logo" />
+            </a>
+            <ul class="header-menu">
+                <li class="header-menu__item header-menu__item--active">
+                    <a href="">Trang chủ</a>
+                </li>
+                <li class="header-menu__item">
+                    <a href="">Sản phẩm</a>
+                </li>
+                <li class="header-menu__item">
+                    <a href="">Cửa hàng</a>
+                </li>
+            </ul>
+            <div class="header-search">
+                <input type="text" class="header-search__input" placeholder="Bạn đang tìm kiếm ..." />
+                <button class="header-search__btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+            <ul class="header-menu">
+                <li class="header-menu__item">
+                    <a href="">
+                        Khác
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <ul class="header-sub-menu">
+                        <li class="header-sub-menu__item">
+                            <a href="">Liên hệ</a>
+                        </li>
+                        <li class="header-sub-menu__item">
+                            <a href="">Mã giới thiệu</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <a href="" class="primary-btn">MARKET AT HOME</a>
+            <ul class="header-right">
+                <li class="header-right__item">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <div class="user-action">
+                        <a href="">Đăng nhập</a>
+                        <a href="">Đăng ký</a>
+                    </div>
+                </li>
+                <li class="header-right__item">
+                    <a href="">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-quantity">1</span>
+                    </a>
+                </li>
+            </ul>
+        </header>
+        <!-- Mobile / Tablet -->
+        <header class="header-mobile">
+            <div class="grid wide">
+                <div class="row">
+                    <div class="col l-4 c-4 m-4">
+                        <a href="" class="primary-btn">MAH</a>
+                    </div>
+                    <div class="col l-4 c-4 m-4">
+                        <a href="/">
+                            <img src="../images/logo/logo.png" alt="TamTiFlash" class="header-logo" />
+                        </a>
+                    </div>
+                    <div class="col l-4 c-4 m-4">
+                        <div class="header-right-mobile">
+                            <span class="header-search-mobile" id="searchToggle">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </span>
+                            <span class="header-menu-mobile" id="menuToggle">
+                                <i class="fa-solid fa-bars"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
+        <!-- Modal menu -->
+        <ul class="modal-menu" id="modalMenu">
+            <li class="modal-menu__item">
+                <a href="" class="modal-menu__item-icon">
+                    <i class="fa-solid fa-circle-user"></i>
+                </a>
+                <a href="" class="modal-menu__item-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-quantity mobile">1</span>
+                </a>
+            </li>
+            <li class="modal-menu__item"><a href="index.html" class="modal-menu__item-text">Trang chủ</a></li>
+            <li class="modal-menu__item"><a href="products.html" class="modal-menu__item-text">Sản phẩm</a></li>
+            <li class="modal-menu__item"><a href="shop.html" class="modal-menu__item-text">Cửa hàng</a></li>
+            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li>
+            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Mã giới thiệu</a></li>
+        </ul>
+        <!-- Modal Search -->
+        <div class="modal-search" id="modalSearch">
+            <input type="text" class="modal-search__input" placeholder="Bạn đang tìm kiếm ..." />
+            <button class="modal-search__btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <!-- End Header -->
+
+        <!-- Start main -->
+        <main>
+            <div class="banner">
+                <h2 class="banner-title">Giỏ hàng</h2>
+            </div>
+
+            <div class="cart-body">
+                <div class="grid wide">
+                    <div class="row">
+                        <div class="col l-9 m-12 c-12">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Đơn giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="product-box">
+                                            <img
+                                                src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
+                                                alt=""
+                                                class="product-img"
+                                            />
+                                            <div class="product-dsc">
+                                                <h3 class="product-name">Bánh tráng cuốn</h3>
+                                                <span class="product-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
+                                            </div>
+                                        </td>
+                                        <td>25.000đ</td>
+                                        <td>
+                                            <div class="quantity-control">
+                                                <button>-</button>
+                                                <input type="text" value="1" />
+                                                <button>+</button>
+                                            </div>
+                                        </td>
+                                        <td class="line-total">25.000đ</td>
+                                        <td><button class="remove-btn">✖</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="product-box">
+                                            <img
+                                                src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
+                                                alt=""
+                                                class="product-img"
+                                            />
+                                            <div class="product-dsc">
+                                                <h3 class="product-name">Bánh tráng cuốn</h3>
+                                                <span class="product-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
+                                            </div>
+                                        </td>
+                                        <td>25.000đ</td>
+                                        <td>
+                                            <div class="quantity-control">
+                                                <button>-</button>
+                                                <input type="text" value="1" />
+                                                <button>+</button>
+                                            </div>
+                                        </td>
+                                        <td class="line-total">25.000đ</td>
+                                        <td><button class="remove-btn">✖</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="product-box">
+                                            <img
+                                                src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
+                                                alt=""
+                                                class="product-img"
+                                            />
+                                            <div class="product-dsc">
+                                                <h3 class="product-name">Bánh tráng cuốn</h3>
+                                                <span class="product-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
+                                            </div>
+                                        </td>
+                                        <td>25.000đ</td>
+                                        <td>
+                                            <div class="quantity-control">
+                                                <button>-</button>
+                                                <input type="text" value="1" />
+                                                <button>+</button>
+                                            </div>
+                                        </td>
+                                        <td class="line-total">25.000đ</td>
+                                        <td><button class="remove-btn">✖</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="cart-mobile">
+                                <div class="cart-container">
+                                    <div class="cart-item">
+                                        <img
+                                            src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
+                                            alt=""
+                                            class="cart-img"
+                                        />
+                                        <div class="cart-details">
+                                            <h3 class="cart-name">Bánh tráng cuốn</h3>
+                                            <span class="cart-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
+                                            <span class="cart-price">25.000đ</span>
+                                            <div class="cart-quantity-mobile">
+                                                <button class="quantity-btn">−</button>
+                                                <input type="text" value="1" class="quantity-input" />
+                                                <button class="quantity-btn">+</button>
+                                            </div>
+                                        </div>
+                                        <button class="remove-btn">✖</button>
+                                    </div>
+                                    <div class="cart-item">
+                                        <img
+                                            src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
+                                            alt=""
+                                            class="cart-img"
+                                        />
+                                        <div class="cart-details">
+                                            <h3 class="cart-name">Bánh tráng cuốn</h3>
+                                            <span class="cart-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
+                                            <span class="cart-price">25.000đ</span>
+                                            <div class="cart-quantity-mobile">
+                                                <button class="quantity-btn">−</button>
+                                                <input type="text" value="1" class="quantity-input" />
+                                                <button class="quantity-btn">+</button>
+                                            </div>
+                                        </div>
+                                        <button class="remove-btn">✖</button>
+                                    </div>
+                                    <div class="cart-item">
+                                        <img
+                                            src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
+                                            alt=""
+                                            class="cart-img"
+                                        />
+                                        <div class="cart-details">
+                                            <h3 class="cart-name">Bánh tráng cuốn</h3>
+                                            <span class="cart-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
+                                            <span class="cart-price">25.000đ</span>
+                                            <div class="cart-quantity-mobile">
+                                                <button class="quantity-btn">−</button>
+                                                <input type="text" value="1" class="quantity-input" />
+                                                <button class="quantity-btn">+</button>
+                                            </div>
+                                        </div>
+                                        <button class="remove-btn">✖</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l-3 m-12 c-12">
+                            <div class="cart-total">
+                                <div>
+                                    <label for="" class="total-label">Thành tiền</label>
+                                    <span class="total-price">990.000đ</span>
+                                </div>
+                                <a class="cart-btn-link" href="payment.html">
+                                    <button class="cart-btn">Thanh toán</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- End main -->
+
+        <!-- Start footer -->
+        <footer>
+            <div class="main-footer">
+                <div class="grid wide">
+                    <div class="row">
+                        <div class="col l-3 m-6 c-12">
+                            <img src="../images/logo/logo.png" alt="" class="footer-logo" />
+                        </div>
+                        <div class="col l-3 m-6 c-12 footer-address">
+                            <h3 class="footer-heading">Địa chỉ</h3>
+                            <ul class="footer-address__list">
+                                <li class="footer-address__item">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    123 Street, New York, USA
+                                </li>
+                                <li class="footer-address__item">
+                                    <i class="fa-solid fa-phone"></i>
+                                    +012 345 67890
+                                </li>
+                                <li class="footer-address__item">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    info@example.com
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col l-3 m-6 c-6 footer-none">
+                            <h3 class="footer-heading">Điều hướng nhanh</h3>
+                            <ul class="footer-menu__list">
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Trang chủ</a>
+                                </li>
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Sản phẩm</a>
+                                </li>
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Cửa hàng</a>
+                                </li>
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Market at home</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col l-3 m-6 c-6 footer-none">
+                            <h3 class="footer-heading">Khác</h3>
+                            <ul class="footer-menu__list">
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Liên hệ</a>
+                                </li>
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Tài khoản</a>
+                                </li>
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Giỏ hàng</a>
+                                </li>
+                                <li class="footer-menu__item">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                    <a href="">Mã giới thiệu</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-footer">
+                <div class="grid wide">
+                    <span class="copyright-title">Copyright © 2025 | Tam Ti Flash</span>
+                    <div class="social-box">
+                        <a class="social-link" href=""><i class="social-icon fa-brands fa-facebook"></i></a>
+                        <a class="social-link" href=""><i class="social-icon fa-brands fa-instagram"></i></a>
+                        <a class="social-link" href=""><i class="social-icon fa-brands fa-youtube"></i></a>
+                        <a class="social-link" href=""><i class="social-icon fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End footer -->
+
+        <script src="../js/base.js"></script>
+        <script src="../js/home.js"></script>
+
+    </body>
+</html>
