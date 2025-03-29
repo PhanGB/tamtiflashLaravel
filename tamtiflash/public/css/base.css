@@ -238,11 +238,11 @@ header {
     z-index: 1;
 }
 
-.user-action > a {
+.user-action > a{
     display: block;
     line-height: 3.2rem;
     font-size: 1.6rem;
-    color: black;
+    color: rgb(201, 15, 15);
 }
 
 .user-action > a:hover {

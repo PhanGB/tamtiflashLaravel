@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -20,15 +21,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/products',[ProductController::class, 'index'])->name('products');
+Route::get('verify-email', EmailVerificationPromptController::class)
+    ->name('verification.notice');
 
 
-// Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('/', 'HomeController@index')->name('admin.home');
     Route::get('/products', 'ProductsController@index')->name('admin.products');
     Route::get('/category', 'CategoryController@index')->name('admin.category');
@@ -40,9 +44,10 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->group(function 
     Route::get('/review', 'ReviewController@index')->name('review.staff');
     Route::get('/voucher', 'VoucherController@index')->name('review.voucher');
     Route::get('/settings', 'SettingsController@index')->name('review.settings');
-
-
-require __DIR__ . '/auth.php';
-
+    
+    
+    require __DIR__ . '/auth.php';
+    
 });
+require __DIR__ . '/auth.php';
 

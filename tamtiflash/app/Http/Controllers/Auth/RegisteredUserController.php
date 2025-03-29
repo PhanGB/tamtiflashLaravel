@@ -61,7 +61,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        // return redirect(RouteServiceProvider::HOME);
-        return redirect()->route('login')->with('success', 'Đăng ký thành công! Vui lòng đăng nhập.');
+        return redirect(RouteServiceProvider::HOME);
+        // return redirect()->route('login')->with('success', 'Đăng ký thành công! Vui lòng đăng nhập.');
     }
 }
