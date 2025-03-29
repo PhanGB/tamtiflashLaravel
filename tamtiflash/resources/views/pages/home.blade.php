@@ -71,7 +71,7 @@
                             <h3>{{ $shop->name }}</h3>
                             <p>{{ $shop->short_description }}</p>
                             <p>Giờ mở cửa: <span class="open-time">{{ $shop->time_open }}</span></p>
-                            <a href="" class="primary-btn restaurant-btn">Ghé quán</a>
+                            <a href="/shopdetail/{{ $shop->id }}" class="primary-btn restaurant-btn">Ghé quán</a>
                         </div>
                     </div>
                     @endforeach

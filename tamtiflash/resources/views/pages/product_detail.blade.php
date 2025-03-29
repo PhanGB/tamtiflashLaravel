@@ -36,21 +36,14 @@
                                 <div class="col l-6 m-6 c-12 product-detail__content-topping">
                                     <h3>Thêm Topping</h3>
                                     <div class="product-detail__topping-list">
+                                        @foreach ($productvariants as $productvariant)
                                         <label class="product-detail__topping-item">
-                                            <input type="checkbox" name="topping" value="rau" class="product-detail__topping-checkbox">
-                                            <span class="product-detail__topping-text">Thêm rau</span>
-                                            <span class="product-detail__topping-price">+ 5.000</span>
+                                            <input type="checkbox" name="topping" value="{{ $productvariant->id }}" class="product-detail__topping-checkbox">
+                                            <span class="product-detail__topping-text">{{ $productvariant->name }}</span>
+                                            <span class="product-detail__topping-price">+ {{ number_format($productvariant->price) }} đ</span>
                                         </label>
-                                        <label class="product-detail__topping-item">
-                                            <input type="checkbox" name="topping" value="pho-mai" class="product-detail__topping-checkbox">
-                                            <span class="product-detail__topping-text">Thêm phô mai</span>
-                                            <span class="product-detail__topping-price">+ 10.000</span>
-                                        </label>
-                                        <label class="product-detail__topping-item">
-                                            <input type="checkbox" name="topping" value="trung" class="product-detail__topping-checkbox">
-                                            <span class="product-detail__topping-text">Thêm trứng</span>
-                                            <span class="product-detail__topping-price">+ 7.000</span>
-                                        </label>
+                                        @endforeach
+
                                     </div>
                                 </div>
                                 <div class="col l-6 m-6 c-12 product-detail__content-note">

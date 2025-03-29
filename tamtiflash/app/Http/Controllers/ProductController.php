@@ -8,8 +8,9 @@ class ProductController extends Controller
 {
     public function product_detail($id)
     {
+        $productvariants = Product::findOrFail($id)->variants;
         $product = Product::findOrFail($id);
-        return view('pages.product_detail', ['id' => $id], compact('product'));
+        return view('pages.product_detail', ['id' => $id], compact('product', 'productvariants'));
     }
 
     public function search(Request $request)
