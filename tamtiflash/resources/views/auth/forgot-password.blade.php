@@ -17,6 +17,7 @@
                     </div>
                     <div class="signIn__form-container">
                         <form class="signIn__form" action="{{ route('password.email') }}" method="post">
+                            @csrf
                             <div class="signIn__form-input">
                                 <!-- Hiển thị lỗi -->
                                 @if ($errors->any())

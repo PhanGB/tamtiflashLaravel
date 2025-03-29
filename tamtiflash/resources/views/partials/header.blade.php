@@ -63,7 +63,7 @@
         <a href="" class="primary-btn">MARKET AT HOME</a>
         <ul class="header-right">
 
-                <!-- <li class="header-right__item">
+            <!-- <li class="header-right__item">
                     <i class="fa-solid fa-circle-user"></i>
                     <div class="user-action">
                         <a href=" /infor">Thông tin</a>
@@ -71,7 +71,7 @@
                     </div>
                 </li> -->
 
-                <!-- <li class="header-right__item">
+            <!-- <li class="header-right__item">
                     <i class="fa-solid fa-circle-user"></i>
                     <div class="user-action">
                         <a href=" /signin">Đăng nhập</a>
@@ -79,13 +79,26 @@
                     </div>
                 </li> -->
 
+            @if(Auth::check())
             <li class="header-right__item">
-                <i class="fa-solid fa-circle-user"></i>
-                <div class="user-action">
-                    <a href="/login">Đăng nhập</a>
-                    <a href="/register">Đăng ký</a>
-                </div>
-            </li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                        <i class="fa-solid fa-circle-user"></i>
+                        <div class="user-action">
+                            <a href="/infor">Thông tin</a>
+                            <button type="submit">Đăng xuất</button>
+                        </div>
+                    </form>
+                </li>
+            @else
+                <li class="header-right__item">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <div class="user-action">
+                        <a href="/login">Đăng nhập</a>
+                        <a href="/register">Đăng ký</a>
+                    </div>
+                </li>
+            @endif
             <li class="header-right__item">
                 <a href="">
                     <i class="fa-solid fa-cart-shopping"></i>
@@ -123,40 +136,40 @@
     <div class="overlay" id="overlay"></div>
     <!-- Modal menu -->
     <?php  ?>
-        <ul class="modal-menu" id="modalMenu">
-            <li class="modal-menu__item">
-                <a href=" /infor" class="modal-menu__item-icon">
-                    <i class="fa-solid fa-circle-user"></i>
-                </a>
-                <a href="" class="modal-menu__item-icon">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="cart-quantity mobile">1</span>
-                </a>
-            </li>
-            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Trang chủ</a></li>
-            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Sản phẩm</a></li>
-            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Cửa hàng</a></li>
-            <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li> -->
-            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Mã giới thiệu</a></li>
-            <li class="modal-menu__item"><a href=" /signout" class="modal-menu__item-text">Đăng xuất</a></li>
-        </ul>
+    <ul class="modal-menu" id="modalMenu">
+        <li class="modal-menu__item">
+            <a href=" /infor" class="modal-menu__item-icon">
+                <i class="fa-solid fa-circle-user"></i>
+            </a>
+            <a href="" class="modal-menu__item-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-quantity mobile">1</span>
+            </a>
+        </li>
+        <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Trang chủ</a></li>
+        <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Sản phẩm</a></li>
+        <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Cửa hàng</a></li>
+        <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li> -->
+        <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Mã giới thiệu</a></li>
+        <li class="modal-menu__item"><a href=" /signout" class="modal-menu__item-text">Đăng xuất</a></li>
+    </ul>
     <?php ?>
-        <ul class="modal-menu" id="modalMenu">
-            <li class="modal-menu__item">
-                <a href=" /infor" class="modal-menu__item-icon">
-                    <i class="fa-solid fa-circle-user"></i>
-                </a>
-                <a href="" class="modal-menu__item-icon">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="cart-quantity mobile">1</span>
-                </a>
-            </li>
-            <li class="modal-menu__item"><a href=" /" class="modal-menu__item-text">Trang chủ</a></li>
-            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Sản phẩm</a></li>
-            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Cửa hàng</a></li>
-            <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li> -->
-            <li class="modal-menu__item"><a href=" /signin" class="modal-menu__item-text">Đăng nhập</a></li>
-        </ul>
+    <ul class="modal-menu" id="modalMenu">
+        <li class="modal-menu__item">
+            <a href=" /infor" class="modal-menu__item-icon">
+                <i class="fa-solid fa-circle-user"></i>
+            </a>
+            <a href="" class="modal-menu__item-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-quantity mobile">1</span>
+            </a>
+        </li>
+        <li class="modal-menu__item"><a href=" /" class="modal-menu__item-text">Trang chủ</a></li>
+        <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Sản phẩm</a></li>
+        <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Cửa hàng</a></li>
+        <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li> -->
+        <li class="modal-menu__item"><a href=" /signin" class="modal-menu__item-text">Đăng nhập</a></li>
+    </ul>
     <?php ?>
     <!-- Modal Search -->
     <div class="modal-search" id="modalSearch">
