@@ -19,7 +19,12 @@ class Product extends Model
 
     public function variants()
     {
-        return $this->hasMany(ProductVariant::class);
+        return $this->hasMany(ProductVariant::class, 'id_product');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
 

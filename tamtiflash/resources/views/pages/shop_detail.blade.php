@@ -27,6 +27,9 @@
             <div class="row" id="product-list">
                 <div class="space"></div>
                 <h2>Combo</h2> <br>
+                @if($products->isEmpty())
+                    <h3 class="text-center text-muted">Không có sản phẩm nào trong danh mục này.</h3>
+                @else
                 @foreach ($products as $product)
                 <div class="col-md-6 mb-3 product" data-id="1"
                     data-name="Bánh tráng cuốn + Trà chanh giã tay không đường" data-price="25000"
@@ -59,10 +62,9 @@
             <div class="filter-category mb-4 ">
                 <span class="name-filter-category ">Sắp xếp theo: </span>
                 <select name="category" id="category" class="form-select select-category w-50">
-                    <option value="">Tất cả</option>
-                    <option value="0">Combo</option>
-                    <option value="1">Món ăn</option>
-                    <option value="2">Nước uống</option>
+                    <option value="all" {{ request('category') == 'all' ? 'selected' : '' }}>Tất cả</option>
+                    <option value="food" {{ request('category') == 'food' ? 'selected' : '' }}>Món ăn</option>
+                    <option value="drink" {{ request('category') == 'drink' ? 'selected' : '' }}>Nước uống</option>
                 </select>
             </div>
             <div class="cart">
