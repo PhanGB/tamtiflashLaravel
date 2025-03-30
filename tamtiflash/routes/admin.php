@@ -21,8 +21,17 @@ Route::prefix('admin')->group(function () {
     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('admin.ordertracking');
     Route::get('/staff', [StaffController::class, 'index'])->name('admin.staff');
     Route::get('/users', [UsersController::class, 'index'])->name('admin.users');
+
     Route::get('/review', [ReviewController::class, 'index'])->name('admin.review');
+    Route::get('admin.review.approve/{id}', [ReviewController::class, 'approve'])->name('admin.review.approve');
+    Route::get('admin.review.hide/{id}', [ReviewController::class, 'hide'])->name('admin.review.hide');
+    Route::get('admin.review.show/{id}', [ReviewController::class, 'show'])->name('admin.review.show');
+
     Route::get('/voucher', [VoucherController::class, 'index'])->name('admin.voucher');
+    Route::get('admin.voucher.add-voucher', [VoucherController::class, 'create'])->name('admin.voucher.create');
+    Route::post('admin/voucher/store', [VoucherController::class, 'store'])->name('admin.voucher.store');
+
+
     Route::get('/settings', [SettingsController::class, 'index'])->name('admin.settings');
     // require __DIR__ . '/auth.php'; // Nếu có auth riêng cho admin
 });
