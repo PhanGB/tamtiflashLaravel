@@ -18,10 +18,10 @@
                         </div>
                         <ul class="myAccount__menu">
                             <li class="myAccount__menu-item">
-                                <a href="/tamtiflash/infor" class="myAccount__menu-link">Quản lý tài khoản</a>
+                                <a href="/info" class="myAccount__menu-link">Quản lý tài khoản</a>
                             </li>
                             <li class="myAccount__menu-item">
-                                <a href="/tamtiflash/my_order" class="myAccount__menu-link">Đơn hàng của tôi</a>
+                                <a href="/my_order" class="myAccount__menu-link">Đơn hàng của tôi</a>
                             </li>
                             <li class="myAccount__menu-item border-bottom-radius">
                                 <a href="/tamtiflash/signout" class="myAccount__menu-link">Đăng xuất</a>
@@ -94,110 +94,60 @@
 
 
                     <!-- Start content info -->
-                    <!-- <div class="myOrder__content-info l-12 m-12 c-12">
-                            <div class="myOrder__info-title border-top-radius">
-                                <h2>Mã đơn hàng: #ABC123</h2>
-                            </div>
+                    <!-- $status = "";
+                        if ($item['status'] == 1) {
+                            $status = "Đã giao";
+                            $class = "myOrder-success";
+                        } else if ($item['status'] == 2) {
+                            $status = "Đang vận chuyển";
+                            $class = "myOrder-in-progress";
+                        } else if ($item['status'] == 3) {
+                            $status = "Đã huỷ";
+                            $class = "myOrder-cancel";
+                        } else {
+                            $status = "Cần đánh giá";
+                            $class = "myOrder-need-review";
+                        } -->
 
-                            <div class="myOrder__info-item">
-                                <strong>Họ và tên: </strong> <span>Trần Chí Minh</span>
-                            </div>
-
-                            <div class="myOrder__info-item">
-                                <strong>Số điện thoại: </strong> <span>0933123123</span>
-                            </div>
-
-                            <div class="myOrder__info-item">
-                                <strong>Địa chỉ: </strong> <span>51/17 Tân Lập 2, Hiệp Phú, TP Thủ Đức, TP HCM</span>
-                            </div>
-                            <div class="row myOrder__info-item">
-                                <span class="col l-6 m-6 c-6 myOrder-success" href="">Đã giao</span>
-                                <a class="col l-6 m-6 c-6 myOrder__item-link" href="">Xem chi tiết</a>
-                            </div>
-
-                        </div>
-
-                        <div class="myOrder__content-info l-12 m-12 c-12">
-                            <div class="myOrder__info-title border-top-radius">
-                                <h2>Mã đơn hàng: #ABC123</h2>
-                            </div>
-
-                            <div class="myOrder__info-item">
-                                <strong>Họ và tên: </strong> <span>Trần Chí Minh</span>
-                            </div>
-
-                            <div class="myOrder__info-item">
-                                <strong>Số điện thoại: </strong> <span>0933123123</span>
-                            </div>
-
-                            <div class="myOrder__info-item">
-                                <strong>Địa chỉ: </strong> <span>51/17 Tân Lập 2, Hiệp Phú, TP Thủ Đức, TP HCM</span>
-                            </div>
-                            <div class="row myOrder__info-item">
-                                <span class="col l-6 m-6 c-6 myOrder-in-progress" href="">Đang vận chuyển</span>
-                                <a class="col l-6 m-6 c-6 myOrder__item-link" href="">Xem chi tiết</a>
-                            </div>
-
-                        </div>
-
-                        <div class="myOrder__content-info l-12 m-12 c-12">
-                            <div class="myOrder__info-title border-top-radius">
-                                <h2>Mã đơn hàng: #ABC123</h2>
-                            </div>
-
-                            <div class="myOrder__info-item">
-                                <strong>Họ và tên: </strong> <span>Trần Chí Minh</span>
-                            </div>
-
-                            <div class="myOrder__info-item">
-                                <strong>Số điện thoại: </strong> <span>0933123123</span>
-                            </div>
-
-                            <div class="myOrder__info-item">
-                                <strong>Địa chỉ: </strong> <span>51/17 Tân Lập 2, Hiệp Phú, TP Thủ Đức, TP HCM</span>
-                            </div>
-                            <div class="row myOrder__info-item">
-                                <span class="col l-6 m-6 c-6 myOrder-cancel" href="">Đã huỷ</span>
-                                <a class="col l-6 m-6 c-6 myOrder__item-link" href="">Xem chi tiết</a>
-                            </div>
-
-                        </div> -->
-                    <!-- // $status = "";
-                        // if ($item['status'] == 1) {
-                        //     $status = "Đã giao";
-                        //     $class = "myOrder-success";
-                        // } else if ($item['status'] == 2) {
-                        //     $status = "Đang vận chuyển";
-                        //     $class = "myOrder-in-progress";
-                        // } else if ($item['status'] == 3) {
-                        //     $status = "Đã huỷ";
-                        //     $class = "myOrder-cancel";
-                        // } else {
-                        //     $status = "Cần đánh giá";
-                        //     $class = "myOrder-need-review";
-                        // } -->
-
-                    <div class="myOrder__content-info l-12 m-12 c-12">
+                   @foreach ($orders as $order)
+                     @php
+                            $status = "";
+                            if ($order->status == 1) {
+                             $status = "Đã giao";
+                             $class = "myOrder-success";
+                            } else if ($order->status == 2) {
+                             $status = "Đang vận chuyển";
+                             $class = "myOrder-in-progress";
+                            } else if ($order->status == 3) {
+                             $status = "Đã huỷ";
+                             $class = "myOrder-cancel";
+                            } else {
+                             $status = "Cần đánh giá";
+                             $class = "myOrder-need-review";
+                            }
+                      @endphp
+                   <div class="myOrder__content-info l-12 m-12 c-12">
                         <div class="myOrder__info-title border-top-radius">
-                            <h2>Mã đơn hàng: #ABC123</h2>
+                            <h2>Mã đơn hàng: {{ $order->order_id }}</h2>
                         </div>
 
                         <div class="myOrder__info-item">
-                            <strong>Quán: </strong> <span>Ngũ Long</span>
+                            <strong>Quán: </strong> <span>{{ $order->shop_name }}</span>
                         </div>
 
                         <div class="myOrder__info-item">
-                            <strong>Tổng tiền: </strong> <span>100.000đ</span>
+                            <strong>Tổng tiền: </strong> <span>{{ number_format($order->total,3) }}đ</span>
                         </div>
 
                         <div class="myOrder__info-item">
-                            <strong>Ngày đặt hàng: </strong> <span>29-03-2025</span>
+                            <strong>Ngày đặt hàng: </strong> <span>{{ \Carbon\Carbon::parse($order->order_date)->format('d/m/Y H:i') }}</span>
                         </div>
                         <div class="row myOrder__info-item">
-                            <span class="col l-6 m-6 c-6 myOrder-success">Đã giao</span>
-                            <a class="col l-6 m-6 c-6 myOrder__item-link" href="/ordertracking">Xem chi tiết</a>
+                            <span class="col l-6 m-6 c-6 {{ $class }}">{{ $status }}</span>
+                            <a class="col l-6 m-6 c-6 myOrder__item-link" href="/ordertracking/{{ $order->order_id }}">Xem chi tiết</a>
                         </div>
                     </div>
+                   @endforeach
                     <!-- End content info -->
 
 
