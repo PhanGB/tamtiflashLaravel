@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="public/css/grid.css" />
     <link rel="stylesheet" href="public/css/base.css" /> -->
     @vite(['resources/bootstrap-5.3.3-dist/css/bootstrap.min.css'])
-    <!-- @vite(['resources/css/normalize/8.0.1/normalize.min.css']) -->
+    {{-- @vite(['resources/css/normalize/8.0.1/normalize.min.css']) --}}
     @vite(['resources/fonts/fontawesome-free-6.7.2-web/css/all.min.css'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
     @vite(['resources/css/grid.css'])
@@ -79,10 +79,10 @@
                     </div>
                 </li> -->
 
-            @if(Auth::check())
-            <li class="header-right__item">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
+            @if (Auth::check())
+                <li class="header-right__item">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
                         <i class="fa-solid fa-circle-user"></i>
                         <div class="user-action">
                             <a href="/info">Thông tin</a>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="col l-4 c-3 m-3">
                     <a href=" /">
-                        <img src="{{ asset('images/logo/logo.png')}}" alt="TamTiFlash" class="header-logo" />
+                        <img src="{{ asset('images/logo/logo.png') }}" alt="TamTiFlash" class="header-logo" />
                     </a>
                 </div>
                 <div class="col l-4 c-3 m-2">
@@ -135,7 +135,7 @@
     <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
     <!-- Modal menu -->
-     @if(Auth::check())
+    @if (Auth::check())
         <ul class="modal-menu" id="modalMenu">
             <li class="modal-menu__item">
                 <a href=" /info" class="modal-menu__item-icon">
@@ -151,12 +151,13 @@
             <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li> -->
             <li class="modal-menu__item"><a href="/info" class="modal-menu__item-text">Mã giới thiệu</a></li>
             <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <li class="modal-menu__item"><button name="submit" class="modal-menu__item-text" style="border: none; background-color: #ffffff00;">Đăng xuất</button></li>
+                @csrf
+                <li class="modal-menu__item"><button name="submit" class="modal-menu__item-text"
+                        style="border: none; background-color: #ffffff00;">Đăng xuất</button></li>
             </form>
         </ul>
     @else
-    <ul class="modal-menu" id="modalMenu">
+        <ul class="modal-menu" id="modalMenu">
             <li class="modal-menu__item">
                 <a href=" /info" class="modal-menu__item-icon">
                     <i class="fa-solid fa-circle-user"></i>
@@ -186,8 +187,8 @@
         <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Trang chủ</a></li>
         <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Sản phẩm</a></li>
         <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Cửa hàng</a></li> -->
-        <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li> -->
-        <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Mã giới thiệu</a></li>
+    <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li> -->
+    <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Mã giới thiệu</a></li>
         <li class="modal-menu__item"><a href=" /signout" class="modal-menu__item-text">Đăng xuất</a></li>
     </ul> -->
     <?php ?>

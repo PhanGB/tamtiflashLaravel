@@ -16,4 +16,5 @@ class Order extends Model
         'create_at',
         'update_at'
     ];
+
 }

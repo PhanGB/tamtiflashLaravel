@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Tamtiflash - Admin - Nhân viên')
-@section ('content')
-     <!-- Table Start -->
-     <div class="container-fluid pt-4 px-4">
+@section('content')
+    <!-- Table Start -->
+    <div class="container-fluid pt-4 px-4">
         <div class="bg-light rounded p-4">
 
             <div class="d-flex align-items-center justify-content-between mb-4">
@@ -21,8 +21,7 @@
                         <input type="text" placeholder="Tìm kiếm đơn hàng..." class="form-control" />
                     </div>
                     <div class="col-3 col-sm-1 text-center">
-                        <button class="btn btn-primary w-100"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
+                        <button class="btn btn-primary w-100"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
             </form>
@@ -77,6 +76,6 @@
             </div>
         </div>
     </div>
-        <!-- Table End -->
+    <!-- Table End -->
 
 @endsection
