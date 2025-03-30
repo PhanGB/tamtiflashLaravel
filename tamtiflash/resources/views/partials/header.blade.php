@@ -85,7 +85,7 @@
                     @csrf
                         <i class="fa-solid fa-circle-user"></i>
                         <div class="user-action">
-                            <a href="/infor">Thông tin</a>
+                            <a href="/info">Thông tin</a>
                             <button type="submit">Đăng xuất</button>
                         </div>
                     </form>
