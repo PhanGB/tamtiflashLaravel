@@ -1,25 +1,23 @@
 <?php
-
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ProductController;
+
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/shop', [ShopController::class, 'shop']);
+Route::get('/shopdetail/{id}', [ShopController::class, 'shop_detail']);
+Route::get('/cart', [ShopController::class, 'cart']);
+Route::get('/productdetail/{id}',[ProductController::class,'product_detail'])->name('product_detail');
+Route::get('/search', [ProductController::class, 'search'])->name('products.search');
+Route::get('/MAH', [HomeController::class, 'MAH'])->name('MAH');
 
 
-
-// Route::get('/', function () {
-//     return view('pages.home');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-// Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('home');
-// Route::get('/products', [ProductController::class, 'index'])->name('products');
-
-Route::get('/',[HomeController::class, 'index'])->name('home');
+Route::get('/',[HomeController::class, 'home'])->name('home');
 Route::get('/products',[ProductController::class, 'index'])->name('products');
 Route::get('verify-email', EmailVerificationPromptController::class)
     ->name('verification.notice');
@@ -50,4 +48,3 @@ Route::prefix('admin')->group(function () {
     
 });
 require __DIR__ . '/auth.php';
-
