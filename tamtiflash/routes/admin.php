@@ -33,7 +33,6 @@ Route::prefix('admin')->group(function () {
     Route::delete('/order-tracking/{id}', [AdminOrderController::class, 'destroy'])->name('admin.ordertracking.destroy');
     Route::get('/admin/order-tracking/{id}', [OrderTrackingController::class, 'show'])->name('ordertracking.show');
 
-
 // Thêm route để hiển thị danh sách đơn hàng
 Route::get('/admin/orders', [OrderController::class, 'index'])->name('admin.orders');
 
