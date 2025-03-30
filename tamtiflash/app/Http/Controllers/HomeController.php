@@ -17,4 +17,5 @@ class HomeController extends Controller
         $products = Product::orderBy('created_at', 'desc')->take(8)->get();
         return view('pages.MarketAtHome', compact('products'));
     }
+
 }
