@@ -4,6 +4,18 @@
 
     <!-- Table Start -->
     <div class="container-fluid py-4 px-4">
+        <style>
+            #view-success {
+                display: none;
+                background-color: rgba(0, 255, 255, 0.31);
+                color: black;
+                padding: 10px;
+                font-size: 20px;
+                text-align: center;
+            }
+        </style>
+       <p id="view-success"></p>
+
         <div class="row">
             <div>
                 <div class="card border-0 shadow">
@@ -108,14 +120,23 @@
                                 @enderror
                             </div>
                             <a href="/admin/voucher" class="btn btn-danger">Quay lại</a>
+                            <a href="" class="btn btn-danger">Reset form</a>
                             <!-- <input type="submit" name="submit" value="Thêm Voucher" class="btn btn-primary" /> -->
-                             <button name="submit" class="btn btn-primary">Thêm voucher</button>
+                            <button name="submit" class="btn btn-primary" onclick="success()">Thêm voucher</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function success() {
+            $('#view-success').html('Thêm voucher thành công').css('display', 'block');
+            setTimeout(function() {
+                $('#view-success').fadeOut('slow');
+            }, 3000);
+        }
+    </script>
 
     <!-- Table End -->
 

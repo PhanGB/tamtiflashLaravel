@@ -57,12 +57,18 @@
                                                 <td>{{ \Carbon\Carbon::parse($voucher->end_date)->format('d/m/Y') }}</td>
                                                 <td class="{{ $class }}">{{ $status }}</td>
                                                 <td>
-                                                    <a href="admin.voucher.edit{{ $voucher->id }}" class="btn btn-sm btn-warning">Sửa</a>
-                                                    <form action="admin.voucher.destroy{{ $voucher->id }}" method="POST"
-                                                        style="display:inline;">
+                                                    <a href="admin.voucher.edit{{ $voucher->id }}" class="btn btn-sm btn-warning" style="float:left; margin-right: 10px;">Sửa</a>
+                                                    <!-- <form action="admin.voucher.destroy{{ $voucher->id }}" method="POST"
+                                                                                style="display:inline;">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button type="submit" class="btn btn-sm btn-danger">Xoá</button>
+                                                                            </form> -->
+                                                    <form action="{{ route('admin.voucher.destroy', $voucher->id) }}" method="POST"
+                                                        onsubmit="return confirm('Bạn có chắc muốn xoá voucher này?')">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+                                                        <button type="submit" class="btn btn-sm btn-danger">Xoá</button>
                                                     </form>
                                                 </td>
                                             </tr>

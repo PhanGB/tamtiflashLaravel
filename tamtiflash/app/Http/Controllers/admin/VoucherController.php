@@ -48,7 +48,7 @@ class VoucherController extends Controller
             $voucher->save();
 
             // Redirect back with a success message
-            return redirect()->route('voucher')->with('success', 'Voucher added successfully!');
+            return redirect()->route('admin.voucher.add-voucher')->with('success', 'Voucher added successfully!');
             // return view('admin/voucher');
         } catch (\Exception $e) {
             // Log the error for debugging
@@ -57,5 +57,12 @@ class VoucherController extends Controller
             // Redirect back with an error message
             return redirect()->back()->with('error', 'Failed to add voucher. Please try again.')->withInput();
         }
+    }
+
+    public function destroy($id)
+    {
+        $voucher = Voucher::findOrFail($id); // Tìm voucher
+        $voucher->delete(); // Soft delete
+        return redirect()->route('/voucher')->with('success', 'Voucher đã được xoá tạm thời.');
     }
 }

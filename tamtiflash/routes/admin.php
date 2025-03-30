@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/voucher', [VoucherController::class, 'index'])->name('admin.voucher');
     Route::get('admin.voucher.add-voucher', [VoucherController::class, 'create'])->name('admin.voucher.create');
     Route::post('admin/voucher/store', [VoucherController::class, 'store'])->name('admin.voucher.store');
+    Route::delete('/admin/voucher/{id}', [VoucherController::class, 'destroy'])->name('admin.voucher.destroy');
 
 
     Route::get('/settings', [SettingsController::class, 'index'])->name('admin.settings');
