@@ -29,24 +29,25 @@
                             <td>★★★★★</td>
                             <td>Dịch vụ rất tốt!</td>
                             <td><span class="btn btn-secondary m-2">Đang chờ</span></td>
-                            <td><a href="" class="btn btn-warning m-2">Duyệt</a> <a href="" class="btn btn-danger m-2">Ẩn</a></td>
-                          </tr>
-                          <tr>
+                            <td><a href="" class="btn btn-warning m-2">Duyệt</a> <a href=""
+                                    class="btn btn-danger m-2">Ẩn</a></td>
+                        </tr>
+                        <tr>
                             <th scope="row">2</th>
                             <td>Trần Thị B</td>
                             <td>★★★★☆</td>
                             <td>Giao hàng nhanh chóng.</td>
                             <td><span class="btn btn-success m-2">Đã duyệt</span></td>
                             <td></td>
-                          </tr>
-                          <tr>
+                        </tr>
+                        <tr>
                             <th scope="row">3</th>
                             <td>Lê Văn C</td>
                             <td>★★☆☆☆</td>
                             <td>Hàng bị hư hỏng khi nhận.</td>
                             <td><span class="btn btn-danger m-2">Đã từ chối</span></td>
                             <td></td>
-                          </tr>
+                        </tr>
 
 
                     </tbody>

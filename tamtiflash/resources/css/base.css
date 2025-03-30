@@ -250,6 +250,20 @@ header {
     font-weight: bold;
 }
 
+.user-action > button{
+    display: block;
+    line-height: 3.1rem;
+    font-size: 1.6rem;
+    color: black;
+    background-color: white;
+    border: none;
+    margin-left: -5px;
+}
+.user-action > button:hover {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
 .header-mobile,
 .modal-menu,
 .modal-search {
