@@ -6,6 +6,7 @@
     border: 1px solid #dee2e6; /* Border color */
     padding: 20px; /* Padding around the content */
     border-radius: 5px; /* Rounded corners */
+    font-size: 5px; /* Font size for the text */
 }
 
 .product-details {
@@ -16,18 +17,33 @@
 }
 
 .tracking-progress {
-    display: flex; /* Flexbox for layout */
-    justify-content: space-between; /* Space between items */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .step {
-    padding: 10px; /* Padding for each step */
-    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #ddd;
+    font-weight: bold;
 }
 
 .step.completed {
-    background-color: #28a745; /* Green for completed */
-    color: white; /* White text */
+    background-color: green;
+    color: white;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 5px;
+    background-color: red;
+    margin: 0 10px;
+}
+
+.progress-bar.completed {
+    background-color: green;
 }
 
 .step.active {
@@ -71,9 +87,34 @@
 }
 
 /* Additional styles for responsiveness */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .grid-container {
-        flex-direction: column; /* Stack columns on smaller screens */
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .order-info, .product-details {
+        width: 100%;
+    }
+
+    .tracking-progress {
+        gap: 5px;
+    }
+
+    .step {
+        font-size: 12px;
+        min-width: 70px;
+        padding: 4px 8px;
+    }
+
+    .progress-bar {
+        min-width: 7px;
+        margin: 0px;
+        /* width: 300px; */
+
+    }
+    .product-details {
+        font-size: 15px;
     }
 }
 

@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Address extends Model
 {
     use HasFactory;
-    protected $table = 'orders';
+    protected $table = 'address';
     protected $fillable = [
         'id_user',
-        'status',
-        'total',
-        'create_at',
-        'update_at'
+        'address',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }
