@@ -85,7 +85,7 @@
                     @csrf
                         <i class="fa-solid fa-circle-user"></i>
                         <div class="user-action">
-                            <a href="/infor">Thông tin</a>
+                            <a href="/info">Thông tin</a>
                             <button type="submit">Đăng xuất</button>
                         </div>
                     </form>
@@ -112,10 +112,10 @@
         <div class="grid wide">
             <div class="row">
                 <div class="col l-4 c-4 m-3">
-                    <a href="" class="primary-btn">MAH</a>
+                    <a href="/MAH" class="primary-btn">MAH</a>
                 </div>
                 <div class="col l-4 c-3 m-3">
-                    <a href=" /app">
+                    <a href=" /">
                         <img src="{{ asset('images/logo/logo.png')}}" alt="TamTiFlash" class="header-logo" />
                     </a>
                 </div>
@@ -135,13 +135,13 @@
     <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
     <!-- Modal menu -->
-    <?php  ?>
+     @if(Auth::check())
         <ul class="modal-menu" id="modalMenu">
             <li class="modal-menu__item">
-                <a href=" /infor" class="modal-menu__item-icon">
+                <a href=" /info" class="modal-menu__item-icon">
                     <i class="fa-solid fa-circle-user"></i>
                 </a>
-                <a href="" class="modal-menu__item-icon">
+                <a href="/cart" class="modal-menu__item-icon">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span class="cart-quantity mobile">1</span>
                 </a>
@@ -149,9 +149,30 @@
             <li class="modal-menu__item"><a href="/" class="modal-menu__item-text">Trang chủ</a></li>
             <li class="modal-menu__item"><a href="/shop" class="modal-menu__item-text">Cửa hàng</a></li>
             <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li> -->
-            <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Mã giới thiệu</a></li>
-            <li class="modal-menu__item"><a href=" /signout" class="modal-menu__item-text">Đăng xuất</a></li>
+            <li class="modal-menu__item"><a href="/info" class="modal-menu__item-text">Mã giới thiệu</a></li>
+            <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <li class="modal-menu__item"><button name="submit" class="modal-menu__item-text" style="border: none; background-color: #ffffff00;">Đăng xuất</button></li>
+            </form>
         </ul>
+    @else
+    <ul class="modal-menu" id="modalMenu">
+            <li class="modal-menu__item">
+                <a href=" /info" class="modal-menu__item-icon">
+                    <i class="fa-solid fa-circle-user"></i>
+                </a>
+                <a href="/cart" class="modal-menu__item-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-quantity mobile">1</span>
+                </a>
+            </li>
+            <li class="modal-menu__item"><a href="/" class="modal-menu__item-text">Trang chủ</a></li>
+            <li class="modal-menu__item"><a href="/shop" class="modal-menu__item-text">Cửa hàng</a></li>
+            <!-- <li class="modal-menu__item"><a href="" class="modal-menu__item-text">Liên hệ</a></li> -->
+            <li class="modal-menu__item"><a href="/info" class="modal-menu__item-text">Mã giới thiệu</a></li>
+            <li class="modal-menu__item"><a href=" /login" class="modal-menu__item-text">Đăng nhập</a></li>
+        </ul>
+    @endif
     <!-- <ul class="modal-menu" id="modalMenu">
         <li class="modal-menu__item">
             <a href=" /infor" class="modal-menu__item-icon">
