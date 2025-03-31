@@ -31,9 +31,7 @@
             <li class="header-menu__item header-menu__item--active">
                 <a href="/">Trang chủ</a>
             </li>
-            <!-- <li class="header-menu__item">
-                <a href="/tamtiflash/products">Sản phẩm</a>
-            </li> -->
+
             <li class="header-menu__item">
                 <a href="/shop">Cửa hàng</a>
             </li>

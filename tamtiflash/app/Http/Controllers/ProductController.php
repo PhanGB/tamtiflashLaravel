@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Order;
+use App\Models\Admin\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,5 +25,14 @@ class ProductController extends Controller
 
         return view('pages.search', compact('products', 'keyword'));
     }
+
+    public function filterByCategory($category_id)
+    {
+    $products = Product::where('category_id', $category_id)->orderBy('', 'asc')->get();
+    $category = Category::find($category_id);
+
+    return view('products.category', compact('products', 'category'));
+    }
+
 
 }
