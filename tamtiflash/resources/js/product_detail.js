@@ -1,7 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const decreaseBtn = document.querySelector(".product-detail__quantity-btn--decrease");
-    const increaseBtn = document.querySelector(".product-detail__quantity-btn--increase");
-    const quantityInput = document.querySelector(".product-detail__quantity-input");
+    const decreaseBtn = document.querySelector(
+        ".product-detail__quantity-btn--decrease"
+    );
+    const increaseBtn = document.querySelector(
+        ".product-detail__quantity-btn--increase"
+    );
+    const quantityInput = document.querySelector(
+        ".product-detail__quantity-input"
+    );
 
     decreaseBtn.addEventListener("click", function () {
         let value = parseInt(quantityInput.value);
@@ -15,7 +21,3 @@ document.addEventListener("DOMContentLoaded", function () {
         quantityInput.value = value + 1;
     });
 });
-
-
-
-

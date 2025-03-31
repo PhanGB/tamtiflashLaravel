@@ -1,5 +1,9 @@
 .banner {
-    background: linear-gradient(rgba(247, 248, 252, 0.5), rgba(247, 248, 252, 0.5)), url('../images/background/bg-icon.png');
+    background: linear-gradient(
+            rgba(247, 248, 252, 0.5),
+            rgba(247, 248, 252, 0.5)
+        ),
+        url("../images/background/bg-icon.png");
     height: 290px;
     background-size: cover;
     display: flex;
@@ -7,7 +11,7 @@
 }
 
 .banner-title {
-    font-family: 'Lora', serif;
+    font-family: "Lora", serif;
     font-size: 4.8rem;
     line-height: 6.1rem;
     font-weight: bold;
@@ -17,7 +21,7 @@
 }
 
 .banner-title::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -20px;
     left: 50%;
@@ -28,7 +32,7 @@
 }
 
 .banner-title::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -10px;
     left: 50%;
@@ -222,6 +226,33 @@ tr:last-child td {
 
 .cart-mobile {
     display: none;
+}
+
+.cart-empty {
+    padding: 20px;
+    background-color: white;
+}
+
+.cart-empty__title {
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 3rem;
+    margin: 0;
+}
+
+.continue-buy__btn {
+    background-color: var(--primary-color);
+    display: inline-block;
+    line-height: 2.4rem;
+    margin-top: 24px;
+    padding: 20px;
+    font-size: 2.2rem;
+    color: white;
+    border: 1px solid #ebebeb;
+}
+
+.continue-buy__btn:hover {
+    filter: brightness(1.1);
 }
 
 /* Tablet - PC low resolution */
