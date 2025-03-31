@@ -8,13 +8,31 @@ use Illuminate\Support\Facades\Log;
 
 class VoucherController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $vouchers = Voucher::all();
+    //     $data = [
+    //         'vouchers' => $vouchers,
+    //     ];
+    //     return view('admin.voucher', $data);
+    // }
+    public function index(Request $request)
     {
-        $vouchers = Voucher::all();
-        $data = [
-            'vouchers' => $vouchers,
-        ];
-        return view('admin.voucher', $data);
+        $filter = $request->input('filter', 3); // Mặc định là 3 (tất cả)
+
+        $query = Voucher::query();
+
+        if ($filter == 1) {
+            $query->where('status', 1); // Đang hoạt động
+        } elseif ($filter == 0) {
+            $query->where('status', 0); // Ngừng hoạt động
+        } elseif ($filter == 2) {
+            $query->onlyTrashed(); // Chỉ lấy những voucher đã bị xóa mềm
+        }
+
+        $vouchers = $query->get();
+
+        return view('admin.voucher', compact('vouchers', 'filter'));
     }
     public function create()
     {
@@ -48,21 +66,34 @@ class VoucherController extends Controller
             $voucher->save();
 
             // Redirect back with a success message
-            return redirect()->route('admin.voucher.add-voucher')->with('success', 'Voucher added successfully!');
+            // return redirect()->back()->with('success', 'Thêm voucher thành công!')->withInput();
+            return response()->json([
+                'success' => true,
+                'message' => 'Voucher đã được thêm thành công!'
+            ]);
             // return view('admin/voucher');
         } catch (\Exception $e) {
             // Log the error for debugging
             Log::error('Error adding voucher: ' . $e->getMessage());
 
             // Redirect back with an error message
-            return redirect()->back()->with('error', 'Failed to add voucher. Please try again.')->withInput();
+            // return redirect()->back()->with('error', 'Failed to add voucher. Please try again.')->withInput();
+            return response()->json([
+                'success' => false,
+                'message' => 'Thêm voucher thất bại, vui lòng thử lại sau!'
+            ], 500);
         }
     }
 
     public function destroy($id)
     {
         $voucher = Voucher::findOrFail($id); // Tìm voucher
+        // chuyển trang thái thành 2
+        $voucher->status = 2; // Ngừng hoạt động
+        $voucher->save();
+        // Xoá mềm
         $voucher->delete(); // Soft delete
-        return redirect()->route('/voucher')->with('success', 'Voucher đã được xoá tạm thời.');
+        // return redirect()->route('/voucher')->with('success', 'Voucher đã được xoá tạm thời.');
+        return redirect()->back()->with('success', 'Voucher đã được xoá tạm thời.');
     }
 }

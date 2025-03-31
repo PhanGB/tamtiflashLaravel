@@ -7,14 +7,29 @@
         <style>
             #view-success {
                 display: none;
-                background-color: rgba(0, 255, 255, 0.31);
-                color: black;
+                background-color: #d4edda;
+                color: #155724;
+                border: 1px solid #c3e6cb;
+                border-radius: 5px;
                 padding: 10px;
-                font-size: 20px;
                 text-align: center;
+                font-size: 20px;
             }
         </style>
-       <p id="view-success"></p>
+        <!-- <p id="view-success">Thêm voucher thành công!</p> -->
+
+        @if(session('success'))
+            <div id="view-success" class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div id="view-error" class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
 
         <div class="row">
             <div>
@@ -130,13 +145,70 @@
         </div>
     </div>
     <script>
-        function success() {
-            $('#view-success').html('Thêm voucher thành công').css('display', 'block');
-            setTimeout(function() {
-                $('#view-success').fadeOut('slow');
-            }, 3000);
-        }
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Ngăn form reload
+
+            var form = this;
+            var formData = new FormData(form);
+            var submitButton = form.querySelector('button[name="submit"]');
+
+            // Vô hiệu hóa nút submit để tránh bấm nhiều lần
+            submitButton.disabled = true;
+            submitButton.innerText = "Đang xử lý...";
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Hiển thị thông báo thành công
+                        var successMessage = document.getElementById('view-success');
+                        successMessage.innerText = data.message;
+                        successMessage.style.display = 'block';
+
+                        // Ẩn sau 3 giây
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                        }, 3000);
+
+                        // Reset form
+                        form.reset();
+                    } else if (data.errors) {
+                        // Xóa thông báo lỗi cũ
+                        document.querySelectorAll('.invalid-feedback').forEach(el => el.remove());
+                        document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+
+                        // Hiển thị lỗi từ server
+                        for (const field in data.errors) {
+                            let input = document.querySelector(`[name="${field}"]`);
+                            if (input) {
+                                input.classList.add('is-invalid');
+                                let errorDiv = document.createElement('div');
+                                errorDiv.className = 'invalid-feedback';
+                                errorDiv.innerText = data.errors[field][0];
+                                input.parentNode.appendChild(errorDiv);
+                            }
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Lỗi:', error);
+                    alert("Thêm thành công!");
+                })
+                .finally(() => {
+                    // Kích hoạt lại nút submit
+                    submitButton.disabled = false;
+                    submitButton.innerText = "Thêm voucher";
+                });
+        });
     </script>
+
+
 
     <!-- Table End -->
 
