@@ -11,7 +11,7 @@
                     <h6 class="mb-4">Đơn hàng</h6>
                 </div>
                 <div class="col-4 col-sm-2 text-center">
-                    <a href="add_shop.html" type="button" class="btn btn-primary w-100 mb-4">Thêm cửa hàng</a>
+                    <a href="{{ url('/admin/add_shop') }}" type="button" class="btn btn-primary w-100 mb-4">Thêm cửa hàng</a>
                 </div>
             </div>
             <form action="" class="mb-4">
@@ -38,12 +38,13 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($shops as $shop)
                 <tr>
-                    <td>1</td>
+                    <td>{{ $shop->id }}</td>
                     <td><img src="../img/user.jpg" alt="" style="width: 40px; height: 40px" /></td>
-                    <td>Shoppe</td>
-                    <td>Cơm ngon, và nhiều loại nước giải khát</td>
-                    <td>4.5 <i class="fas fa-star text-warning"></i></td>
+                    <td>{{ $shop->name }}</td>
+                    <td>{{ $shop->short_description }}</td>
+                    <td>{{ $shop->rate }} <i class="fas fa-star text-warning"></i></td>
                     <td>
                         <select class="form-select">
                             <option value="">Ẩn</option>
@@ -52,43 +53,11 @@
                     </td>
                     <td>
                         <a href="edit_shop.html">Sửa</a>
-                        <a href="#">Xóa</a>
+                        <a href="">Xóa</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td><img src="../img/user.jpg" alt="" style="width: 40px; height: 40px" /></td>
-                    <td>Tiki</td>
-                    <td>Cơm ngon, và nhiều loại nước giải khát</td>
-                    <td>4.5 <i class="fas fa-star text-warning"></i></td>
-                    <td>
-                        <select class="form-select">
-                            <option value="">Ẩn</option>
-                            <option value="">Hiện</option>
-                        </select>
-                    </td>
-                    <td>
-                        <a href="#">Sửa</a>
-                        <a href="#">Xóa</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><img src="../img/user.jpg" alt="" style="width: 40px; height: 40px" /></td>
-                    <td>Lazada</td>
-                    <td>Cơm ngon, và nhiều loại nước giải khát</td>
-                    <td>4.5 <i class="fas fa-star text-warning"></i></td>
-                    <td>
-                        <select class="form-select">
-                            <option value="">Ẩn</option>
-                            <option value="">Hiện</option>
-                        </select>
-                    </td>
-                    <td>
-                        <a href="#">Sửa</a>
-                        <a href="#">Xóa</a>
-                    </td>
-                </tr>
+                @endforeach
+
             </tbody>
         </table>
     </div>

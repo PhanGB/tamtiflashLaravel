@@ -41,7 +41,7 @@
                             <div class="product-footer">
                                 <div>
                                     <span
-                                        ><a href="products.html"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</a></span
+                                        ><a href="products.html"><i class="fa-solid fa-location-dot"></i>{{ $product->shop->name }}</a></span
                                     >
                                 </div>
                                 <button class="cart-btn"><i class="fa-solid fa-cart-shopping"></i></button>

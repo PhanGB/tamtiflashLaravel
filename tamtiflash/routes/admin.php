@@ -17,6 +17,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/products', [ProductsController::class, 'index'])->name('admin.products');
     Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
     Route::get('/shops', [ShopsController::class, 'index'])->name('admin.shops');
+    Route::get('/add_shop', [ShopsController::class, 'add_shop'])->name('admin.add_shop');
+    Route::get('/edit_shop/{id}', [ShopsController::class, 'edit_shop'])->name('admin.edit_shop');
+    Route::get('/delete_shop/{id}', [ShopsController::class, 'delete_shop'])->name('admin.delete_shop');
     Route::get('/orders', [OrdersController::class, 'index'])->name('admin.orders');
     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('admin.ordertracking');
     Route::get('/staff', [StaffController::class, 'index'])->name('admin.staff');

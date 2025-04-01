@@ -23,7 +23,7 @@ class HomeController extends Controller
 
         $products = Product::orderBy('sold', 'desc')->take(8)->get();
         $shops = Shop::orderBy('created_at', 'desc')->take(8)->get();
-        return view('pages.home', compact('products', 'shops'));
+        return view('pages.home', compact('products', 'shops', 'reviews'));
     }
     public function MAH(){
         $products = Product::orderBy('created_at', 'desc')->take(8)->get();
