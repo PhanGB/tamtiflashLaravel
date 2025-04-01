@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -12,17 +13,30 @@ use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('admin.home');
-    Route::get('/products', [ProductsController::class, 'index'])->name('admin.products');
-    Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
-    Route::get('/shops', [ShopsController::class, 'index'])->name('admin.shops');
-    Route::get('/orders', [OrdersController::class, 'index'])->name('admin.orders');
-    Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('admin.ordertracking');
-    Route::get('/staff', [StaffController::class, 'index'])->name('admin.staff');
-    Route::get('/users', [UsersController::class, 'index'])->name('admin.users');
 
-    Route::get('/review', [ReviewController::class, 'index'])->name('admin.review');
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Dashboard
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+
+    // Quản lý sản phẩm
+    Route::get('/products', [ProductsController::class, 'index'])->name('products');
+
+    // Quản lý danh mục
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
+
+    // Quản lý cửa hàng
+    Route::get('/shops', [ShopsController::class, 'index'])->name('shops');
+
+    // Quản lý đơn hàng
+    Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
+    Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking');
+
+    // Quản lý nhân viên và người dùng
+    Route::get('/staff', [StaffController::class, 'index'])->name('staff');
+    Route::get('/users', [UsersController::class, 'index'])->name('users');
+
+    // Quản lý đánh giá và voucher
+     Route::get('/review', [ReviewController::class, 'index'])->name('admin.review');
     Route::get('admin.review.approve/{id}', [ReviewController::class, 'approve'])->name('admin.review.approve');
     Route::get('admin.review.hide/{id}', [ReviewController::class, 'hide'])->name('admin.review.hide');
     Route::get('admin.review.show/{id}', [ReviewController::class, 'show'])->name('admin.review.show');
@@ -35,7 +49,23 @@ Route::prefix('admin')->group(function () {
     Route::delete('/admin/voucher/{id}', [VoucherController::class, 'destroy'])->name('admin.voucher.destroy');
     Route::get('/admin/voucher/restore/{id}', [VoucherController::class, 'restore'])->name('admin.voucher.restore');
 
+    // Cài đặt
+    Route::group(['prefix' => 'settings'], function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('settings');
 
-    Route::get('/settings', [SettingsController::class, 'index'])->name('admin.settings');
-    // require __DIR__ . '/auth.php'; // Nếu có auth riêng cho admin
+        // Quản lý phương thức thanh toán
+        Route::get('/payment-method', [SettingsController::class, 'payment_method'])->name('payment_method');
+        Route::get('/payment-method/edit', [SettingsController::class, 'edit_payment'])->name('edit_payment');
+        Route::put('/payment-method/update', [SettingsController::class, 'update_payment'])->name('update_payment');
+        // Quản lý phí vận chuyển
+        Route::get('/shipping-fee', [SettingsController::class, 'shipping_fee'])->name('shipping_fee');
+        Route::get('/shipping-fee/{id}', [SettingsController::class, 'edit_shipping'])->name('edit_shipping');
+        Route::put('/shipping-fee/update', [SettingsController::class, 'update_shipping'])->name('update_shipping');
+    });
+
+    // Nếu có file auth riêng cho admin
+    // require __DIR__ . '/auth.php';
 });
+
+// Middleware để bảo vệ các route admin (nếu cần)
+// Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () { ... });
