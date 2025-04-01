@@ -24,7 +24,8 @@
         'resources/lib/owlcarousel/assets/owl.carousel.min.css',
         'resources/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css',
         'resources/css/bootstrapp.min.css',
-        'resources/css/stylee.css'
+        'resources/css/stylee.css',
+        'resources/fonts/fontawesome-free-6.7.2-web/css/all.min.css'
     ])
 </head>
 <body>

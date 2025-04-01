@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::prefix('admin')->name('admin.')->group(function () {
     // Dashboard
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -35,8 +36,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/users', [UsersController::class, 'index'])->name('users');
 
     // Quản lý đánh giá và voucher
-    Route::get('/review', [ReviewController::class, 'index'])->name('review');
-    Route::get('/voucher', [VoucherController::class, 'index'])->name('voucher');
+     Route::get('/review', [ReviewController::class, 'index'])->name('admin.review');
+    Route::get('admin.review.approve/{id}', [ReviewController::class, 'approve'])->name('admin.review.approve');
+    Route::get('admin.review.hide/{id}', [ReviewController::class, 'hide'])->name('admin.review.hide');
+    Route::get('admin.review.show/{id}', [ReviewController::class, 'show'])->name('admin.review.show');
+
+    Route::get('/voucher', [VoucherController::class, 'index'])->name('admin.voucher');
+    Route::get('admin.voucher.add-voucher', [VoucherController::class, 'create'])->name('admin.voucher.create');
+    Route::get('admin.voucher.edit', [VoucherController::class, 'view_edit'])->name('admin.voucher.view_edit');
+    Route::get('admin.voucher.edit-voucher/{id}', [VoucherController::class, 'view_edit'])->name('admin.voucher.eidt');
+    Route::post('admin/voucher/store', [VoucherController::class, 'store'])->name('admin.voucher.store');
+    Route::delete('/admin/voucher/{id}', [VoucherController::class, 'destroy'])->name('admin.voucher.destroy');
+    Route::get('/admin/voucher/restore/{id}', [VoucherController::class, 'restore'])->name('admin.voucher.restore');
 
     // Cài đặt
     Route::group(['prefix' => 'settings'], function () {
