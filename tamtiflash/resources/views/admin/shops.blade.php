@@ -11,7 +11,7 @@
                     <h6 class="mb-4">Đơn hàng</h6>
                 </div>
                 <div class="col-4 col-sm-2 text-center">
-                    <a href="{{ url('/admin/add_shop') }}" type="button" class="btn btn-primary w-100 mb-4">Thêm cửa hàng</a>
+                    <a href="{{ route('admin.add_shop') }}" type="button" class="btn btn-primary w-100 mb-4">Thêm cửa hàng</a>
                 </div>
             </div>
             <form action="" class="mb-4">
@@ -52,8 +52,8 @@
                         </select>
                     </td>
                     <td>
-                        <a href="edit_shop.html">Sửa</a>
-                        <a href="">Xóa</a>
+                        <a href="{{ route('admin.edit_shop', $shop->id) }}">Sửa</a>
+                        <a href="{{ route('admin.delete', $shop->id) }}">Xóa</a>
                     </td>
                 </tr>
                 @endforeach

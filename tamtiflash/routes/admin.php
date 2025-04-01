@@ -13,42 +13,60 @@ use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('admin.home');
-    Route::get('/products', [ProductsController::class, 'index'])->name('admin.products');
-    Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
-    Route::get('/shops', [ShopsController::class, 'index'])->name('admin.shops');
-    Route::get('/orders', [OrdersController::class, 'index'])->name('admin.orders');
-    Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('admin.ordertracking');
-    Route::get('/staff', [StaffController::class, 'index'])->name('admin.staff');
-    Route::get('/users', [UsersController::class, 'index'])->name('admin.users');
-    Route::get('/review', [ReviewController::class, 'index'])->name('admin.review');
-    Route::get('/voucher', [VoucherController::class, 'index'])->name('admin.voucher');
-    Route::get('admin.voucher.add-voucher', [VoucherController::class, 'create'])->name('admin.voucher.create');
-    Route::get('admin.voucher.edit', [VoucherController::class, 'view_edit'])->name('admin.voucher.view_edit');
-    Route::get('admin.voucher.edit-voucher/{id}', [VoucherController::class, 'view_edit'])->name('admin.voucher.eidt');
-    Route::post('admin/voucher/store', [VoucherController::class, 'store'])->name('admin.voucher.store');
-    Route::delete('/admin/voucher/{id}', [VoucherController::class, 'destroy'])->name('admin.voucher.destroy');
-    Route::get('/admin/voucher/restore/{id}', [VoucherController::class, 'restore'])->name('admin.voucher.restore');
-    Route::get('/settings', [SettingsController::class, 'index'])->name('admin.settings');
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Dashboard
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+
+    // Quản lý sản phẩm
+    Route::get('/products', [ProductsController::class, 'index'])->name('products');
+
+    // Quản lý danh mục
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
+
+    // Quản lý cửa hàng
+    Route::get('/shops', [ShopsController::class, 'index'])->name('shops');
+    Route::get('/shops/add', [ShopsController::class, 'add_shop'])->name('add_shop');
+    Route::post('/shops/add', [ShopsController::class, 'add'])->name('add');
+    Route::get('/shops/edit/{id}', [ShopsController::class, 'edit_shop'])->name('edit_shop');
+    Route::post('/shops/edit/{id}', [ShopsController::class, 'edit'])->name('edit');
+    Route::get('/shops/delete/{id}', [ShopsController::class, 'delete'])->name('delete');
+
+    // Quản lý đơn hàng
+    Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
+    Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking');
+
+    // Quản lý nhân viên và người dùng
+    Route::get('/staff', [StaffController::class, 'index'])->name('staff');
+    Route::get('/users', [UsersController::class, 'index'])->name('users');
+
+    // Quản lý đánh giá và voucher
+    Route::get('/review', [ReviewController::class, 'index'])->name('review');
+    Route::get('/review/approve/{id}', [ReviewController::class, 'approve'])->name('review.approve');
+    Route::get('/review/hide/{id}', [ReviewController::class, 'hide'])->name('review.hide');
+    Route::get('/review/show/{id}', [ReviewController::class, 'show'])->name('review.show');
+
+    Route::get('/voucher', [VoucherController::class, 'index'])->name('voucher');
+    Route::get('/voucher/add', [VoucherController::class, 'create'])->name('voucher.create');
+    Route::get('/voucher/edit', [VoucherController::class, 'view_edit'])->name('voucher.view_edit');
+    Route::get('/voucher/edit/{id}', [VoucherController::class, 'view_edit'])->name('voucher.edit');
+    Route::post('/voucher/store', [VoucherController::class, 'store'])->name('voucher.store');
+    Route::delete('/voucher/{id}', [VoucherController::class, 'destroy'])->name('voucher.destroy');
+    Route::get('/voucher/restore/{id}', [VoucherController::class, 'restore'])->name('voucher.restore');
 
     // Cài đặt
-    Route::group(['prefix' => 'settings'], function () {
-        Route::get('/', [SettingsController::class, 'index'])->name('settings');
+    Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('index');
 
         // Quản lý phương thức thanh toán
         Route::get('/payment-method', [SettingsController::class, 'payment_method'])->name('payment_method');
         Route::get('/payment-method/edit', [SettingsController::class, 'edit_payment'])->name('edit_payment');
         Route::put('/payment-method/update', [SettingsController::class, 'update_payment'])->name('update_payment');
+
         // Quản lý phí vận chuyển
         Route::get('/shipping-fee', [SettingsController::class, 'shipping_fee'])->name('shipping_fee');
         Route::get('/shipping-fee/{id}', [SettingsController::class, 'edit_shipping'])->name('edit_shipping');
         Route::put('/shipping-fee/update', [SettingsController::class, 'update_shipping'])->name('update_shipping');
     });
-
-    // Nếu có file auth riêng cho admin
-    // require __DIR__ . '/auth.php';
 });
 
-// Middleware để bảo vệ các route admin (nếu cần)
-// Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () { ... });

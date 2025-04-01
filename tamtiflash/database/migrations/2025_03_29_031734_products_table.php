@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('sold')->default(0);
             $table->timestamps();
             $table->foreignId('id_cate')->constrained('categories')->onDelete('cascade');
-            $table->foreignId('id_shop')->constrained('shop')->onDelete('cascade');
+            $table->foreignId('id_shop')->constrained('shops')->onDelete('cascade');
         });
     }
 

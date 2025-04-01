@@ -49,7 +49,14 @@
                         @endif
                         @foreach ($vouchers as $voucher)
                                             @php
-                                                if ($voucher->status == 1) {
+                                                $today = \Carbon\Carbon::now();
+                                                $endDate = \Carbon\Carbon::parse($voucher->end_date);
+
+                                                if ($voucher->status == 1 && $endDate->isPast()) {
+                                                    $voucher->update(['status' => 0]);
+                                                    $class = 'text-danger';
+                                                    $status = 'Ngừng hoạt động';
+                                                } elseif ($voucher->status == 1 && $endDate->isFuture()) {
                                                     $class = 'text-success';
                                                     $status = 'Đang hoạt động';
                                                 } elseif ($voucher->status == 0) {
@@ -66,14 +73,14 @@
                                                 <td>{{ $voucher->name }}</td>
                                                 <td>{{ $voucher->code }}</td>
                                                 <td>{{ $voucher->value }}%</td>
-                                                <td>{{ \Carbon\Carbon::parse($voucher->end_date)->format('d/m/Y') }}</td>
+                                                <td>{{ $endDate->format('d/m/Y') }}</td>
                                                 <td class="{{ $class }}">{{ $status }}</td>
                                                 @if($voucher->status == 2)
                                                     <td>
                                                         <a href="{{ route('admin.voucher.restore', $voucher->id) }}"
                                                             class="btn btn-success btn-sm">Khôi phục</a>
-                                                        <form action="{{ route('admin.voucher.destroy', $voucher->id) }}"
-                                                            method="POST" class="d-inline">
+                                                        <form action="{{ route('admin.voucher.destroy', $voucher->id) }}" method="POST"
+                                                            class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm"
@@ -82,10 +89,10 @@
                                                     </td>
                                                 @else
                                                     <td>
-                                                        <a href="admin.voucher.edit/"
+                                                        <a href="{{ route('admin.voucher.edit', $voucher->id) }}"
                                                             class="btn btn-warning btn-sm">Sửa</a>
-                                                        <form action="{{ route('admin.voucher.destroy', $voucher->id) }}"
-                                                            method="POST" class="d-inline">
+                                                        <form action="{{ route('admin.voucher.destroy', $voucher->id) }}" method="POST"
+                                                            class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm"
@@ -95,6 +102,7 @@
                                                 @endif
                                             </tr>
                         @endforeach
+
                     </tbody>
                 </table>
             </div>
