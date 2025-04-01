@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Tamtiflash - Admin - Danh mục')
+@section('category', 'active')
+
 @section ('content')
     <!-- Table Start -->
 
@@ -18,7 +20,7 @@
                     </div>
                 </div>
             </form>
-            <a class="btn btn-primary rounded-pill m-2" href="add_category.html">Thêm danh mục</a>
+            <a class="btn btn-primary rounded-pill m-2" href="{{ url('/admin/category/category_add') }}">Thêm danh mục</a>
             <!-- <label for="" style="margin-left: 650px; font-size: 20px;">Quán:</label> -->
             <select name="" id="" class="form-select w-25" style="float: right;">
                 <option value="">Tất cả</option>
@@ -39,16 +41,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($categoryList as $item)
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Nước uống</td>
-                            <td> <img src="../img/testimonial-1.jpg" width="50px"></td>
-                            <td>Hiện</td>
-                            <td>10</td>
-                            <td><a href="edit_category.html">Sửa</a>
+                            <th scope="row">{{ $item->id }}</th>
+                            <td>{{ $item->name }}</td>
+                            <td> <img src="{{ 'img/'.$item->image }}" width="50px"></td>
+                            <td><span class="badge {{ $item->status_class }}"> {{ $item->status_text }}</span></td>
+                            <td>{{ count($item->products) }}</td>
+                            <td><a href="{{ url('/admin/category/category_edit/'.$item->id) }}">Sửa</a>
                         </tr>
 
-
+                        @endforeach
 
 
                     </tbody>

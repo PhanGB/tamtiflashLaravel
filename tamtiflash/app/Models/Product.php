@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'price', 'id_shop'];
+    protected $fillable = ['name', 'price', 'id_shop'. 'id_cate'];
 
     // Một sản phẩm thuộc về một shop
     public function shop()
@@ -24,7 +24,9 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'id_cate');
     }
+
+
 }
 

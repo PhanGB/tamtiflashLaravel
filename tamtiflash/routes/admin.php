@@ -14,8 +14,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('admin.home');
+    //product
     Route::get('/products', [ProductsController::class, 'index'])->name('admin.products');
+    Route::get('/products/product_add', [ProductsController::class, 'viewAdd'])->name('admin.product_add');
+
+    Route::get('/products/product_edit/{id}', [ProductsController::class , 'viewEdit'])->name('admin.product_edit');
+
+    Route::get('/products/product_variant/{id}', [ProductsController::class, 'product_variant'])->name('admin.products_variant');
+    //category
     Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
+
+    Route::get('/category/category_add', [CategoryController::class, 'viewAdd'])->name('admin.category_add');
+
+    Route::get('category/category_edit/{id}', [CategoryController::class, 'viewEdit'])->name('admin.category_edit');
+
+
     Route::get('/shops', [ShopsController::class, 'index'])->name('admin.shops');
     Route::get('/orders', [OrdersController::class, 'index'])->name('admin.orders');
     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('admin.ordertracking');
