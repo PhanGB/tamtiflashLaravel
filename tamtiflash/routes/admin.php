@@ -17,10 +17,14 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('admin.home');
     //product
     Route::get('/products', [ProductsController::class, 'index'])->name('admin.products');
+
     Route::get('/products/product_add', [ProductsController::class, 'viewAdd'])->name('admin.product_add');
+    Route::post('/products/add', [ProductsController::class, 'add'])->name('addPro');
 
     Route::get('/products/product_edit/{id}', [ProductsController::class , 'viewEdit'])->name('admin.product_edit');
+    Route::put('/products/product_edit/{id}', [ProductsController::class, 'edit'])->name('editPro');
 
+    Route::delete('/products/delete/{id}', [ProductsController::class, 'delete'])->name('deletePro');
     //product variant
     Route::get('/products/product_variant/{id}', [ProductVariantController::class, 'product_variant'])->name('admin.products_variant');
 

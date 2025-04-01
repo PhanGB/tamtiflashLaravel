@@ -11,10 +11,11 @@
         <div class="bg-light rounded h-100 p-4">
             <h6 class="mb-4">Thêm sản phẩm</h6>
             <a class="btn btn-secondary rounded-pill m-2" href="{{ url('/admin/products') }}">Trở lại</a>
-            <form action="" method="post" enctype="multipart/form-data">
-
-                <input class="form-control mb-3" type="text" name="" placeholder="Mã sản phẩm"
-                    aria-label="default input example">
+            <form action="{{ route('addPro') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('POST')
+                {{-- <input class="form-control mb-3" type="text" name="" placeholder="Mã sản phẩm"
+                    aria-label="default input example"> --}}
                 <input class="form-control mb-3" type="text" name="name" placeholder="Tên sản phẩm"
                     aria-label="default input example">
                 <div class="mb-3">
@@ -27,24 +28,24 @@
                     aria-label="default input example">
 
 
-                <select class="form-select mb-3" name="" aria-label="Default select example">
-                    <option value="">Chọn danh mục</option>
-                    <option value="">Danh mục 1</option>
-                    <option value="">Danh mục 2</option>
-                    <option value="">Danh mục 3</option>
+                <select class="form-select mb-3" name="category" aria-label="Default select example">
+                    @foreach ($category as $item)
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+
+                    @endforeach
+
                 </select>
 
-                <!-- <select class="form-select mb-3" name="" aria-label="Default select example">
-                            <option value="">Chọn cửa hàng</option>
-                            <option value="">Danh mục 1</option>
-                            <option value="">Danh mục 2</option>
-                            <option value="">Danh mục 3</option>
-                        </select> -->
+                <select class="form-select mb-3" name="shop" aria-label="Default select example">
+                    @foreach ($shop as $item)
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+
+                    @endforeach
+                </select>
 
                 <select class="form-select mb-3" name="status" aria-label="Default select example">
-                    <option value="">Chọn trạng thái</option>
-                    <option value="">Còn hàng</option>
-                    <option value="">Hết hàng</option>
+                    <option value="1">Hoạt động</option>
+                    <option value="2">Tạm ngưng</option>
                 </select>
 
                 <button type="submit" class="btn btn-success m-2">Thêm sản phẩm</button>

@@ -53,7 +53,7 @@
                         <th scope="row">{{ $stt++ }}</th>
                         <td><a href="/admin/products/product_variant/{{ $item->id }}">{{ count($item->variants) }} Biến thể</a></td>
                         <td>{{ $item->name }}</td>
-                        <td> <img src="{{ asset('img/'.$item->image) }}" width="100px"></td>
+                        <td> <img src="{{ asset('img/'.$item->image) }}" width="100px" height="100px"></td>
                         <td>{{ number_format($item->price) }}đ</td>
                         <td>{{ $item->category->name }}</td>
                         <td>{{ $item->shop->name }}</td>
