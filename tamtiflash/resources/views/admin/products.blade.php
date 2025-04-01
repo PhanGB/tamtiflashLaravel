@@ -47,20 +47,20 @@
                 </thead>
                 <tbody>
 
-                    @foreach($productList as $item)
+                    @foreach($productList as $index => $pro)
 
                     <tr>
-                        <th scope="row">{{ $stt++ }}</th>
-                        <td><a href="/admin/products/product_variant/{{ $item->id }}">{{ count($item->variants) }} Biến thể</a></td>
-                        <td>{{ $item->name }}</td>
-                        <td> <img src="{{ asset('img/'.$item->image) }}" width="100px" height="100px"></td>
-                        <td>{{ number_format($item->price) }}đ</td>
-                        <td>{{ $item->category->name }}</td>
-                        <td>{{ $item->shop->name }}</td>
-                        {{-- @if($item->status == 0) --}}
-                        <td><span class="badge {{ $item->status_class }}">{{ $item->status_text }}</span></td>
-                        <td>{{ $item->sold}}</td>
-                        <td><a href="{{ url('/admin/products/product_edit/'.$item->id) }}">Sửa</a></td>
+                        <th scope="row">{{ $productList->firstItem() + $index }}</th>
+                        <td><a href="/admin/products/product_variant/{{ $pro->id }}">{{ count($pro->variants) }} Biến thể</a></td>
+                        <td>{{ $pro->name }}</td>
+                        <td> <img src="{{ asset('img/'.$pro->image) }}" width="100px" height="100px"></td>
+                        <td>{{ number_format($pro->price) }}đ</td>
+                        <td>{{ $pro->category->name }}</td>
+                        <td>{{ $pro->shop->name }}</td>
+                        {{-- @if($pro->status == 0) --}}
+                        <td><span class="badge {{ $pro->status_class }}">{{ $pro->status_text }}</span></td>
+                        <td>{{ $pro->sold}}</td>
+                        <td><a href="{{ url('/admin/products/product_edit/'.$pro->id) }}">Sửa</a></td>
                     </tr>
                     @endforeach
 

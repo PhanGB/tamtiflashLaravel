@@ -38,11 +38,9 @@ class ProductsController extends Controller
         });
 
         $shop = Shop::all();
-        $stt = 1;
         $data = [
             'productList' => $productList,
             'shop' => $shop,
-            'stt' => $stt,
         ];
         return view('admin.products', $data);
     }

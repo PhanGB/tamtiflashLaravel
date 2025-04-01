@@ -41,14 +41,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($categoryList as $item)
+                        @foreach($categoryList as $index => $cate)
                         <tr>
-                            <th scope="row">{{ $item->id }}</th>
-                            <td>{{ $item->name }}</td>
-                            <td> <img src="{{ 'img/'.$item->image }}" width="50px"></td>
-                            <td><span class="badge {{ $item->status_class }}"> {{ $item->status_text }}</span></td>
-                            <td>{{ count($item->products) }}</td>
-                            <td><a href="{{ route('admin.category_edit', ['id' => $item->id]) }}">Sửa</a>
+                            <th scope="row">{{ $index+1 }}</th>
+                            <td>{{ $cate->name }}</td>
+                            <td> <img src="{{ 'img/'.$cate->image }}" width="50px"></td>
+                            <td><span class="badge {{ $cate->status_class }}"> {{ $cate->status_text }}</span></td>
+                            <td>{{ count($cate->products) }}</td>
+                            <td><a href="{{ route('admin.category_edit', ['id' => $cate->id]) }}">Sửa</a>
                         </tr>
 
                         @endforeach
