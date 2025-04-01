@@ -12,7 +12,7 @@
             <form action="" class="mb-4">
                 <div class="row g-2 align-items-center">
                     <div class="col-9 col-sm-11">
-                        <input type="text" placeholder="Tìm kiếm đơn hàng..." class="form-control" />
+                        <input type="text" placeholder="Tìm kiếm danh mục..." class="form-control" />
                     </div>
                     <div class="col-3 col-sm-1 text-center">
                         <button class="btn btn-primary w-100"><i
@@ -20,13 +20,13 @@
                     </div>
                 </div>
             </form>
-            <a class="btn btn-primary rounded-pill m-2" href="{{ url('/admin/category/category_add') }}">Thêm danh mục</a>
+            <a class="btn btn-primary rounded-pill m-2" href="{{ route('admin.category_add') }}">Thêm danh mục</a>
             <!-- <label for="" style="margin-left: 650px; font-size: 20px;">Quán:</label> -->
-            <select name="" id="" class="form-select w-25" style="float: right;">
+            {{-- <select name="" id="" class="form-select w-25" style="float: right;">
                 <option value="">Tất cả</option>
                 <option value="">Thức ăn</option>
                 <option value="">Nước uống</option>
-            </select>
+            </select> --}}
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -48,7 +48,7 @@
                             <td> <img src="{{ 'img/'.$item->image }}" width="50px"></td>
                             <td><span class="badge {{ $item->status_class }}"> {{ $item->status_text }}</span></td>
                             <td>{{ count($item->products) }}</td>
-                            <td><a href="{{ url('/admin/category/category_edit/'.$item->id) }}">Sửa</a>
+                            <td><a href="{{ route('admin.category_edit', ['id' => $item->id]) }}">Sửa</a>
                         </tr>
 
                         @endforeach

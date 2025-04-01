@@ -11,7 +11,7 @@
  <div class="container-fluid pt-4 px-4">
     <div class="bg-light rounded h-100 p-4">
         <h6 class="mb-4">Tên sản phẩm chính</h6>
-        <a class="btn btn-primary rounded-pill m-2" href="/tamtiflash/admin/product_variant_add">Thêm biến thể</a>
+        <a class="btn btn-primary rounded-pill m-2" href="{{ url('/admin/products/product_variant/product_variant-add') }}">Thêm biến thể</a>
         <div class="table-responsive">
             <table class="table">
                 <thead>

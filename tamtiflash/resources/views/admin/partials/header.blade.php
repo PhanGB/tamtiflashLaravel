@@ -17,8 +17,8 @@
             </div>
             <div class="navbar-nav w-100">
                 <a href="{{ url('/admin') }}" class="nav-item nav-link @yield('dashboard')"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="{{ url('/admin/products') }}" class="nav-item nav-link @yield('products')"><i class="fa fa-utensils me-2"></i>Sản phẩm</a>
-                <a href="{{ url('/admin/category') }}" class="nav-item nav-link @yield('category')"><i class="fa fa-list me-2"></i>Danh mục</a>
+                <a href="{{ route('admin.products') }}" class="nav-item nav-link @yield('products')"><i class="fa fa-utensils me-2"></i>Sản phẩm</a>
+                <a href="{{ route('admin.category') }}" class="nav-item nav-link @yield('category')"><i class="fa fa-list me-2"></i>Danh mục</a>
                 <a href="{{ url('/admin/shops') }}" class="nav-item nav-link"><i class="fa fa-store me-2"></i>Cửa hàng</a>
                 <a href="{{ url('/admin/orders') }}" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Đơn hàng</a>
                 <a href="{{ url('/admin/ordertracking') }}" class="nav-item nav-link"><i class="fa fa-shipping-fast me-2"></i>Th.dõi đơn hàng</a>

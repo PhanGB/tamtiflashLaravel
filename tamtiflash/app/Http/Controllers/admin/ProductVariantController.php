@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use App\Models\Shop;
+use App\Models\ProductVariant;
+use Illuminate\Http\Request;
 
 
-class ProductsController extends Controller
+class ProductVariantController extends Controller
 {
-    public function index()
-    {
-        $productList = Product::with('shop', 'category', 'variants')->simplePaginate(10);
-        $productList->transform(function ($product) {
+    public function product_variant($id){
+        $productVariant = ProductVariant::with('product.shop', 'product.category')->where('id_product', "LIKE", $id)->get();
+        $productVariant->transform(function ($product) {
             switch ($product->status) {
                 case 1:
                     $product->status_text = 'Hoạt động';
@@ -32,28 +32,10 @@ class ProductsController extends Controller
             }
             return $product;
         });
-
-        $shop = Shop::all();
-        $stt = 1;
         $data = [
-            'productList' => $productList,
-            'shop' => $shop,
-            'stt' => $stt,
+            'productVariant' => $productVariant,
         ];
-        return view('admin.products', $data);
-    }
-
-    public function viewAdd()
-    {
-        return view('admin.product_add');
-    }
-
-     public function viewEdit($id){
-        $product = Product::find($id);
-        $data = [
-            'product' => $product,
-        ];
-        return view('admin.product_edit', $data);
+        return view('admin.product_variant', $data);
      }
 
 

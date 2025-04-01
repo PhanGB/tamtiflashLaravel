@@ -2,6 +2,7 @@
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductVariantController;
 use App\Http\Controllers\Admin\ShopsController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\OrdertrackingController;
@@ -20,14 +21,19 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/products/product_edit/{id}', [ProductsController::class , 'viewEdit'])->name('admin.product_edit');
 
-    Route::get('/products/product_variant/{id}', [ProductsController::class, 'product_variant'])->name('admin.products_variant');
+    //product variant
+    Route::get('/products/product_variant/{id}', [ProductVariantController::class, 'product_variant'])->name('admin.products_variant');
+
     //category
     Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
 
     Route::get('/category/category_add', [CategoryController::class, 'viewAdd'])->name('admin.category_add');
+    Route::post('/category/add', [CategoryController::class, 'add'])->name('addCate');
 
     Route::get('category/category_edit/{id}', [CategoryController::class, 'viewEdit'])->name('admin.category_edit');
+    Route::put('category/category_edit/{id}', [CategoryController::class, 'edit'])->name('editCate');
 
+    Route::delete('/category/delete/{id}', [CategoryController::class, 'delete'])->name('deleteCate');
 
     Route::get('/shops', [ShopsController::class, 'index'])->name('admin.shops');
     Route::get('/orders', [OrdersController::class, 'index'])->name('admin.orders');
