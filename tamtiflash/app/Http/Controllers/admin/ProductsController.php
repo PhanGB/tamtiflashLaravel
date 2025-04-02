@@ -70,26 +70,34 @@ class ProductsController extends Controller
 
      public function add(Request $request){
         $request->validate([
+            'name' => 'required|string|max:255', // Kiểm tra tên sản phẩm
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Kiểm tra tệp ảnh
+            'price' => 'required|numeric|min:0', // Kiểm tra giá là số hợp lệ và >= 0
+            'status' => 'required|in:1,2,3', // Kiểm tra trạng thái hợp lệ
         ]);
 
-        $image = $request->file('image');
+        try {
+            $image = $request->file('image');
 
-        // Tạo tên file duy nhất (dựa trên thời gian)
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
+            // Tạo tên file duy nhất (dựa trên thời gian)
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
 
-        // Di chuyển tệp ảnh vào thư mục public/img
-        $image->move(public_path('img'), $imageName);
+            // Di chuyển tệp ảnh vào thư mục public/img
+            $image->move(public_path('img'), $imageName);
 
-        $product = Product::create([
-            'name' => $request->input('name'),
-            'image' => $imageName,
-            'price' => $request->input('price'),
-            'status' => $request->input('status'),
-            'id_shop' => $request->input('shop'),
-            'id_cate' => $request->input('category'),
-        ]);
-        return redirect()->route('admin.products')->with('success', 'Thêm thành công!');
+            Product::create([
+                'name' => $request->input('name'),
+                'image' => $imageName,
+                'price' => $request->input('price'),
+                'status' => $request->input('status'),
+                'id_shop' => $request->input('shop'),
+                'id_cate' => $request->input('category'),
+            ]);
+
+            return redirect()->route('admin.products')->with('success', 'Thêm thành công!');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.products')->with('error', 'Đã xảy ra lỗi khi thêm sản phẩm. Vui lòng thử lại!');
+        }
      }
 
      public function edit(Request $request, $id)
@@ -134,6 +142,12 @@ class ProductsController extends Controller
 
      public function delete($id){
         $product = Product::find($id);
+
+        // Kiểm tra nếu sản phẩm có biến thể liên kết
+        if ($product->variants()->exists()) {
+            return redirect()->route('admin.products')->with('error', 'Không thể xóa sản phẩm vì vẫn còn biến thể liên kết!');
+        }
+
         $product->delete();
         return redirect()->route('admin.products')->with('success', 'Xóa thành công!');
      }

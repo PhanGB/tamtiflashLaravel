@@ -48,13 +48,22 @@ class CategoryController extends Controller
         return view('admin.category_edit', $data);
     }
 
-    public function add(){
-        $category = Category::create([
-            'name' => $_POST['name'],
-            'status' => $_POST['status'],
+    public function add(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name', // Kiểm tra tên danh mục không được trùng
+            'status' => 'required|in:1,2', // Chỉ chấp nhận giá trị 1 hoặc 2
         ]);
 
-        return redirect()->route('admin.category')->with('success', 'Thêm thành công!');
+        try {
+            Category::create([
+                'name' => $request->input('name'),
+                'status' => $request->input('status'),
+            ]);
+
+            return redirect()->route('admin.category')->with('success', 'Thêm thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi thêm danh mục. Vui lòng thử lại!');
+        }
     }
 
     public function edit(Request $request, $id){
@@ -72,6 +81,12 @@ class CategoryController extends Controller
 
     public function delete($id){
         $category = Category::find($id);
+
+        // Kiểm tra nếu danh mục có sản phẩm liên kết
+        if ($category->products()->exists()) {
+            return redirect()->route('admin.category')->with('error', 'Không thể xóa danh mục vì vẫn còn sản phẩm liên kết!');
+        }
+
         $category->delete();
         return redirect()->route('admin.category')->with('success', 'Xoá thành công!');
     }
