@@ -47,8 +47,9 @@
                     <td>{{ $shop->rate }} <i class="fas fa-star text-warning"></i></td>
                     <td>
                         <select class="form-select">
-                            <option value="">Ẩn</option>
-                            <option value="">Hiện</option>
+                            <option value="" disabled>Chọn trạng thái</option>
+                            <option value="1" {{ $shop->status == 1 ? 'selected' : '' }}>Ẩn</option>
+                            <option value="0" {{ $shop->status == 0 ? 'selected' : '' }}>Hiện</option>
                         </select>
                     </td>
                     <td>
