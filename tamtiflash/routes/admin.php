@@ -36,15 +36,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/users', [UsersController::class, 'index'])->name('users');
 
     // Quản lý đánh giá và voucher
-     Route::get('/review', [ReviewController::class, 'index'])->name('review');
+    Route::get('/review', [ReviewController::class, 'index'])->name('review');
     Route::get('admin.review.approve/{id}', [ReviewController::class, 'approve'])->name('admin.review.approve');
     Route::get('admin.review.hide/{id}', [ReviewController::class, 'hide'])->name('admin.review.hide');
     Route::get('admin.review.show/{id}', [ReviewController::class, 'show'])->name('admin.review.show');
 
     Route::get('/voucher', [VoucherController::class, 'index'])->name('voucher');
     Route::get('admin.voucher.add-voucher', [VoucherController::class, 'create'])->name('voucher.create');
-    Route::get('voucher.edit', [VoucherController::class, 'view_edit'])->name('voucher.view_edit');
+    // Route::get('voucher.edit', [VoucherController::class, 'view_edit'])->name('voucher.view_edit');
     Route::get('voucher.edit-voucher/{id}', [VoucherController::class, 'view_edit'])->name('voucher.edit');
+    Route::put('voucher.update', [VoucherController::class, 'update'])->name('voucher.update');
     Route::post('admin/voucher/store', [VoucherController::class, 'store'])->name('voucher.store');
     Route::delete('/admin/voucher/{id}', [VoucherController::class, 'destroy'])->name('voucher.destroy');
     Route::get('/admin/voucher/restore/{id}', [VoucherController::class, 'restore'])->name('voucher.restore');
