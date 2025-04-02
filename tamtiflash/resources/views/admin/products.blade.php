@@ -72,7 +72,7 @@
                         {{-- @if($pro->status == 0) --}}
                         <td><span class="badge {{ $pro->status_class }}">{{ $pro->status_text }}</span></td>
                         <td>{{ $pro->sold}}</td>
-                        <td><a href="{{ url('/admin/products/product_edit/'.$pro->id) }}">Sửa</a></td>
+                        <td><a href="{{ route('admin.product_edit',[$pro->id]) }}">Sửa</a></td>
                     </tr>
                     @endforeach
 

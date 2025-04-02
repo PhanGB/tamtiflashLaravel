@@ -1,4 +1,3 @@
-
 @extends('admin.layouts.app')
 
 @section('title', 'Tamtiflash - Admin - Sửa sản phẩm')
@@ -57,9 +56,9 @@
                 </select>
 
                 <select class="form-select mb-3" name="status" aria-label="Default select example">
-                    <option value="1">Hoạt động</option>
-                    <option value="2">Tạm ngưng</option>
-                    <option value="3">Ngừng kinh doanh</option>
+                    <option value="1" {{ $product->status == 1 ? 'selected' : '' }}>Hoạt động</option>
+                    <option value="2" {{ $product->status == 2 ? 'selected' : '' }}>Tạm ngưng</option>
+                    <option value="3" {{ $product->status == 3 ? 'selected' : '' }}>Ngừng kinh doanh</option>
                 </select>
 
                 <button type="submit" class="btn btn-success m-2">Sửa sản phẩm</button>
