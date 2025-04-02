@@ -24,7 +24,7 @@ class ShopsController extends Controller
         $shop->short_description = request('short_description');
         $shop->time_open = request('time_open');
         $shop->time_close = request('time_close');
-        $shop->address = request('address');
+        $shop->address_link = request('address');
         $shop->status = request('status');
         $shop->save();
 
@@ -42,7 +42,7 @@ class ShopsController extends Controller
         'short_description' => $request->short_description,
         'time_open' => $request->time_open,
         'time_close' => $request->time_close,
-        'address' => $request->address,
+        'address' => $request->address_link,
         'status' => $request->status,
     ]);
     return redirect()->route('admin.shops')->with('success', 'Cập nhật thành công!');

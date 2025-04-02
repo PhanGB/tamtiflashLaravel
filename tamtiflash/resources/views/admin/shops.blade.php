@@ -8,7 +8,7 @@
         <div class="bg-light rounded h-100 p-4">
             <div class="row g-2 align-items-center mb-4">
                 <div class="col-8 col-sm-10">
-                    <h6 class="mb-4">Đơn hàng</h6>
+                    <h3 class="mb-4">Cửa hàng</h3>
                 </div>
                 <div class="col-4 col-sm-2 text-center">
                     <a href="{{ route('admin.add_shop') }}" type="button" class="btn btn-primary w-100 mb-4">Thêm cửa hàng</a>
@@ -46,11 +46,9 @@
                     <td>{{ $shop->short_description }}</td>
                     <td>{{ $shop->rate }} <i class="fas fa-star text-warning"></i></td>
                     <td>
-                        <select class="form-select">
-                            <option value="" disabled>Chọn trạng thái</option>
-                            <option value="1" {{ $shop->status == 1 ? 'selected' : '' }}>Ẩn</option>
-                            <option value="0" {{ $shop->status == 0 ? 'selected' : '' }}>Hiện</option>
-                        </select>
+                       
+                            <span value="1" >{{ $shop->status == 0 ? 'Ẩn' : 'Hiển' }}</span>
+                            <!-- <span value="0" {{ $shop->status == 1 ? 'selected' : '' }}>Hiện</span> -->
                     </td>
                     <td>
                         <a href="{{ route('admin.edit_shop', $shop->id) }}">Sửa</a>
