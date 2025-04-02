@@ -11,6 +11,10 @@ class ShopsController extends Controller
     public function index()
     {
         $shops =Shop::all();
+        $search = request('search');
+        if ($search){
+            $shops = Shop::where('name','like','%'.$search.'%')->get();
+        }
         return view('admin.shops',compact('shops'));
     }
     public function add_shop(){
@@ -20,6 +24,7 @@ class ShopsController extends Controller
     public function add(){
         $shop = new Shop();
         $shop->name = request('name');
+        $shop->image = request('image');
         $shop->rate = request('rate');
         $shop->short_description = request('short_description');
         $shop->time_open = request('time_open');
@@ -38,6 +43,7 @@ class ShopsController extends Controller
         $shop = Shop::findOrFail($id);
         $shop->update([
         'name' => $request->name,
+        'image' => $request->image,
         'rate' => $request->rate,
         'short_description' => $request->short_description,
         'time_open' => $request->time_open,

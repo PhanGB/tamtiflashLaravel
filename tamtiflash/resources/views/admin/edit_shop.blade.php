@@ -14,12 +14,12 @@
                             value="{{ $shop->name }}">
                     </div>
                 </div>
-                {{-- <div class="row mb-3">
+                <div class="row mb-3">
                     <label class="fw-bold col-sm-3 col-form-label">Ảnh:</label>
                     <div class="col-sm-9 col-form-label">
-                        <input type="file">
+                        <input type="file" name="image" value="{{ $shop->image }}">
                     </div>
-                </div> --}}
+                </div>
                 <div class="row mb-3">
                     <label class="fw-bold col-sm-3 col-form-label">Đánh giá:</label>
                     <div class="col-sm-9 col-form-label">
