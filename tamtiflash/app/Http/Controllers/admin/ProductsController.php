@@ -14,7 +14,7 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        $productList = Product::with('shop', 'category', 'variants')->simplePaginate(10);
+        $productList = Product::with('shop', 'category', 'variants')->orderBy('id', 'desc')->simplePaginate(10);
         $productList->transform(function ($product) {
             switch ($product->status) {
                 case 1:
