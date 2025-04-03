@@ -40,7 +40,7 @@
                                         <span><a href="products.html"><i class="fa-solid fa-location-dot"></i>Ngũ Long
                                                 Bakery</a></span>
                                     </div>
-                                    <button class="cart-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+                                    <button data-product-id="{{ $product->id }}" class="cart-btn"><i class="fa-solid fa-cart-shopping"></i></button>
                                 </div>
                             </div>
                         </div>
