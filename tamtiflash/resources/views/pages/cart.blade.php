@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Giỏ hàng')
 @section('content')
 <link rel="stylesheet" href="/css/cart.css" />
 <link
@@ -13,164 +14,91 @@
 
     <div class="cart-body">
         <div class="grid wide">
-            <div class="row">
-                <div class="col l-9 m-12 c-12">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Sản phẩm</th>
-                                <th>Đơn giá</th>
-                                <th>Số lượng</th>
-                                <th>Thành tiền</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="product-box">
+            @if (!empty($cart))
+                <div class="row">
+                    <div class="col l-9 m-12 c-12">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Đơn giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($cart as $index => $item)
+                                    <tr>
+                                        <td class="product-box">
+                                            <img
+                                                src="{{ asset('images/products/banhkemtrungmuoi.jpg') }}"
+                                                class="product-img"
+                                            />
+                                            <div class="product-dsc">
+                                                <h3 class="product-name">{{ $item['name'] }}</h3>
+                                                <span class="product-res">{{ $item['variant'] }}</span>
+                                            </div>
+                                        </td>
+                                        <td>{{ number_format($item['price']) }}đ</td>
+                                        <td>
+                                            <form class="quantity-form quantity-control">
+                                                <input type="hidden" name="index" value="<?=$index?>">
+                                                <button type="button" class="quantity-btn quantity-minus">-</button>
+                                                <input class="quantity" type="text" value="{{ $item['quantity'] }}" />
+                                                <button type="button" class="quantity-btn quantity-plus">+</button>
+                                            </form>
+                                        </td>
+                                        <td class="line-total line-item-total" data-index="<?=$index?>">{{ number_format($item['price'] * $item['quantity']) }}đ</td>
+                                        <td><button onclick="deleteProduct(<?=$index?>)" class="remove-btn"><i class="fa-solid fa-xmark"></i></button></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="cart-mobile">
+                            <div class="cart-container">
+                                <div class="cart-item">
                                     <img
-                                        src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
-                                        alt=""
-                                        class="product-img"
+                                        src="{{ asset('images/products/banhkemtrungmuoi.jpg') }}"
+                                        class="cart-img"
                                     />
-                                    <div class="product-dsc">
-                                        <h3 class="product-name">Bánh tráng cuốn</h3>
-                                        <span class="product-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
+                                    <div class="cart-details">
+                                        <h3 class="cart-name">{{ $item['name'] }}</h3>
+                                        <span class="cart-res"><i class="fa-solid fa-location-dot"></i>{{ $item['variant'] }}</span>
+                                        <span class="cart-price">{{ number_format($item['price']) }}đ</span>
+                                        <form class="quantity-form cart-quantity-mobile">
+                                            <input type="hidden" name="index" value="<?=$index?>">
+                                            <button class="quantity-btn quantity-minus">−</button>
+                                            <input type="text" value="{{ $item['quantity'] }}" class="quantity-input quantity" />
+                                            <button class="quantity-btn quantity-plus">+</button>
+                                        </form>
                                     </div>
-                                </td>
-                                <td>25.000đ</td>
-                                <td>
-                                    <div class="quantity-control">
-                                        <button>-</button>
-                                        <input type="text" value="1" />
-                                        <button>+</button>
-                                    </div>
-                                </td>
-                                <td class="line-total">25.000đ</td>
-                                <td><button class="remove-btn">✖</button></td>
-                            </tr>
-                            <tr>
-                                <td class="product-box">
-                                    <img
-                                        src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
-                                        alt=""
-                                        class="product-img"
-                                    />
-                                    <div class="product-dsc">
-                                        <h3 class="product-name">Bánh tráng cuốn</h3>
-                                        <span class="product-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
-                                    </div>
-                                </td>
-                                <td>25.000đ</td>
-                                <td>
-                                    <div class="quantity-control">
-                                        <button>-</button>
-                                        <input type="text" value="1" />
-                                        <button>+</button>
-                                    </div>
-                                </td>
-                                <td class="line-total">25.000đ</td>
-                                <td><button class="remove-btn">✖</button></td>
-                            </tr>
-                            <tr>
-                                <td class="product-box">
-                                    <img
-                                        src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
-                                        alt=""
-                                        class="product-img"
-                                    />
-                                    <div class="product-dsc">
-                                        <h3 class="product-name">Bánh tráng cuốn</h3>
-                                        <span class="product-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
-                                    </div>
-                                </td>
-                                <td>25.000đ</td>
-                                <td>
-                                    <div class="quantity-control">
-                                        <button>-</button>
-                                        <input type="text" value="1" />
-                                        <button>+</button>
-                                    </div>
-                                </td>
-                                <td class="line-total">25.000đ</td>
-                                <td><button class="remove-btn">✖</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="cart-mobile">
-                        <div class="cart-container">
-                            <div class="cart-item">
-                                <img
-                                    src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
-                                    alt=""
-                                    class="cart-img"
-                                />
-                                <div class="cart-details">
-                                    <h3 class="cart-name">Bánh tráng cuốn</h3>
-                                    <span class="cart-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
-                                    <span class="cart-price">25.000đ</span>
-                                    <div class="cart-quantity-mobile">
-                                        <button class="quantity-btn">−</button>
-                                        <input type="text" value="1" class="quantity-input" />
-                                        <button class="quantity-btn">+</button>
-                                    </div>
+                                    <button onclick="deleteProduct(<?=$index?>)" class="remove-btn"><i class="fa-solid fa-xmark"></i></button>
                                 </div>
-                                <button class="remove-btn">✖</button>
-                            </div>
-                            <div class="cart-item">
-                                <img
-                                    src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
-                                    alt=""
-                                    class="cart-img"
-                                />
-                                <div class="cart-details">
-                                    <h3 class="cart-name">Bánh tráng cuốn</h3>
-                                    <span class="cart-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
-                                    <span class="cart-price">25.000đ</span>
-                                    <div class="cart-quantity-mobile">
-                                        <button class="quantity-btn">−</button>
-                                        <input type="text" value="1" class="quantity-input" />
-                                        <button class="quantity-btn">+</button>
-                                    </div>
-                                </div>
-                                <button class="remove-btn">✖</button>
-                            </div>
-                            <div class="cart-item">
-                                <img
-                                    src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg"
-                                    alt=""
-                                    class="cart-img"
-                                />
-                                <div class="cart-details">
-                                    <h3 class="cart-name">Bánh tráng cuốn</h3>
-                                    <span class="cart-res"><i class="fa-solid fa-location-dot"></i>Ngũ Long Bakery</span>
-                                    <span class="cart-price">25.000đ</span>
-                                    <div class="cart-quantity-mobile">
-                                        <button class="quantity-btn">−</button>
-                                        <input type="text" value="1" class="quantity-input" />
-                                        <button class="quantity-btn">+</button>
-                                    </div>
-                                </div>
-                                <button class="remove-btn">✖</button>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col l-3 m-12 c-12">
-                    <div class="cart-total">
-                        <div>
-                            <label for="" class="total-label">Thành tiền</label>
-                            <span class="total-price">990.000đ</span>
+                    <div class="col l-3 m-12 c-12">
+                        <div class="cart-total">
+                            <div>
+                                <label for="" class="total-label">Thành tiền</label>
+                                <span class="total-price">{{ number_format($grand_total) }}đ</span>
+                            </div>
+                            <a class="cart-btn-link" href="/checkout">
+                                <button class="cart-btn">Thanh toán</button>
+                            </a>
                         </div>
-                        <a class="cart-btn-link" href="payment.html">
-                            <button class="cart-btn">Thanh toán</button>
-                        </a>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="cart-empty">
+                    <h2 class="cart-empty__title">Giỏ hàng của bạn đang trống!</h2>
+                    <a href="/" class="continue-buy__btn">Tiếp tục mua hàng</a>
+                </div>
+            @endif
+
         </div>
     </div>
 </main>
-<script src="/js/home.js"></script>
-<script src="/js/base.js"></script>
+<script src="/js/cart.js"></script>
 @endsection

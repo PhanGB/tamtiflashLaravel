@@ -9,7 +9,6 @@ class SettingsController extends Controller
 {
     public function index()
     {
-
         return view('admin.settings');
     }
     public function payment_method()

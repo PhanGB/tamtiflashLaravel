@@ -23,10 +23,10 @@
 
         </div>
         <div class="products col-md-8">
-            <div class="text-quantity-products">150 sản phẩm</div>
+            <div class="text-quantity-products">{{ $productCount }} sản phẩm</div>
             <div class="row" id="product-list">
                 <div class="space"></div>
-                <h2>Combo</h2> <br>
+                <h2>{{ $categoryName }}</h2> <br>
                 @if($products->isEmpty())
                     <h3 class="text-center text-muted">Không có sản phẩm nào trong danh mục này.</h3>
                 @else
@@ -41,7 +41,7 @@
                             <div class="ms-3">
                                 <a href="/productdetail/{{ $product->id }}"><h3 class="mb-1 name-product">{{ $product->name }}</h3></a>
                                 <a href="#">
-                                    <p class="mb-1"><i class="fas fa-home text-success"></i> Quán Ngũ Long |
+                                    <p class="mb-1"><i class="fas fa-home text-success"></i> {{ $shop->name }} |
                                         <span class="text-muted">100 đã bán</span>
                                     </p>
                                 </a>
@@ -54,6 +54,7 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
                 <!-- ---------------------------------------------------------------------------- -->
 
             </div>
@@ -63,8 +64,9 @@
                 <span class="name-filter-category ">Sắp xếp theo: </span>
                 <select name="category" id="category" class="form-select select-category w-50">
                     <option value="all" {{ request('category') == 'all' ? 'selected' : '' }}>Tất cả</option>
-                    <option value="food" {{ request('category') == 'food' ? 'selected' : '' }}>Món ăn</option>
-                    <option value="drink" {{ request('category') == 'drink' ? 'selected' : '' }}>Nước uống</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="cart">
@@ -82,4 +84,14 @@
 <br><br><br>
 </main>
 <script src="/js/cart.js"></script>
+<script>
+    document.getElementById("category").addEventListener("change", function () {
+        var category = this.value;
+        var url = new URL(window.location.href);
+        url.searchParams.set('category', category);
+        window.location.href = url.toString();
+    });
+</script>
+
+
 @endsection

@@ -21,7 +21,7 @@
             <div class="col l-3 m-6 c-6">
                 <div class="shop-item">
                     <div class="shop-item_info">
-                        <img src="https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg" alt="" class="shop-item__img" />
+                        <img src="{{ asset('images/shops/'.$shop->image) }}" alt="" class="shop-item__img" />
                         <h3>{{ $shop->name }}</h3>
                         <p>{{ $shop ->short_description }}</p>
                         <div class="div_about">
