@@ -46,7 +46,7 @@
                 <a href="{{ route('admin.voucher') }}" class="nav-item nav-link {{ request()->routeIs('admin.voucher') ? 'active' : '' }}">
                     <i class="fa fa-ticket-alt me-2"></i>Mã giảm giá
                 </a>
-                <a href="{{ route('admin.settings') }}" class="nav-item nav-link {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
+                <a href="{{ route('admin.settings.index') }}" class="nav-item nav-link {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
                     <i class="fa fa-cog me-2"></i>Cài đặt
                 </a>
             </div>
