@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Tamtiflash - Admin - Trang chủ')
+@section('dashboard', 'active')
+
 
 @section('content')
     <!-- Sale & Revenue Start -->

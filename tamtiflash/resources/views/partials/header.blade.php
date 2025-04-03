@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="public/css/grid.css" />
     <link rel="stylesheet" href="public/css/base.css" /> -->
     @vite(['resources/bootstrap-5.3.3-dist/css/bootstrap.min.css'])
-    <!-- @vite(['resources/css/normalize/8.0.1/normalize.min.css']) -->
+    @vite(['resources/css/normalize/8.0.1/normalize.min.css'])
     @vite(['resources/fonts/fontawesome-free-6.7.2-web/css/all.min.css'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
     @vite(['resources/css/grid.css'])

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductVariantController;
 use App\Http\Controllers\Admin\ShopsController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\OrdertrackingController;
@@ -21,8 +22,26 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Quản lý sản phẩm
     Route::get('/products', [ProductsController::class, 'index'])->name('products');
 
+    Route::get('/products/product_add', [ProductsController::class, 'viewAdd'])->name('admin.product_add');
+    Route::post('/products/add', [ProductsController::class, 'add'])->name('addPro');
+
+    Route::get('/products/product_edit/{id}', [ProductsController::class, 'viewEdit'])->name('admin.product_edit');
+    Route::put('/products/product_edit/{id}', [ProductsController::class, 'edit'])->name('editPro');
+
+    Route::delete('/products/delete/{id}', [ProductsController::class, 'delete'])->name('deletePro');
+    //product variant
+    Route::get('/products/product_variant/{id}', [ProductVariantController::class, 'product_variant'])->name('admin.products_variant');
+
     // Quản lý danh mục
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
+
+    Route::get('/category/category_add', [CategoryController::class, 'viewAdd'])->name('category_add');
+    Route::post('/category/add', [CategoryController::class, 'add'])->name('addCate');
+
+    Route::get('category/category_edit/{id}', [CategoryController::class, 'viewEdit'])->name('category_edit');
+    Route::put('category/category_edit/{id}', [CategoryController::class, 'edit'])->name('editCate');
+
+    Route::delete('/category/delete/{id}', [CategoryController::class, 'delete'])->name('deleteCate');
 
     // Quản lý cửa hàng
     Route::get('/shops', [ShopsController::class, 'index'])->name('shops');
