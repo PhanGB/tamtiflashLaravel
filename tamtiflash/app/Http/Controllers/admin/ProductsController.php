@@ -69,14 +69,15 @@ class ProductsController extends Controller
      }
 
      public function add(Request $request){
-        $request->validate([
-            'name' => 'required|string|max:255', // Kiểm tra tên sản phẩm
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Kiểm tra tệp ảnh
-            'price' => 'required|numeric|min:0', // Kiểm tra giá là số hợp lệ và >= 0
-            'status' => 'required|in:1,2,3', // Kiểm tra trạng thái hợp lệ
-        ]);
 
         try {
+            $request->validate([
+                'name' => 'required|string|max:255', // Kiểm tra tên sản phẩm
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Kiểm tra tệp ảnh
+                'price' => 'required|numeric|min:0', // Kiểm tra giá là số hợp lệ và >= 0
+                'status' => 'required|in:1,2,3', // Kiểm tra trạng thái hợp lệ
+            ]);
+
             $image = $request->file('image');
 
             // Tạo tên file duy nhất (dựa trên thời gian)
@@ -96,7 +97,7 @@ class ProductsController extends Controller
 
             return redirect()->route('admin.products')->with('success', 'Thêm thành công!');
         } catch (\Exception $e) {
-            return redirect()->route('admin.products')->with('error', 'Đã xảy ra lỗi khi thêm sản phẩm. Vui lòng thử lại!');
+            return redirect()->route('admin.product_add')->with('error', 'Đã xảy ra lỗi khi thêm sản phẩm. Vui lòng thử lại!');
         }
      }
 

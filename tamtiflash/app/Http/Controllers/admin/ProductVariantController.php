@@ -56,13 +56,14 @@ class ProductVariantController extends Controller
      }
 
      public function add(Request $request, $id){
-        $request->validate([
-            'name' => 'required|string|max:255', // Kiểm tra tên biến thể
-            'price' => 'required|numeric|min:0', // Kiểm tra giá là số hợp lệ và >= 0
-            'status' => 'required|in:1,2,3', // Kiểm tra trạng thái hợp lệ
-        ]);
 
         try {
+            $request->validate([
+                'name' => 'required|string|max:255', // Kiểm tra tên biến thể
+                'price' => 'required|numeric|min:0', // Kiểm tra giá là số hợp lệ và >= 0
+                'status' => 'required|in:1,2,3', // Kiểm tra trạng thái hợp lệ
+            ]);
+
             $variant = new ProductVariant();
             $variant->name = $request->name;
             $variant->price = $request->price;
