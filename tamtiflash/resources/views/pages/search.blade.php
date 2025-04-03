@@ -12,7 +12,7 @@
                 @foreach ($products as $product)
                     <div class="col l-3 m-6 c-12">
                         <div class="product-card">
-                            <a href="{{ route('productDetail', $product->id) }}">
+                            <a href="{{ route('product_detail', $product->id) }}">
                                 <img src="{{ asset('images/products/' . $product->image) }}" alt="{{ $product->name }}" class="product-card__img">
                                 <h4 class="product-card__name">{{ $product->name }}</h4>
                                 <p class="product-card__price">{{ number_format($product->price) }} đ</p>

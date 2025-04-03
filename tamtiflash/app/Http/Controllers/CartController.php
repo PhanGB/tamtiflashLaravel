@@ -40,7 +40,8 @@ class CartController extends Controller
                 'price' => $variant->price,
                 'image' => $product->image,
                 'variant' => $variant->name,
-                'quantity' => $request->quantity
+                'quantity' => $request->quantity,
+                'id_shop' => $product->shop->id,
             ];
         } else {
             $cart[] = [
@@ -49,7 +50,8 @@ class CartController extends Controller
                 'price' => $product->price,
                 'image' => $product->image,
                 'variant' => null,
-                'quantity' => $request->quantity
+                'quantity' => $request->quantity,
+                'id_shop' => $product->shop->id,
             ];
         }
 
