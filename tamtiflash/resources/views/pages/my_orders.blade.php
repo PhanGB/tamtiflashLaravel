@@ -112,13 +112,19 @@
                    @foreach ($orders as $order)
                      @php
                             $status = "";
-                            if ($order->status == 1) {
-                             $status = "Đã giao";
+                            if ($order->status == 0) {
+                             $status = "Đang chờ xác nhận";
+                             $class = "myOrder-waiting";
+                            } else if ($order->status == 1) {
+                             $status = "Đã xác nhận";
                              $class = "myOrder-success";
                             } else if ($order->status == 2) {
                              $status = "Đang vận chuyển";
                              $class = "myOrder-in-progress";
                             } else if ($order->status == 3) {
+                             $status = "Đã giao";
+                             $class = "myOrder-success";
+                            } else if ($order->status == 4) {
                              $status = "Đã huỷ";
                              $class = "myOrder-cancel";
                             } else {

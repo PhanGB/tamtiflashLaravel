@@ -75,14 +75,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/admin/voucher/restore/{id}', [VoucherController::class, 'restore'])->name('voucher.restore');
 
     // Cài đặt
-    Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
-        Route::get('/', [SettingsController::class, 'index'])->name('index');
+    Route::group(['prefix' => 'settings'], function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('settings');
 
         // Quản lý phương thức thanh toán
         Route::get('/payment-method', [SettingsController::class, 'payment_method'])->name('payment_method');
         Route::get('/payment-method/edit', [SettingsController::class, 'edit_payment'])->name('edit_payment');
         Route::put('/payment-method/update', [SettingsController::class, 'update_payment'])->name('update_payment');
-
         // Quản lý phí vận chuyển
         Route::get('/shipping-fee', [SettingsController::class, 'shipping_fee'])->name('shipping_fee');
         Route::get('/shipping-fee/{id}', [SettingsController::class, 'edit_shipping'])->name('edit_shipping');
