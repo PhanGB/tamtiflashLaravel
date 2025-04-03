@@ -12,7 +12,7 @@
         <div class="bg-light rounded h-100 p-4">
             <h6 class="mb-4">Sửa sản phẩm</h6>
             <a class="btn btn-secondary rounded-pill m-2" href="{{ url('/admin/products') }}">Trở lại</a>
-            <form action="{{ route('editPro', ['id' => $product->id]) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.editPro', ['id' => $product->id]) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <input class="form-control mb-3" type="text" name="name" value="{{ $product->name }}"
@@ -66,7 +66,7 @@
 
             </form>
 
-            <form action="{{ route('deletePro', ['id' => $product->id]) }}" method="post">
+            <form action="{{ route('admin.deletePro', ['id' => $product->id]) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger m-2">Xoá sản phẩm</button>

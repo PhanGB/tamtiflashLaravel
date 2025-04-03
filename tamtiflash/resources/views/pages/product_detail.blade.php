@@ -26,7 +26,7 @@
                                         <input type="text" class="product-detail__quantity-input" value="1">
                                         <button class="product-detail__quantity-btn product-detail__quantity-btn--increase">+</button>
                                     </div>
-                                    <button class="product-detail__add-to-cart-btn">Thêm vào giỏ hàng</button>
+                                    <button data-product-id="{{ $product->id }}" class="product-detail__add-to-cart-btn">Thêm vào giỏ hàng</button>
                                 </div>
 
                             </div>
@@ -34,14 +34,13 @@
                         <div class="product-detail__content-note-topping">
                             <div class="row">
                                 <div class="col l-6 m-6 c-12 product-detail__content-topping">
-                                    <h3>Thêm Topping</h3>
                                     <div class="product-detail__topping-list">
-                                        @foreach ($productvariants as $productvariant)
-                                        <label class="product-detail__topping-item">
-                                            <input type="checkbox" name="topping" value="{{ $productvariant->id }}" class="product-detail__topping-checkbox">
-                                            <span class="product-detail__topping-text">{{ $productvariant->name }}</span>
-                                            <span class="product-detail__topping-price">+ {{ number_format($productvariant->price) }} đ</span>
-                                        </label>
+                                        @foreach ($productvariants as $key => $productvariant)
+                                            <label class="product-detail__topping-item">
+                                                <input type="radio" name="topping" value="{{ $productvariant->id }}" {{ $key == 0 ? 'checked' : '' }} class="product-detail__topping-checkbox">
+                                                <span class="product-detail__topping-text">{{ $productvariant->name }}</span>
+                                                <span class="product-detail__topping-price">+ {{ number_format($productvariant->price) }} đ</span>
+                                            </label>
                                         @endforeach
 
                                     </div>

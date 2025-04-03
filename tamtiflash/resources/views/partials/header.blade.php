@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tam Ti Flash</title>
@@ -102,7 +103,7 @@
             <li class="header-right__item">
                 <a href="/cart">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="cart-quantity">1</span>
+                    <span class="cart-quantity">{{ count(session('cart', [])) }}</span>
                 </a>
             </li>
         </ul>

@@ -60,10 +60,10 @@
 
                         @foreach($productList as $index => $pro)
                             <!-- @if($pro->status == 0)
-                                <tr class="table-danger">
-                            @else
-                                <tr class="table-success">
-                            @endif -->
+                                        <tr class="table-danger">
+                                    @else
+                                        <tr class="table-success">
+                                    @endif -->
                             <tr>
                                 <th scope="row">{{ $productList->firstItem() + $index }}</th>
                                 <td><a href="/admin/products/product_variant/{{ $pro->id }}">{{ count($pro->variants) }} Biến
@@ -76,9 +76,13 @@
                                 {{-- @if($pro->status == 0) --}}
                                 <td><span class="badge {{ $pro->status_class }}">{{ $pro->status_text }}</span></td>
                                 <td>{{ $pro->sold}}</td>
-                                <td><a href="{{ url('/admin/products/product_edit/' . $pro->id) }}">Sửa</a>
-                                <a href="products/delete/{{ $pro->id }}">Xoá</a>
-                            </td>
+                                <td><a href="{{ url('/admin/products/product_edit/' . $pro->id) }}" class="btn btn-primary" style="margin-bottom:10px;">Sửa</a>
+                                    <form action="{{ route('admin.deletePro', ['id' => $pro->id]) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" style="font-size: 16px;">Xoá</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
 

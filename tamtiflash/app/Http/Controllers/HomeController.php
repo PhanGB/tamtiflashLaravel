@@ -18,23 +18,21 @@ class HomeController extends Controller
                 'review.review as review_content',
                 'users.name as customer_name',
                 'orders.id as order_id'
-            )
+            )->where('review.status', 1)
             ->get();
-    
+
         $products = Product::orderBy('sold', 'desc')->take(8)->get();
         $shops = Shop::orderBy('created_at', 'desc')->take(8)->get();
-    
         return view('pages.home', compact('products', 'shops', 'reviews'));
-    }    
-    public function MAH()
-    {
+    }
+    public function MAH(){
         $products = Product::orderBy('created_at', 'desc')->take(8)->get();
         return view('pages.MarketAtHome', compact('products'));
     }
 
     // public function getReviews()
     // {
-       
+
     //     return view('pages.home', ['reviews' => $reviews]);
     // }
 

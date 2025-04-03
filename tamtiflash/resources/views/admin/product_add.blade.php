@@ -17,7 +17,7 @@
                 </div>
             @endif
             <a class="btn btn-secondary rounded-pill m-2" href="{{ url('/admin/products') }}">Trở lại</a>
-            <form action="{{ route('addPro') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.addPro') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 {{-- <input class="form-control mb-3" type="text" name="" placeholder="Mã sản phẩm"

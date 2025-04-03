@@ -4,7 +4,7 @@
                 <div class="grid wide">
                     <div class="row">
                         <div class="col l-3 m-6 c-12">
-                            <img src="public/images/logo/logo.png" alt="" class="footer-logo" />
+                            <img src="{{ asset('images/logo/logo.png') }}" alt="" class="footer-logo" />
                         </div>
                         <div class="col l-3 m-6 c-12 footer-address">
                             <h3 class="footer-heading">Địa chỉ</h3>

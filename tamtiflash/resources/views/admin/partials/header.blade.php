@@ -7,7 +7,7 @@
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
-                    <img class="rounded-circle" src="{{ asset('/img/user.jpg') }}" alt="" style="width: 40px; height: 40px" />
+                    <img class="rounded-circle" src="{{ asset('/images/user.jpg') }}" alt="" style="width: 40px; height: 40px" />
                     <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                 </div>
                 <div class="ms-3">
@@ -16,17 +16,39 @@
                 </div>
             </div>
             <div class="navbar-nav w-100">
-                <a href="{{ url('/admin') }}" class="nav-item nav-link @yield('dashboard')"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="{{ route('admin.products') }}" class="nav-item nav-link @yield('products')"><i class="fa fa-utensils me-2"></i>Sản phẩm</a>
-                <a href="{{ route('admin.category') }}" class="nav-item nav-link @yield('category')"><i class="fa fa-list me-2"></i>Danh mục</a>
-                <a href="{{ url('/admin/shops') }}" class="nav-item nav-link"><i class="fa fa-store me-2"></i>Cửa hàng</a>
-                <a href="{{ url('/admin/orders') }}" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Đơn hàng</a>
-                <a href="{{ url('/admin/ordertracking') }}" class="nav-item nav-link"><i class="fa fa-shipping-fast me-2"></i>Th.dõi đơn hàng</a>
-                <a href="{{ url('/admin/staff') }}" class="nav-item nav-link"><i class="fa fa-users me-2"></i>Nhân viên</a>
-                <a href="{{ url('/admin/users') }}" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người dùng</a>
-                <a href="{{ url('/admin/review') }}" class="nav-item nav-link"><i class="fa fa-gavel me-2"></i>Đánh giá</a>
-                <a href="{{ url('/admin/voucher') }}" class="nav-item nav-link"><i class="fa fa-ticket-alt me-2"></i>Mã giảm giá</a>
-                <a href="{{ url('/admin/settings') }}" class="nav-item nav-link"><i class="fa fa-cog me-2"></i>Cài đặt</a>
+                <a href="{{ url('/admin') }}" class="nav-item nav-link {{ request()->routeIs('admin.home') ? 'active' : '' }}">
+                    <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+                </a>
+                <a href="{{ route('admin.products') }}" class="nav-item nav-link {{ request()->routeIs('admin.products') ? 'active' : '' }}">
+                    <i class="fa fa-utensils me-2"></i>Sản phẩm
+                </a>
+                <a href="{{ route('admin.category') }}" class="nav-item nav-link {{ request()->routeIs('admin.category') ? 'active' : '' }}">
+                    <i class="fa fa-list me-2"></i>Danh mục
+                </a>
+                <a href="{{ route('admin.shops') }}" class="nav-item nav-link {{ request()->routeIs('admin.shops') ? 'active' : '' }}">
+                    <i class="fa fa-store me-2"></i>Cửa hàng
+                </a>
+                <a href="{{ route('admin.orders') }}" class="nav-item nav-link {{ request()->routeIs('admin.orders') ? 'active' : '' }}">
+                    <i class="fa fa-bell me-2"></i>Đơn hàng
+                </a>
+                <a href="{{ route('admin.ordertracking') }}" class="nav-item nav-link {{ request()->routeIs('admin.ordertracking') ? 'active' : '' }}">
+                    <i class="fa fa-shipping-fast me-2"></i>Th.dõi đơn hàng
+                </a>
+                <a href="{{ route('admin.staff') }}" class="nav-item nav-link {{ request()->routeIs('admin.staff') ? 'active' : '' }}">
+                    <i class="fa fa-users me-2"></i>Nhân viên
+                </a>
+                <a href="{{ route('admin.users') }}" class="nav-item nav-link {{ request()->routeIs('admin.users') ? 'active' : '' }}">
+                    <i class="fa fa-user me-2"></i>Người dùng
+                </a>
+                <a href="{{ route('admin.review') }}" class="nav-item nav-link {{ request()->routeIs('admin.review') ? 'active' : '' }}">
+                    <i class="fa fa-gavel me-2"></i>Đánh giá
+                </a>
+                <a href="{{ route('admin.voucher') }}" class="nav-item nav-link {{ request()->routeIs('admin.voucher') ? 'active' : '' }}">
+                    <i class="fa fa-ticket-alt me-2"></i>Mã giảm giá
+                </a>
+                <a href="{{ route('admin.settings.index') }}" class="nav-item nav-link {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
+                    <i class="fa fa-cog me-2"></i>Cài đặt
+                </a>
             </div>
         </nav>
     </div>
@@ -52,7 +74,7 @@
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                         <a href="#" class="dropdown-item">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="../img/user.jpg" alt="" style="width: 40px; height: 40px" />
+                                <img class="rounded-circle" src="{{ asset('/images/user.jpg') }}" alt="" style="width: 40px; height: 40px" />
                                 <div class="ms-2">
                                     <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                     <small>15 minutes ago</small>
@@ -62,7 +84,7 @@
                         <hr class="dropdown-divider" />
                         <a href="#" class="dropdown-item">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="../img/user.jpg" alt="" style="width: 40px; height: 40px" />
+                                <img class="rounded-circle" src="{{ asset('/images/user.jpg') }}" alt="" style="width: 40px; height: 40px" />
                                 <div class="ms-2">
                                     <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                     <small>15 minutes ago</small>
@@ -72,7 +94,7 @@
                         <hr class="dropdown-divider" />
                         <a href="#" class="dropdown-item">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="../img/user.jpg" alt="" style="width: 40px; height: 40px" />
+                                <img class="rounded-circle" src="{{ asset('/images/user.jpg') }}" alt="" style="width: 40px; height: 40px" />
                                 <div class="ms-2">
                                     <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                     <small>15 minutes ago</small>
@@ -109,7 +131,7 @@
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <img class="rounded-circle me-lg-2" src="../img/user.jpg" alt="" style="width: 40px; height: 40px" />
+                        <img class="rounded-circle me-lg-2" src="{{ asset('/images/user.jpg') }}" alt="" style="width: 40px; height: 40px" />
                         <span class="d-none d-lg-inline-flex">John Doe</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
