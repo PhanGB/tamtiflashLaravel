@@ -14,6 +14,9 @@ class Order extends Model
         'status',
         'total',
         'create_at',
-        'update_at'
+        'update_at',
+        'shipping_fee',
+        'payment_method',
+        'note'
     ];
 }

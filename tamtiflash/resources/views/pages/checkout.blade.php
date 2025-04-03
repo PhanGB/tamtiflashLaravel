@@ -12,7 +12,17 @@
         <div class="grid wide">
             <div class="row">
                 <div class="col l-7 m-12 c-12">
-                    <form class="checkout-form">
+                    <form class="checkout-form" action="{{ url('/checkout/process') }}" method="POST">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        @csrf
                         <div class="address">
                             <div class="address-bar">
                                 <span class="address-icon"><i class="fa-solid fa-location-dot"></i></span>
@@ -32,7 +42,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <div class="input-group-half">
                                 <label>Họ và tên <span class="required">*</span></label>
                                 <input type="text" value="{{ $user->name }}" required />
@@ -41,21 +51,21 @@
                                 <label>Số điện thoại <span class="required">*</span></label>
                                 <input type="tel" value="{{ $user->phone }}" required />
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="input-group">
                             <label>Ghi chú</label>
-                            <input type="text" />
+                            <input type="text" name="note" />
                         </div>
                         <div class="payment-method">
                             <label>Phương thức thanh toán <span class="required">*</span></label>
                             <div class="payment-options">
                                 <label class="payment-option">
-                                    <input type="radio" name="payment" value="cod" required checked />
+                                    <input type="radio" name="method" value="cod" required checked />
                                     <img src="../images/icons/cod-icon.svg" alt="COD" />
                                     Thanh toán khi giao hàng (COD)
                                 </label>
                                 <label class="payment-option">
-                                    <input type="radio" name="payment" value="bank" />
+                                    <input type="radio" name="method" value="bank" />
                                     <img src="../images/icons/bank-icon.svg" alt="Bank Transfer" />
                                     Chuyển khoản qua ngân hàng
                                 </label>
@@ -76,6 +86,8 @@
 
                         <div class="buttons">
                             <a href="/cart" class="back-link">Quay lại giỏ hàng</a>
+                            <input id="total-hidden" type="hidden" name="total" value="0">
+                            <input id="shipping_fee-hidden" type="hidden" name="shipping_fee" value="0">
                             <button type="submit" class="submit-btn">Thanh toán</button>
                         </div>
                     </form>
@@ -176,6 +188,7 @@
                     // Tính phí vận chuyển ngay sau khi cập nhật khoảng cách
                     let shippingFee = caculateShippingFee(distanceKM);
                     document.getElementById("shipping_fee").textContent = shippingFee.toLocaleString() + "đ";
+                    document.getElementById("shipping_fee-hidden").value = shippingFee;
 
                     // Cập nhật tổng tiền
                     caculateTotal(shippingFee);
@@ -237,6 +250,7 @@
             let total = grandTotal + shippingFee;
 
             document.getElementById("total-payment").textContent = total.toLocaleString();
+            document.getElementById("total-hidden").value = total;
         }
 
         // Gọi hàm distance() khi trang tải
@@ -249,7 +263,7 @@
 
         // hiển thị thông tin chuyển khoản khi chọn phương thức thanh toán
         document.addEventListener("DOMContentLoaded", function () {
-            let paymentOptions = document.getElementsByName("payment");
+            let paymentOptions = document.getElementsByName("method");
             let bankInfo = document.getElementById("bank-info");
 
             paymentOptions.forEach(option => {
