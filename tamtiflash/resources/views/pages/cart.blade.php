@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Giỏ hàng')
 @section('content')
 <link rel="stylesheet" href="/css/cart.css" />
 <link
@@ -83,7 +84,7 @@
                                 <label for="" class="total-label">Thành tiền</label>
                                 <span class="total-price">{{ number_format($grand_total) }}đ</span>
                             </div>
-                            <a class="cart-btn-link" href="payment.html">
+                            <a class="cart-btn-link" href="/checkout">
                                 <button class="cart-btn">Thanh toán</button>
                             </a>
                         </div>
@@ -92,7 +93,7 @@
             @else
                 <div class="cart-empty">
                     <h2 class="cart-empty__title">Giỏ hàng của bạn đang trống!</h2>
-                    <a href="/thanhhungfutsal_v2/collection" class="continue-buy__btn">Tiếp tục mua hàng</a>
+                    <a href="/" class="continue-buy__btn">Tiếp tục mua hàng</a>
                 </div>
             @endif
 

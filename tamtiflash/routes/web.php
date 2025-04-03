@@ -3,6 +3,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -15,10 +16,11 @@ use App\Http\Controllers\OrderController;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/shop', [ShopController::class, 'shop']);
 Route::get('/shopdetail/{id}', [ShopController::class, 'shop_detail']);
-Route::get('/cart', [ShopController::class, 'cart']);
 Route::get('/productdetail/{id}', [ProductController::class, 'product_detail'])->name('product_detail');
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
 Route::get('/MAH', [HomeController::class, 'MAH'])->name('MAH');
+// Route::get('/cart', [ShopController::class, 'cart']);
+
 
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -44,10 +46,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+// Giỏ hàng
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add']);
 Route::post('/cart/update', [CartController::class, 'update']);
 Route::get('/cart/remove/{id}', [CartController::class, 'remove']);
+
+// Thanh toán
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->middleware('auth')->name('checkout');
 
 require __DIR__ . '/admin.php';
 
