@@ -40,8 +40,8 @@
                     <tbody>
                         @foreach ($shops as $shop)
                         <tr>
-                            <td>{{ $shop->id }}</td>
-                            <td><img src="../img/user.jpg" alt="" style="width: 40px; height: 40px" /></td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td><img src="{{ asset('images/shops/'.$shop->image) }}" alt="{{ $shop->image }}" style="width: 40px; height: 40px" /></td>
                             <td>{{ $shop->name }}</td>
                             <td>{{ $shop->short_description }}</td>
                             <td>{{ $shop->rate }} <i class="fas fa-star text-warning"></i></td>
