@@ -21,33 +21,32 @@
                 </div>
                 <div id="food" class="row products-box active">
                     @foreach ($products as $product)
-                    <div class="col l-3 m-6 c-6">
-                        <div class="product-card">
-                            <a href="" class="product-img-link">
-                                <div
-                                    class="product-img"
-                                    style="
-                                        background-image: url('https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg');
-                                    "
-                                ></div>
-                            </a>
-                            <a href="product_detail.html">
-                                <h3 class="product-name">{{ $product->name }}</h3>
-                            </a>
-                            <p class="product-price">
-                                <span class="product-price__new">{{ number_format($product->price) }} đ</span>
-                                <span class="product-price__old">40.000₫</span>
-                            </p>
-                            <div class="product-footer">
-                                <div>
-                                    <span
-                                        ><a href="products.html"><i class="fa-solid fa-location-dot"></i>{{ $product->shop->name }}</a></span
-                                    >
+                        <div class="col l-3 m-6 c-6">
+                            <div class="product-card">
+                                <a href="" class="product-img-link">
+                                    <div class="product-img" style="
+                                                background-image: url('https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg');
+                                            "></div>
+                                </a>
+                                <a href="product_detail.html">
+                                    <h3 class="product-name">{{ $product->name }}</h3>
+                                </a>
+                                <p class="product-price">
+                                    <span class="product-price__new">{{ number_format($product->price) }} đ</span>
+                                    <span class="product-price__old">40.000₫</span>
+                                </p>
+                                <div class="product-footer">
+                                    <div>
+                                        <span><a href="products.html"><i
+                                                    class="fa-solid fa-location-dot"></i>{{ $product->shop->name }}</a></span>
+
+                                                </div>
+                                                <button data-product-id="{{ $product->id }}" class="cart-btn"><i
+                                                        class="fa-solid fa-cart-shopping"></i></button>
+                                    <!-- <button class="cart-btn"><i class="fa-solid fa-cart-shopping"></i></button> -->
                                 </div>
-                                <button class="cart-btn"><i class="fa-solid fa-cart-shopping"></i></button>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
                 <a href="" class="primary-btn section-btn">Xem thêm</a>
@@ -68,7 +67,7 @@
                                     alt="" />
                                 <h3>{{ $shop->name }}</h3>
                                 <p>{{ $shop->short_description }}</p>
-                                <p>Giờ mở cửa: <span class="open-time">{{ $shop->time_open }}</span></p>
+                                <p>Giờ mở cửa: <span class="open-time">{{ $shop->time_open }} - {{ $shop->time_close }}</span></p>
                                 <a href="/shopdetail/{{ $shop->id }}" class="primary-btn restaurant-btn">Ghé quán</a>
                             </div>
                         </div>
