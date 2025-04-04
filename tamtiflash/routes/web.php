@@ -57,6 +57,7 @@ Route::get('/cart/remove/{id}', [CartController::class, 'remove']);
 
 // Thanh toán
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->middleware('auth')->name('checkout');
+Route::post('/checkout/process', [CheckoutController::class, 'process'])->middleware('auth')->name('checkout.process');
 
 require __DIR__ . '/admin.php';
 

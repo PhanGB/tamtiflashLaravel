@@ -10,6 +10,11 @@
                 <a href="" class="primary-btn banner-btn">LỰA ĐỒ ĂN, NƯỚC UỐNG THÔI!</a>
             </div>
         </div>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <section>
             <div class="grid wide">
                 <div class="section-heading">
