@@ -28,9 +28,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/products/product_edit/{id}', [ProductsController::class, 'viewEdit'])->name('admin.product_edit');
     Route::put('/products/product_edit/{id}', [ProductsController::class, 'edit'])->name('editPro');
 
-    Route::delete('/products/delete/{id}', [ProductsController::class, 'delete'])->name('deletePro');
+    Route::delete('/products/product_delete/{id}', [ProductsController::class, 'delete'])->name('deletePro');
     //product variant
-    Route::get('/products/product_variant/{id}', [ProductVariantController::class, 'product_variant'])->name('admin.products_variant');
+    Route::get('/products/product_variant/{id}', [ProductVariantController::class, 'product_variant'])->name('product_variant');
+    Route::get('/products/variant_add/{id}', [ProductVariantController::class, 'viewAdd'])->name('product.variant_add');
+    Route::post('/products/variant_add/{id}', [ProductVariantController::class, 'add'])->name('addVariant');
+
+    Route::get('/products/variant_edit/{id}', [ProductVariantController::class, 'viewEdit'])->name('product.variant_edit');
+    Route::put('/products/variant_edit/{id}', [ProductVariantController::class, 'edit'])->name('editVariant');
+
+    Route::delete('/products/variant_delete/{id}', [ProductVariantController::class, 'delete'])->name('deleteVariant');
+    //category
+    Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
 
     // Quản lý danh mục
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
@@ -88,4 +97,3 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/shipping-fee/update', [SettingsController::class, 'update_shipping'])->name('update_shipping');
     });
 });
-

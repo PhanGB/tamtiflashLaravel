@@ -69,14 +69,15 @@ class ProductsController extends Controller
      }
 
      public function add(Request $request){
-        $request->validate([
-            'name' => 'required|string|max:255', // Kiểm tra tên sản phẩm
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Kiểm tra tệp ảnh
-            'price' => 'required|numeric|min:0', // Kiểm tra giá là số hợp lệ và >= 0
-            'status' => 'required|in:1,2,3', // Kiểm tra trạng thái hợp lệ
-        ]);
 
         try {
+            $request->validate([
+                'name' => 'required|string|max:255', // Kiểm tra tên sản phẩm
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Kiểm tra tệp ảnh
+                'price' => 'required|numeric|min:0', // Kiểm tra giá là số hợp lệ và >= 0
+                'status' => 'required|in:1,2,3', // Kiểm tra trạng thái hợp lệ
+            ]);
+
             $image = $request->file('image');
 
             // Tạo tên file duy nhất (dựa trên thời gian)
@@ -96,7 +97,7 @@ class ProductsController extends Controller
 
             return redirect()->route('admin.products')->with('success', 'Thêm thành công!');
         } catch (\Exception $e) {
-            return redirect()->route('admin.products')->with('error', 'Đã xảy ra lỗi khi thêm sản phẩm. Vui lòng thử lại!');
+            return redirect()->route('admin.product_add')->with('error', 'Đã xảy ra lỗi khi thêm sản phẩm. Vui lòng thử lại!');
         }
      }
 
@@ -109,6 +110,7 @@ class ProductsController extends Controller
             $request->validate([
                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Kiểm tra tệp ảnh
                 'price' => 'required|numeric|min:0', // Kiểm tra giá là một số hợp lệ và >= 0
+                'status' => 'required|in:1,2,3', // Kiểm tra trạng thái hợp lệ
             ]);
 
             // Kiểm tra và xử lý giá (loại bỏ dấu phẩy nếu có)
@@ -134,8 +136,11 @@ class ProductsController extends Controller
                 'id_cate' => $request->input('category'),
             ]);
 
+            // Cập nhật trạng thái của các biến thể thuộc sản phẩm
+            $product->variants()->update(['status' => $request->input('status')]);
+
             // Chuyển hướng và hiển thị thông báo thành công
-            return redirect()->route('admin.products')->with('success', 'Sản phẩm đã được cập nhật!');
+            return redirect()->route('admin.products')->with('success', 'Sản phẩm và các biến thể đã được cập nhật!');
         }
 
 
