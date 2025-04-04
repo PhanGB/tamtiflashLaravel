@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\MarketAtHomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -18,8 +19,7 @@ Route::get('/shop', [ShopController::class, 'shop']);
 Route::get('/shopdetail/{id}', [ShopController::class, 'shop_detail']);
 Route::get('/productdetail/{id}', [ProductController::class, 'product_detail'])->name('product_detail');
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
-Route::get('/MAH', [HomeController::class, 'MAH'])->name('MAH');
-// Route::get('/cart', [ShopController::class, 'cart']);
+Route::get('/MAH', [MarketAtHomeController::class, 'MAH'])->name('MAH');
 
 
 
