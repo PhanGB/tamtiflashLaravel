@@ -29,26 +29,27 @@
                             </div>
                         @endif
                         @csrf
+                        <p style="color: red; font-size: 15px;">*chú ý chọn đúng địa chỉ giao hàng</p>
                         <div class="address">
                             <div class="address-bar">
                                 <span class="address-icon"><i class="fa-solid fa-location-dot"></i></span>
                                 @if (!empty($address))
-                                <select name="address" id="userCoor" class="select-address">
-                                    <option value="">Chọn địa chỉ giao hàng</option>
+                                    <select name="address" id="userCoor" class="select-address">
+                                        <option value="">Chọn địa chỉ giao hàng</option>
                                         @foreach ($address as $a)
                                             @if ($a->id_user == $user->id)
                                                 <option value="{{ $a->coordinates }}" selected>{{ $a->address }}</option>
                                             @endif
                                         @endforeach
-                                </select>
+                                    </select>
                                 @else
-                                <select name="address" id="userCoor" class="select-address">
-                                    <option value="">Vui lòng cập nhật địa chỉ trong thông tin cá nhân</option>
-                                </select>
+                                    <select name="address" id="userCoor" class="select-address">
+                                        <option value="">Vui lòng cập nhật địa chỉ trong thông tin cá nhân</option>
+                                    </select>
                                 @endif
                             </div>
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <div class="input-group-half">
                                 <label>Họ và tên <span class="required">*</span></label>
                                 <input type="text" value="{{ $user->name }}" required />
@@ -57,7 +58,7 @@
                                 <label>Số điện thoại <span class="required">*</span></label>
                                 <input type="tel" value="{{ $user->phone }}" required />
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="input-group">
                             <label>Ghi chú</label>
                             <input type="text" name="note" />
@@ -86,6 +87,7 @@
                             <p><strong>Số tài khoản:</strong> {{ $banking->acc_number }}</p>
                             <p><strong>Nội dung chuyển khoản:</strong> Thanh toán đơn hàng từ khách hàng <span
                                     style="color: red;">{{ $user->name }}</span> </p>
+                            <p style="color: red;">*Lưu ý: Đơn hàng có thể được xác nhận trong vài phút</p>
                             <img src="{{ asset('images/bank/' . $banking->qr_img) }}" alt="Mã QR Chuyển khoản"
                                 style="width: 200px; height: 200px; margin-top: 10px;">
                         </div>
@@ -94,6 +96,9 @@
                             <a href="/cart" class="back-link">Quay lại giỏ hàng</a>
                             <input id="total-hidden" type="hidden" name="total" value="0">
                             <input id="shipping_fee-hidden" type="hidden" name="shipping_fee" value="0">
+                            <p id="distance-warning" style="display:none; color: red; margin-top: 10px; font-size: 15px;">
+                                Khoảng cách quá 12km, không thể giao hàng
+                            </p>
                             <button type="submit" class="submit-btn">Thanh toán</button>
                         </div>
                     </form>
@@ -135,12 +140,17 @@
                                 <span class="provisional-title">Tạm tính</span>
                                 <span class="provisional-price">{{ number_format($grand_total, 0) }}đ</span>
                             </div>
+
+                            <!-- khoảng cách -->
+                            <div class="transport-fee">
+                                <span class="transport-fee__title">Khoảng cách: </span>
+                                <span class="transport-fee__price-unit" id="km" style="display: ;"></span>
+                            </div>
+                            <br />
                             <div class="transport-fee">
                                 <span class="transport-fee__title">Phí vận chuyển</span>
 
                                 <span class="transport-fee__price" id="shipping_fee"></span>
-                                <!-- khoảng cách -->
-                                <span class="transport-fee__price-unit" id="km" style="display: none;"></span>
                             </div>
                         </div>
                         <div class="total-payment">
@@ -190,6 +200,22 @@
                 if (!isNaN(userLat) && !isNaN(userLon) && !isNaN(shopLat) && !isNaN(shopLon)) {
                     let distanceKM = parseFloat(haversine(userLat, userLon, shopLat, shopLon).toFixed(2));
                     document.getElementById("km").textContent = distanceKM + " km";
+
+                    // Nếu trên 12km thì ẩn nút submit và hiện cảnh báo
+                    const warningText = document.getElementById("distance-warning");
+                    const submitButton = document.querySelector(".submit-btn");
+
+                    if (distanceKM > 12) {
+                        warningText.style.display = "block";
+                        submitButton.disabled = true;
+                        submitButton.style.opacity = 0.5;
+                        return;
+                    } else {
+                        warningText.style.display = "none";
+                        submitButton.disabled = false;
+                        submitButton.style.opacity = 1;
+                    }
+
 
                     // Tính phí vận chuyển ngay sau khi cập nhật khoảng cách
                     let shippingFee = caculateShippingFee(distanceKM);
@@ -269,6 +295,26 @@
 
         // hiển thị thông tin chuyển khoản khi chọn phương thức thanh toán
         document.addEventListener("DOMContentLoaded", function () {
+
+            // Gọi khi thay đổi địa chỉ
+            const userCoor = document.getElementById("userCoor");
+            if (userCoor) {
+                userCoor.addEventListener("change", function () {
+                    distance(); // Gọi lại khi địa chỉ thay đổi
+                });
+            }
+
+            // Gọi khi thay đổi địa chỉ cửa hàng (nếu cần dùng)
+            const shopCoor = document.getElementById("shopCoor");
+            if (shopCoor) {
+                shopCoor.addEventListener("change", function () {
+                    distance(); // Gọi lại nếu tọa độ shop thay đổi
+                });
+            }
+
+            // Gọi lần đầu khi trang tải
+            distance();
+
             let paymentOptions = document.getElementsByName("method");
             let bankInfo = document.getElementById("bank-info");
 

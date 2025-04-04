@@ -36,7 +36,6 @@
                     <th scope="col">Trạng Thái</th>
                     <th scope="col">Hoạt động</th>
                     <th scope="col">Hành Động</th>
-
                 </tr>
             </thead>
             <tbody>
