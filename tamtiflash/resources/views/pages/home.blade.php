@@ -49,6 +49,9 @@
                         </div>
                     @endforeach
                 </div>
+
+                
+                <!-- drink -->
                 <div id="drink" class="row products-box active">
                     @foreach ($drinks as $products)
                         <div class="col l-3 m-6 c-6">
