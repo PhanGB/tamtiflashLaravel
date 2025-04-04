@@ -35,9 +35,13 @@
             <a class="btn btn-primary rounded-pill m-2" href="{{ url('/admin/products/product_add') }}">Thêm sản phẩm</a>
             <label for="" style="margin-left: 750px; font-size: 20px;">Quán:</label>
             <select name="" id="" class="form-select w-25" style="float: right;">
-                @foreach($shop as $item)
-                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                @endforeach
+                @if(isset($shop) && $shop->isNotEmpty())
+                    @foreach($shop as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endforeach
+                @else
+                    <option value="">Không có cửa hàng</option>
+                @endif
             </select>
             <div class="table-responsive">
                 <table class="table">
