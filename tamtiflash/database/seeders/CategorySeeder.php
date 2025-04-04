@@ -14,8 +14,10 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('categories')->insert([
-            ['name' => 'Đồ ăn', 'status' => 1, 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Nước uống', 'status' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Món canh', 'status' => 1, 'mah' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Món xào', 'status' => 1, 'mah' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Món chiên', 'status' => 1, 'mah' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Món luộc', 'status' => 1, 'mah' => 1, 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

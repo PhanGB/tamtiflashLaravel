@@ -53,7 +53,7 @@
                         <tr>
                             <td>Trần Thị B</td>
                             <td>Shipper</td>
-                            <td style="color: rgba(82, 82, 82, 0.712);">Nghỉ phép</td>
+                            <td style="color: rgba(82, 82, 82, 0.712);">Offline</td>
                             <td>Nghỉ phép</td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-primary">Xem chi tiết</a>

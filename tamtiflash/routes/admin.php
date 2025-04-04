@@ -30,8 +30,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::delete('/products/delete/{id}', [ProductsController::class, 'delete'])->name('deletePro');
     //product variant
-    Route::get('/products/product_variant/{id}', [ProductVariantController::class, 'product_variant'])->name('admin.products_variant');
+    Route::get('/products/product_variant/{id}', [ProductVariantController::class, 'product_variant'])->name('admin.product_variant');
 
+    Route::get('/products/variant_add/{id}', [ProductVariantController::class, 'viewAdd'])->name('product.variant_add');
+    Route::post('/products/variant_add/{id}', [ProductVariantController::class, 'add'])->name('addVariant');
+
+    Route::get('/products/variant_edit/{id}', [ProductVariantController::class, 'viewEdit'])->name('product.variant_edit');
+    Route::put('/products/variant_edit/{id}', [ProductVariantController::class, 'edit'])->name('editVariant');
+    
     // Quản lý danh mục
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
 

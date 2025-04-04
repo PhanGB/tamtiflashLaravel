@@ -69,7 +69,7 @@
                                 <td><a href="/admin/products/product_variant/{{ $pro->id }}">{{ count($pro->variants) }} Biến
                                         thể</a></td>
                                 <td>{{ $pro->name }}</td>
-                                <td> <img src="{{ asset('img/' . $pro->image) }}" width="100px" height="100px"></td>
+                                <td> <img src="{{ asset('images/products/' . $pro->image) }}" width="100px" height="100px"></td>
                                 <td>{{ number_format($pro->price) }}đ</td>
                                 <td>{{ $pro->category->name }}</td>
                                 <td>{{ $pro->shop->name }}</td>
