@@ -21,9 +21,11 @@ class HomeController extends Controller
             )->where('review.status', 1)
             ->get();
 
-        $products = Product::orderBy('sold', 'desc')->take(8)->get();
         $shops = Shop::orderBy('created_at', 'desc')->take(8)->get();
-        return view('pages.home', compact('products', 'shops', 'reviews'));
+        $foods = Product::where('id_cate', 1)->orderBy('sold', 'desc')->take(8)->get();  // ID của "Thức ăn"
+        $drinks = Product::where('id_cate', 2)->orderBy('sold', 'desc')->take(8)->get(); // ID của "Nước uống"
+
+        return view('pages.home', compact('shops', 'reviews', 'foods', 'drinks'));
     }
     public function MAH(){
         $products = Product::orderBy('created_at', 'desc')->take(8)->get();
