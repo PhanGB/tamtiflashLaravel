@@ -62,6 +62,7 @@ class CheckoutController extends Controller
                     'quantity' => $item['quantity'], // Số lượng
                     'id_order' => $order->id, // Mã đơn hàng
                     'id_product' => $item['id'], // Mã sản phẩm
+                    'status' => 0, // Trạng thái đơn hàng (0: chưa xử lý, 1: đã xử lý)
                 ]);
             }
             session()->forget('cart');
@@ -69,6 +70,7 @@ class CheckoutController extends Controller
         } catch (\Throwable $th) {
             // return redirect('/checkout')->with('error', 'Có lỗi xảy ra, vui lòng thử lại.');
             \Log::error($th->getMessage());
+            return redirect('/checkout')->with('error', $th->getMessage());
         }
     }
 }

@@ -8,6 +8,12 @@
         <h2 class="banner-title">Thanh toán</h2>
     </div>
 
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="payment-body">
         <div class="grid wide">
             <div class="row">
@@ -106,7 +112,7 @@
                                     <div class="item-info">
                                         <h3 class="item-name">{{ $item['name'] }}</h3>
                                         @foreach ($shop as $s)
-                                            @if ($item['id_shop'] == $s->id)
+                                            @if ($item['id'] == $s->id)
                                                 <span class="item-res">
                                                     <i class="fa-solid fa-location-dot"></i> {{ $s->name }}
                                                     <input type="text" id="shopCoor" value="{{ $s->coordinates }}" hidden />
