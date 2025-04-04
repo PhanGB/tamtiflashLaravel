@@ -40,6 +40,7 @@ class ShopsController extends Controller
         $shop->time_open = request('time_open');
         $shop->time_close = request('time_close');
         $shop->address_link = request('address');
+        $shop->coordinates = request('coordinates');
         $shop->status = request('status');
         $shop->save();
 
@@ -70,7 +71,8 @@ class ShopsController extends Controller
             'short_description' => $request->short_description,
             'time_open' => $request->time_open,
             'time_close' => $request->time_close,
-            'address' => $request->address_link,
+            'address_link' => $request->address_link,
+            'coordinates' => $request->coordinates,
             'status' => $request->status,
         ]);
 

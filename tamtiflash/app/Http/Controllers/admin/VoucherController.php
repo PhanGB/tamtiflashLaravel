@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Voucher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class VoucherController extends Controller
@@ -95,5 +96,61 @@ class VoucherController extends Controller
         $voucher->delete(); // Soft delete
         // return redirect()->route('/voucher')->with('success', 'Voucher đã được xoá tạm thời.');
         return redirect()->back()->with('success', 'Voucher đã được xoá tạm thời.');
+    }
+
+    public function restore($id)
+    {
+        $voucher = Voucher::withTrashed()->findOrFail($id); // Tìm voucher đã bị xóa mềm
+        $voucher->restore(); // Khôi phục voucher
+        return redirect()->back()->with('success', 'Voucher đã được khôi phục thành công.');
+    }
+    public function view_edit($id)
+    {
+        $voucher = Voucher::findOrFail($id); // Tìm voucher
+        return view('admin.edit_voucher', compact('voucher'));
+    }
+    public function update(Request $request)
+    {
+        // Validate dữ liệu đầu vào
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'code' => 'required|string|max:50|unique:voucher,code,' . $request->id, // Đảm bảo mã voucher là duy nhất, ngoại trừ bản ghi hiện tại
+            'value' => 'required|numeric|min:0|max:100', // Giảm giá từ 0 đến 100%
+            'max_value' => 'required|numeric|min:0',
+            'start_date' => 'required|date|after_or_equal:today',
+            'end_date' => 'required|date|after:start_date',
+            'quantity' => 'required|integer|min:1',
+            'status' => 'required|in:0,1',
+        ]);
+
+        try {
+            // Tìm voucher theo ID, nếu không có thì trả về lỗi
+            $voucher = Voucher::findOrFail($request->id);
+
+            // Cập nhật dữ liệu
+            $voucher->update([
+                'name' => $request->name,
+                'code' => $request->code,
+                'value' => $request->value,
+                'max_value' => $request->max_value,
+                'start_date' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->start_date)->format('Y-m-d'),
+                'end_date' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->end_date)->format('Y-m-d'),
+                'quantity' => $request->quantity,
+                'status' => $request->status,
+            ]);
+
+
+            // Kiểm tra nếu ngày kết thúc đã qua, tự động chuyển trạng thái thành "Ngừng hoạt động"
+            if (Carbon::parse($request->end_date)->isPast()) {
+                $voucher->update(['status' => 0]);
+            }
+
+            return redirect()->back()->with('success', 'Voucher đã được cập nhật thành công!');
+        } catch (\Exception $e) {
+            // Ghi log lỗi
+            Log::error('Lỗi cập nhật voucher: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Cập nhật voucher thất bại, vui lòng thử lại sau!');
+        }
     }
 }

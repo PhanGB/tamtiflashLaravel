@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
+use App\Models\Admin\Shop;
+use App\Models\Payment;
+use App\Models\Payment_method;
+use App\Models\ShippingFee;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -10,7 +15,14 @@ class CheckoutController extends Controller
     public function checkout()
     {
         $cart = session()->get('cart', []);
+        $shop = Shop::all();
         $user = auth()->user();
+        $address = Address::all();
+        if ($address->isEmpty()) {
+            return redirect()->route('info')->with('error', 'Vui lòng thêm địa chỉ trước khi thanh toán.');
+        }
+        $shippingFee = ShippingFee::all();
+        $banking = Payment_method::all()->first();
         if (!$user) {
             return redirect()->route('login')->with('error', 'Vui lòng đăng nhập để thanh toán.');
         }
@@ -26,6 +38,10 @@ class CheckoutController extends Controller
             'cart' => $cart,
             'grand_total' => $grand_total,
             'user' => $user,
+            'shop' => $shop,
+            'address' => $address,
+            'shippingFee' => $shippingFee,
+            'banking' => $banking,
         ]);
     }
 }

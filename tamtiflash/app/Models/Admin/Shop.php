@@ -16,6 +16,7 @@ class Shop extends Model
         'time_open',
         'time_close',
         'address_link',
+        'coordinates',
         'status',
     ];
 }
