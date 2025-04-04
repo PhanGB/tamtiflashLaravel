@@ -69,8 +69,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking');
 
-    // Quản lý nhân viên và người dùng
+    // Quản lý nhân viên
     Route::get('/staff', [StaffController::class, 'index'])->name('staff');
+    Route::get('/staff/add', [StaffController::class, 'add_staff'])->name('add_staff');
+    Route::post('/staff/add', [StaffController::class, 'add'])->name('add');
+    Route::get('/staff/detail/{id}', [StaffController::class, 'staffDetail'])->name('staff.detail');
+    Route::get('/staff/delete/{id}', [StaffController::class, 'staffDelete'])->name('staff.delete');
+
+    // Quản lý người dùng
     Route::get('/users', [UsersController::class, 'index'])->name('users');
 
     // Quản lý đánh giá và voucher
