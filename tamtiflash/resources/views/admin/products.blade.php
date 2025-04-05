@@ -22,10 +22,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <form action="" class="mb-4">
+        <form action="{{ route('admin.product_search') }}" class="mb-4">
             <div class="row g-2 align-items-center">
                 <div class="col-9 col-sm-11">
-                    <input type="text" placeholder="Tìm kiếm sản phẩm" class="form-control" />
+                    <input type="text" name="search" placeholder="Tìm kiếm sản phẩm" class="form-control" />
                 </div>
                 <div class="col-3 col-sm-1 text-center">
                     <button class="btn btn-primary w-100"><i
@@ -33,13 +33,20 @@
                 </div>
             </div>
         </form>
-        <a class="btn btn-primary rounded-pill m-2" href="{{ url('/admin/products/product_add') }}">Thêm sản phẩm</a>
-            <label for="" style="margin-left: 650px; font-size: 20px;">Quán:</label>
-            <select name="" id="" class="form-select w-25" style="float: right;">
-                @foreach($shop as $item)
-                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                @endforeach
-            </select>
+        <div style="display: flex; justify-content: space-between; ">
+            <form action=" {{ route('admin.product_sort') }} " method="get">
+                <a class="btn btn-primary rounded-pill m-2" href="{{ url('/admin/products/product_add') }}">Thêm sản phẩm</a>
+                <label for="" style="margin-left: 650px; font-size: 20px;"></label>
+                    <select name="shop" onchange="this.form.submit()" id="" class="form-select w-25" style="float: left;">
+                        <option>-- Chọn cửa hàng --</option>
+                        <option value="" >Tất cả sản phẩm</option>
+                        @foreach($shop as $item)
+                        <option value="{{ $item->id }} {{ request($item->id) }}">{{ $item->name }}</option>
+                        @endforeach
+                    </select>
+            </form>
+        </div>
+
         <div class="table-responsive">
             <table class="table">
                 <thead>

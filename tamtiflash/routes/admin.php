@@ -24,6 +24,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/products/product_edit/{id}', [ProductsController::class , 'viewEdit'])->name('admin.product_edit');
     Route::put('/products/product_edit/{id}', [ProductsController::class, 'edit'])->name('editPro');
 
+    Route::get('/products/search', [ProductsController::class, 'search'])->name('admin.product_search');
+    Route::get('/products/sort', [ProductsController::class, 'sortByShop'])->name('admin.product_sort');
+
     Route::delete('/products/product_delete/{id}', [ProductsController::class, 'delete'])->name('deletePro');
     //product variant
     Route::get('/products/product_variant/{id}', [ProductVariantController::class, 'product_variant'])->name('admin.product_variant');
@@ -45,6 +48,9 @@ Route::prefix('admin')->group(function () {
     Route::put('category/category_edit/{id}', [CategoryController::class, 'edit'])->name('editCate');
 
     Route::delete('/category/delete/{id}', [CategoryController::class, 'delete'])->name('deleteCate');
+
+    Route::get('/category/search', [CategoryController::class, 'search'])->name('admin.category_search');
+    Route::get('/category/sort', [CategoryController::class, 'sortByCate'])->name('admin.category_sort');
 
     Route::get('/shops', [ShopsController::class, 'index'])->name('admin.shops');
     Route::get('/orders', [OrdersController::class, 'index'])->name('admin.orders');
