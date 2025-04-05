@@ -7,36 +7,29 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        Schema::table('shops', function (Blueprint $table) {
-            // Đổi tên cột address thành address_link
-            $table->renameColumn('address', 'address_link');
-        });
-
-        Schema::table('shops', function (Blueprint $table) {
+        Schema::table('shop', function (Blueprint $table) {
+            // Thêm cột 'image' sau 'name'
             $table->string('image', 255)->nullable()->comment('Hình ảnh')->after('name');
+
             // Đổi kiểu dữ liệu của address_link thành TEXT
-            $table->text('address_link')->nullable()->change();
-            // Thêm cột tọa độ
+            $table->text('address_link')->nullable();
+
+            // Thêm cột tọa độ sau 'address_link'
             $table->string('coordinates')->nullable()->comment('Tọa độ vị trí')->after('address_link');
         });
     }
 
     public function down()
     {
-        Schema::table('shops', function (Blueprint $table) {
+        Schema::table('shop', function (Blueprint $table) {
             // Xóa cột coordinates nếu rollback
             $table->dropColumn('coordinates');
-        });
 
-        Schema::table('shops', function (Blueprint $table) {
-            // Đổi lại kiểu dữ liệu thành VARCHAR(255)
+            // Đổi lại kiểu dữ liệu của address_link thành VARCHAR(255)
             $table->string('address_link', 255)->nullable()->change();
-        });
 
-        Schema::table('shops', function (Blueprint $table) {
-            // Đổi lại tên cột như ban đầu
+            // Đổi lại tên cột 'address_link' thành 'address'
             $table->renameColumn('address_link', 'address');
         });
     }
 };
-

@@ -14,6 +14,17 @@ class Order extends Model
         'status',
         'total',
         'create_at',
-        'update_at'
+        'update_at',
+        'shipping_fee',
+        'payment_method',
+        'note'
     ];
+
+    protected $attributes = [
+        'status' => 0,
+    ];
+
+    // Khai báo lại timestamps để Laravel hiểu
+    const CREATED_AT = 'create_at';
+    const UPDATED_AT = 'update_at';
 }
