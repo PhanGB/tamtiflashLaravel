@@ -31,7 +31,26 @@ class VoucherController extends Controller
             $query->onlyTrashed(); // Chỉ lấy những voucher đã bị xóa mềm
         }
 
+        // cập nhật trạng thái voucher
+        if ($filter == 0) {
+            $query->where('status', 0);
+        } elseif ($filter == 1) {
+            $query->where('status', 1);
+        } elseif ($filter == 2) {
+            $query->where('status', 2);
+        }
+
+
         $vouchers = $query->get();
+
+        // Cập nhật trạng thái nếu ngày hết hạn đã qua
+        foreach ($vouchers as $voucher) {
+            $endDate = Carbon::parse($voucher->end_date);
+            if ($voucher->status == 1 && $endDate->isPast()) {
+                $voucher->status = 0;
+                $voucher->save();
+            }
+        }
 
         return view('admin.voucher', compact('vouchers', 'filter'));
     }
@@ -102,55 +121,63 @@ class VoucherController extends Controller
     {
         $voucher = Voucher::withTrashed()->findOrFail($id); // Tìm voucher đã bị xóa mềm
         $voucher->restore(); // Khôi phục voucher
+        // Cập nhật trạng thái về 1 (đang hoạt động)
+        $voucher->status = 1; // Đang hoạt động
+        $voucher->save(); // Lưu thay đổi
         return redirect()->back()->with('success', 'Voucher đã được khôi phục thành công.');
     }
+
+
     public function view_edit($id)
     {
         $voucher = Voucher::findOrFail($id); // Tìm voucher
         return view('admin.edit_voucher', compact('voucher'));
     }
+
+
+
+
     public function update(Request $request)
     {
-        // Validate dữ liệu đầu vào
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'code' => 'required|string|max:50|unique:voucher,code,' . $request->id, // Đảm bảo mã voucher là duy nhất, ngoại trừ bản ghi hiện tại
-            'value' => 'required|numeric|min:0|max:100', // Giảm giá từ 0 đến 100%
-            'max_value' => 'required|numeric|min:0',
-            'start_date' => 'required|date|after_or_equal:today',
-            'end_date' => 'required|date|after:start_date',
-            'quantity' => 'required|integer|min:1',
-            'status' => 'required|in:0,1',
-        ]);
-
         try {
-            // Tìm voucher theo ID, nếu không có thì trả về lỗi
+
+            // Validate dữ liệu
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'code' => 'required|string|max:50|unique:voucher,code,' . $request->id,
+                'value' => 'required|numeric|min:0|max:100',
+                'max_value' => 'required|numeric|min:0',
+                'start_date' => 'required|date|after_or_equal:today',
+                'end_date' => 'required|date|after:start_date',
+                'quantity' => 'required|integer|min:1',
+                'status' => 'required|in:0,1',
+            ]);
+
             $voucher = Voucher::findOrFail($request->id);
 
-            // Cập nhật dữ liệu
             $voucher->update([
                 'name' => $request->name,
                 'code' => $request->code,
                 'value' => $request->value,
                 'max_value' => $request->max_value,
-                'start_date' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->start_date)->format('Y-m-d'),
-                'end_date' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->end_date)->format('Y-m-d'),
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'quantity' => $request->quantity,
                 'status' => $request->status,
             ]);
 
-
-            // Kiểm tra nếu ngày kết thúc đã qua, tự động chuyển trạng thái thành "Ngừng hoạt động"
+            // Nếu ngày kết thúc đã qua => đổi trạng thái thành không hoạt động
             if (Carbon::parse($request->end_date)->isPast()) {
                 $voucher->update(['status' => 0]);
+            } else {
+                $voucher->update(['status' => $request->status]);
             }
+
 
             return redirect()->back()->with('success', 'Voucher đã được cập nhật thành công!');
         } catch (\Exception $e) {
-            // Ghi log lỗi
             Log::error('Lỗi cập nhật voucher: ' . $e->getMessage());
-
-            return redirect()->back()->with('error', 'Cập nhật voucher thất bại, vui lòng thử lại sau!');
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 }

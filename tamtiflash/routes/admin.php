@@ -27,6 +27,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/products/product_edit/{id}', [ProductsController::class, 'viewEdit'])->name('product_edit');
     Route::put('/products/product_edit/{id}', [ProductsController::class, 'edit'])->name('editPro');
 
+    Route::get('/products/search', [ProductsController::class, 'search'])->name('product_search');
+    Route::get('/products/sort', [ProductsController::class, 'sortByShop'])->name('product_sort');
+
     Route::delete('/products/product_delete/{id}', [ProductsController::class, 'delete'])->name('deletePro');
 
     // Product Variant
@@ -41,9 +44,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
     Route::get('/category/category_add', [CategoryController::class, 'viewAdd'])->name('category_add');
     Route::post('/category/add', [CategoryController::class, 'add'])->name('addCate');
-    Route::get('/category/category_edit/{id}', [CategoryController::class, 'viewEdit'])->name('category_edit');
-    Route::put('/category/category_edit/{id}', [CategoryController::class, 'edit'])->name('editCate');
+
+    Route::get('category/category_edit/{id}', [CategoryController::class, 'viewEdit'])->name('category_edit');
+    Route::put('category/category_edit/{id}', [CategoryController::class, 'edit'])->name('editCate');
     Route::delete('/category/delete/{id}', [CategoryController::class, 'delete'])->name('deleteCate');
+
+    // Thêm tuyến đường tìm kiếm và sắp xếp cho danh mục
+    Route::get('/category/search', [CategoryController::class, 'search'])->name('category_search');
+    Route::get('/category/sort', [CategoryController::class, 'sortByCate'])->name('category_sort');
 
     // Quản lý cửa hàng
     Route::get('/shops', [ShopsController::class, 'index'])->name('shops');
@@ -52,6 +60,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/shops/edit/{id}', [ShopsController::class, 'edit_shop'])->name('shops.edit');
     Route::post('/shops/edit/{id}', [ShopsController::class, 'edit'])->name('shops.update');
     Route::get('/shops/delete/{id}', [ShopsController::class, 'delete'])->name('shops.delete');
+
 
     // Quản lý đơn hàng
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
@@ -62,19 +71,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Quản lý nhân viên
     Route::get('/staff', [StaffController::class, 'index'])->name('staff');
-    Route::get('/staff/add', [StaffController::class, 'add_staff'])->name('staff.add');
-    Route::post('/staff/add', [StaffController::class, 'add'])->name('staff.store');
+    Route::get('/staff/add', [StaffController::class, 'add_staff'])->name('add_staff');
+    Route::post('/staff/add', [StaffController::class, 'add'])->name('add');
     Route::get('/staff/detail/{id}', [StaffController::class, 'staffDetail'])->name('staff.detail');
     Route::get('/staff/delete/{id}', [StaffController::class, 'staffDelete'])->name('staff.delete');
+    Route::get('/staff/status/{id}', [StaffController::class, 'getStatus'])->name('staff.status');
 
     // Quản lý người dùng
     Route::get('/users', [UsersController::class, 'index'])->name('users');
 
     // Quản lý đánh giá
     Route::get('/review', [ReviewController::class, 'index'])->name('review');
-    Route::get('/review/approve/{id}', [ReviewController::class, 'approve'])->name('review.approve');
-    Route::get('/review/hide/{id}', [ReviewController::class, 'hide'])->name('review.hide');
-    Route::get('/review/show/{id}', [ReviewController::class, 'show'])->name('review.show');
+    Route::get('review/approve/{id}', [ReviewController::class, 'approve'])->name('review.approve');
+    Route::get('review/hide/{id}', [ReviewController::class, 'hide'])->name('review.hide');
+    Route::get('review/show/{id}', [ReviewController::class, 'show'])->name('review.show');
 
     // Quản lý voucher
     Route::get('/voucher', [VoucherController::class, 'index'])->name('voucher');
@@ -88,8 +98,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Cài đặt
     Route::group(['prefix' => 'settings'], function () {
         Route::get('/', [SettingsController::class, 'index'])->name('settings');
-
-        // Quản lý phương thức thanh toán
         Route::get('/payment-method', [SettingsController::class, 'payment_method'])->name('payment_method');
         Route::get('/payment-method/edit', [SettingsController::class, 'edit_payment'])->name('edit_payment');
         Route::put('/payment-method/update', [SettingsController::class, 'update_payment'])->name('update_payment');
