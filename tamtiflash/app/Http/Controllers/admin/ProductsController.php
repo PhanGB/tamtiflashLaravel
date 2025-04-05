@@ -157,5 +157,93 @@ class ProductsController extends Controller
         return redirect()->route('admin.products')->with('success', 'Xóa thành công!');
      }
 
+     public function search(){
+        $search = request()->input('search');
+        $productList = Product::with('shop', 'category', 'variants')
+            ->where('name', 'LIKE', '%' . $search . '%')
+            ->orWhereHas('shop', function ($query) use ($search) {
+                $query->where('name', 'LIKE', '%' . $search . '%');
+            })
+            ->orWhereHas('category', function ($query) use ($search) {
+                $query->where('name', 'LIKE', '%' . $search . '%');
+            })
+            ->simplePaginate(10);
+
+        if ($productList->isEmpty()) {
+            return redirect()->route('admin.products')->with('error', 'Không tìm thấy sản phẩm nào!');
+        }
+
+        $productList->transform(function ($product) {
+            switch ($product->status) {
+                case 1:
+                    $product->status_text = 'Hoạt động';
+                    $product->status_class = 'bg-success'; // Bootstrap class
+                    break;
+                case 2:
+                    $product->status_text = 'Tạm ngưng';
+                    $product->status_class = 'bg-warning';
+                    break;
+                case 3:
+                    $product->status_text = 'Ngừng kinh doanh';
+                    $product->status_class = 'bg-danger';
+                    break;
+                default:
+                    $product->status_text = 'Không xác định';
+                    $product->status_class = 'bg-secondary';
+                    break;
+            }
+            return $product;
+        });
+
+         // Trả về view với danh sách sản phẩm đã tìm kiếm
+        $shop = Shop::all();
+        $data = [
+            'productList' => $productList,
+            'shop' => $shop,
+        ];
+        return view('admin.products', $data);
+     }
+
+     public function sortByShop(){
+        $id = request()->input('shop'); // Lấy shop ID từ request
+
+        // Nếu không có shop ID, hiển thị tất cả sản phẩm
+        $productList = Product::with('shop', 'category', 'variants');
+        if ($id) {
+            $productList = $productList->where('id_shop', $id);
+        }
+        $productList = $productList->simplePaginate(10);
+
+        $productList->transform(function ($product) {
+            switch ($product->status) {
+                case 1:
+                    $product->status_text = 'Hoạt động';
+                    $product->status_class = 'bg-success'; // Bootstrap class
+                    break;
+                case 2:
+                    $product->status_text = 'Tạm ngưng';
+                    $product->status_class = 'bg-warning';
+                    break;
+                case 3:
+                    $product->status_text = 'Ngừng kinh doanh';
+                    $product->status_class = 'bg-danger';
+                    break;
+                default:
+                    $product->status_text = 'Không xác định';
+                    $product->status_class = 'bg-secondary';
+                    break;
+            }
+            return $product;
+        });
+
+        // Trả về view với danh sách sản phẩm đã tìm kiếm
+        $shop = Shop::all();
+        $data = [
+            'productList' => $productList,
+            'shop' => $shop,
+        ];
+        return view('admin.products', $data);
+     }
+
 
 }
