@@ -44,6 +44,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
     Route::get('/category/category_add', [CategoryController::class, 'viewAdd'])->name('category_add');
     Route::post('/category/add', [CategoryController::class, 'add'])->name('addCate');
+
     Route::get('category/category_edit/{id}', [CategoryController::class, 'viewEdit'])->name('category_edit');
     Route::put('category/category_edit/{id}', [CategoryController::class, 'edit'])->name('editCate');
     Route::delete('/category/delete/{id}', [CategoryController::class, 'delete'])->name('deleteCate');
@@ -60,9 +61,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/shops/edit/{id}', [ShopsController::class, 'edit'])->name('shops.update');
     Route::get('/shops/delete/{id}', [ShopsController::class, 'delete'])->name('shops.delete');
 
+
     // Quản lý đơn hàng
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
+
+    // Quản lý theo dõi đơn hàng
     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking');
+    Route::get('/ordertracking/{id}', [OrdertrackingController::class, 'show'])->name('ordertracking.show');
 
     // Quản lý nhân viên
     Route::get('/staff', [StaffController::class, 'index'])->name('staff');
