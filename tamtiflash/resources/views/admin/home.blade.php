@@ -53,6 +53,7 @@
     <!-- Chart End -->
 
     <!-- Đánh giá dịch vụ: Khiếu nại/Đánh giá tốt -->
+
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-sm-6 col-xl-6">
@@ -60,7 +61,7 @@
                     <i class="fa fa-thumbs-down fa-3x text-danger"></i>
                     <div class="ms-3">
                         <p class="mb-2">Khiếu nại khách hàng</p>
-                        <h6 class="mb-0">20</h6>
+                        <h6 class="mb-0">{{ $complaintsCount }}</h6>
                     </div>
                 </div>
             </div>
@@ -69,7 +70,7 @@
                     <i class="fa fa-thumbs-up fa-3x text-success"></i>
                     <div class="ms-3">
                         <p class="mb-2">Đánh giá tốt khách hàng</p>
-                        <h6 class="mb-0">200</h6>
+                        <h6 class="mb-0">{{ $goodReviewsCount }}</h6>
                     </div>
                 </div>
             </div>
@@ -147,14 +148,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-6 col-xl-4">
-                <div class="h-100 bg-light rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Lịch</h6>
-                    </div>
-                    <div id="calender"></div>
-                </div>
-            </div>
+
         </div>
     </div>
     <!-- Widgets End -->
