@@ -27,10 +27,6 @@ class HomeController extends Controller
 
         return view('pages.home', compact('shops', 'reviews', 'foods', 'drinks'));
     }
-    public function MAH(){
-        $products = Product::orderBy('created_at', 'desc')->take(8)->get();
-        return view('pages.MarketAtHome', compact('products'));
-    }
 
     // public function getReviews()
     // {

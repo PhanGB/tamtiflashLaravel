@@ -10,6 +10,11 @@
                 <a href="" class="primary-btn banner-btn">LỰA ĐỒ ĂN, NƯỚC UỐNG THÔI!</a>
             </div>
         </div>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <section>
             <div class="grid wide">
                 <div class="section-heading">
@@ -25,24 +30,31 @@
                             <div class="product-card">
                                 <a href="" class="product-img-link">
                                     <div class="product-img" style="
-                                                background-image: url('https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg');
-                                            "></div>
+                                                                background-image: url('https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg');
+                                                            "></div>
                                 </a>
                                 <a href="product_detail.html">
                                     <h3 class="product-name">{{ $product->name }}</h3>
                                 </a>
                                 <p class="product-price">
                                     <span class="product-price__new">{{ number_format($product->price) }} đ</span>
-                                    <span class="product-price__old">40.000₫</span>
+                                    <!-- <span class="product-price__old">40.000₫</span> -->
                                 </p>
                                 <div class="product-footer">
-                                    <div>
-                                        <span><a href="products.html"><i
-                                                    class="fa-solid fa-location-dot"></i>{{ $product->shop->name }}</a></span>
 
-                                                </div>
-                                                <button data-product-id="{{ $product->id }}" class="cart-btn"><i
-                                                        class="fa-solid fa-cart-shopping"></i></button>
+                                    @if($product->shop->name == "Market At Home")
+                                        <div>
+                                            <span><a href="/MAH"><i
+                                                        class="fa-solid fa-location-dot"></i>{{ $product->shop->name }}</a></span>
+                                        </div>
+                                    @else
+                                        <div>
+                                            <span><a href="/shopdetail/{{ $product->shop->id }}"><i
+                                                        class="fa-solid fa-location-dot"></i>{{ $product->shop->name }}</a></span>
+                                        </div>
+                                    @endif
+                                    <button data-product-id="{{ $product->id }}" class="cart-btn"><i
+                                            class="fa-solid fa-cart-shopping"></i></button>
                                     <!-- <button class="cart-btn"><i class="fa-solid fa-cart-shopping"></i></button> -->
                                 </div>
                             </div>
@@ -100,7 +112,8 @@
                                     alt="" />
                                 <h3>{{ $shop->name }}</h3>
                                 <p>{{ $shop->short_description }}</p>
-                                <p>Giờ mở cửa: <span class="open-time">{{ $shop->time_open }} - {{ $shop->time_close }}</span></p>
+                                <p>Giờ mở cửa: <span class="open-time">{{ $shop->time_open }} - {{ $shop->time_close }}</span>
+                                </p>
                                 <a href="/shopdetail/{{ $shop->id }}" class="primary-btn restaurant-btn">Ghé quán</a>
                             </div>
                         </div>

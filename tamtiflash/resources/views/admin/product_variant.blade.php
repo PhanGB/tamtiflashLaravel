@@ -1,7 +1,6 @@
-
 @extends('admin.layouts.app')
 
-@section('title', 'Tamtiflash - Admin - Sản phẩm')
+@section('title', 'Tamtiflash - Admin - Biến thể')
 @section('products', 'active')
 
 @section ('content')
@@ -10,8 +9,22 @@
 
  <div class="container-fluid pt-4 px-4">
     <div class="bg-light rounded h-100 p-4">
-        <h6 class="mb-4">Tên sản phẩm chính</h6>
-        <a class="btn btn-primary rounded-pill m-2" href="{{ url('admin/products/product_variant/product_variant_add/'.$product->id) }}">Thêm biến thể</a>
+
+        <h6 class="mb-4">{{ $product->name }}</h6>
+        <a class="btn btn-primary rounded-pill m-2" href="{{ route('admin.product.variant_add', ['id' => $product->id]) }}">Thêm biến thể</a>
+
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
         <div class="table-responsive">
             <table class="table">
@@ -29,17 +42,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($productVariant as $item)
+                    @foreach($productVariant as $index => $item)
 
                     <tr>
-                        <th scope="row">{{ $item->id }}</th>
+                        <th scope="row">{{ $index+1 }}</th>
                         <td>{{ $item->name }}</td>
                         <td> <img src="{{ asset('img/'.$item->image) }}" width="100px"></td>
                         <td>{{ number_format($item->price) }}đ</td>
-                        <td>{{ $item->product->shop->name }}</td>
                         <td>{{ $item->product->category->name }}</td>
+                        <td>{{ $item->product->shop->name }}</td>
                         <td><span class="badge {{ $item->status_class }}">{{ $item->status_text }}</span></td>
-                        <td><a href="/">Sửa</a></td>
+                        <td><a href="{{ route('admin.product.variant_edit', ['id' => $item->id]) }}">Sửa</a></td>
                     </tr>
 
                     @endforeach
