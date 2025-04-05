@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,35 +10,41 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
     public function create(): View
     {
         return view('auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
-        $request->authenticate();
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) { // Dùng guard mặc định
+            $user = Auth::user();
 
-        $request->session()->regenerate();
+            // Kiểm tra nếu là Shipper
+            if ($user->isShipper()) {
+                $user->status = 1; // Online
+                $user->save();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+                $request->session()->regenerate();
+                return redirect()->intended('/admin/orders');
+            }
+
+        }
+        return redirect()->back()->withErrors(['email' => 'Thông tin đăng nhập không hợp lệ']);
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        $user = Auth::user();
+        if ($user && $user->isShipper()) {
+            $user->status = 0; // Offline
+            $user->work = 2; // Không làm việc
+            $user->save();
+        }
 
+        Auth::logout();
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');

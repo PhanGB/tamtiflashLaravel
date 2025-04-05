@@ -58,6 +58,7 @@ class CategoryController extends Controller
             Category::create([
                 'name' => $request->input('name'),
                 'status' => $request->input('status'),
+                'mah' => $request->input('mah'),
             ]);
 
             return redirect()->route('admin.category')->with('success', 'Thêm thành công!');
@@ -71,10 +72,12 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'status' => 'required|in:1,2', // Chỉ chấp nhận giá trị 1 hoặc 2
+            'mah' => 'required|in:0,1', // Chỉ chấp nhận giá trị 0 hoặc 1
         ]);
         $categoy->update([
             'name' => $request->input('name'),
             'status' => $request->input('status'),
+            'mah' => $request->input('mah'),
         ]);
         return redirect()->route('admin.category')->with('success', 'Sửa thành công!');
     }
