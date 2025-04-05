@@ -61,9 +61,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/shops/edit/{id}', [ShopsController::class, 'edit'])->name('shops.update');
     Route::get('/shops/delete/{id}', [ShopsController::class, 'delete'])->name('shops.delete');
 
-
     // Quản lý đơn hàng
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
+    Route::patch('/orders/{id}/driver/update', [OrdersController::class, 'updateDriver'])->name('orders.update_driver');
 
     // Quản lý theo dõi đơn hàng
     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking');
