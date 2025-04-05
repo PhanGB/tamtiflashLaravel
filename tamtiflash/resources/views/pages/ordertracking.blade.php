@@ -30,13 +30,9 @@
                     if ($orders->first()->status == 0) {
                         $status = "Đang chờ xác nhận";
                     } else if ($orders->first()->status == 1) {
-                        $status = "Đã xác nhận";
-                    } else if ($orders->first()->status == 2) {
                         $status = "Đang vận chuyển";
-                    } else if ($orders->first()->status == 3) {
+                    } else if ($orders->first()->status == 2) {
                         $status = "Đã giao";
-                    } else if ($orders->first()->status == 4) {
-                        $status = "Đã huỷ";
                     } else {
                         $status = "Cần đánh giá";
                     }
@@ -51,13 +47,13 @@
                     <span class="step {{ $orders->first()->status >= 0 ? 'completed' : '' }}">Đang chờ</span>
                     <span class="progress-bar {{ $orders->first()->status >= 1 ? 'completed' : '' }}"></span>
 
-                    <span class="step {{ $orders->first()->status >= 1 ? 'completed' : '' }}">Xác nhận</span>
+                    <!-- <span class="step {{ $orders->first()->status >= 1 ? 'completed' : '' }}">Xác nhận</span>
+                    <span class="progress-bar {{ $orders->first()->status >= 2 ? 'completed' : '' }}"></span> -->
+
+                    <span class="step {{ $orders->first()->status >= 1 ? 'completed' : '' }}">Vận chuyển</span>
                     <span class="progress-bar {{ $orders->first()->status >= 2 ? 'completed' : '' }}"></span>
 
-                    <span class="step {{ $orders->first()->status >= 2 ? 'completed' : '' }}">Vận chuyển</span>
-                    <span class="progress-bar {{ $orders->first()->status >= 3 ? 'completed' : '' }}"></span>
-
-                    <span class="step {{ $orders->first()->status >= 3 ? 'completed' : '' }}">Đã giao</span>
+                    <span class="step {{ $orders->first()->status >= 2 ? 'completed' : '' }}">Đã giao</span>
                 </div>
 
             </div>

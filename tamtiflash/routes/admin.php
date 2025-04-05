@@ -68,6 +68,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Quản lý theo dõi đơn hàng
     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking');
     Route::get('/ordertracking/{id}', [OrdertrackingController::class, 'show'])->name('ordertracking.show');
+    Route::patch('/admin/orders/{id}/complete', [OrdertrackingController::class, 'markAsCompleted'])->name('orders.complete');
+
 
     // Quản lý nhân viên
     Route::get('/staff', [StaffController::class, 'index'])->name('staff');
