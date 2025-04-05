@@ -11,8 +11,8 @@
             </div>
             <div class="table-responsive">
                 <ul>
-                    <li><a href="payment_method.html">Cấu hình phương thức thanh toán</a></li>
-                    <li><a href="shipping_fee.html">Cấu hình phí Vận Chuyển</a></li>
+                    <li><a href="{{ route('admin.payment_method') }}">Cấu hình phương thức thanh toán</a></li>
+                    <li><a href="{{ route('admin.shipping_fee') }}">Cấu hình phí Vận Chuyển</a></li>
                 </ul>
             </div>
         </div>

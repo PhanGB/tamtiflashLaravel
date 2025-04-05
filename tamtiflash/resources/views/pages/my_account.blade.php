@@ -90,6 +90,9 @@
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
+        @if(session('error'))
+            <div class="alert alert-danger" style="font-size: 15px;">{{ session('error') }}</div>
+        @endif
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -275,24 +278,109 @@
                                 method="post">
                                 @csrf
                                 <div class="myAccount__form-edit-info-input">
-                                    <input class="type-input" type="text" name="new-address" placeholder="Nhập địa chỉ mới"
-                                        required>
-                                    <!-- <input type="text" name="user_id" value="{{ $user->id }}" hidden> -->
-                                    <!-- <input type="submit" value="Thêm vào" class="form-sign-btn"> -->
+                                    <!-- <input class="type-input" type="text" name="new-address" placeholder="Nhập địa chỉ mới"
+                                                                required> -->
+                                    <div style="position: relative;  align-items: center;">
+
+
+                                        <input class="type-input" type="text" name="new-address" id="new-address"
+                                            placeholder="Nhấn vào nút bên cạnh để lấy toạ độ" readonly>
+
+                                        <hr style="margin: 0 5px; width: 1px; height: 10px; background-color: #ccc;">
+                                        <input class="type-input" type="text" name="name-address" id="coo-location"
+                                            placeholder="Nhập địa chỉ của bạn" required>
+
+                                            <!-- nút để lấy toạ độ -->
+                                        <button type="button" id="getLocationBtn" style="
+                                                                                position: absolute;
+                                                                                right: 10px;
+                                                                                background: none;
+                                                                                border: none;
+                                                                                cursor: pointer;
+                                                                                font-size: 20px;
+                                                                                top: 10px;
+                                                                            ">
+                                            🗺️
+                                        </button>
+                                    </div>
                                     <button class="myAccount__item-btn" name="submit">Thêm vào</button>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>
                 <!-- Start Modal Add Address -->
 
-
-
             </div>
         </section>
     </main>
+
+    <script>
+        // function getLocation() {
+        //     if (navigator.geolocation) {
+        //         navigator.geolocation.getCurrentPosition(
+        //             function (position) {
+        //                 let latitude = position.coords.latitude;
+        //                 let longitude = position.coords.longitude;
+
+        //                 // Gọi API OpenCageData để chuyển đổi tọa độ thành địa chỉ
+        //                 fetch(`https://api.positionstack.com/v1/reverse?access_key=2a2fd9c717f5f3e08f8d0e47661f5ca9&query=${latitude},${longitude}`)
+        //                     .then(response => {
+        //                         if (!response.ok) {
+        //                             throw new Error("Network response was not ok");
+        //                         }
+        //                         return response.json();
+        //                     })
+        //                     .then(data => {
+        //                         if (data && data.data && data.data.length > 0) {
+        //                             let address = data.data[0].label; // Lấy địa chỉ đầy đủ
+        //                             document.getElementById("new-address").value = address;
+        //                         } else {
+        //                             alert("Không tìm thấy địa chỉ.");
+        //                         }
+        //                     })
+        //                     .catch(error => {
+        //                         alert("Lỗi khi lấy địa chỉ: " + error.message);
+        //                     });
+        //             },
+        //             function (error) {
+        //                 alert("Lỗi: " + error.message);
+        //             }
+        //         );
+        //     } else {
+        //         alert("Trình duyệt không hỗ trợ Geolocation.");
+        //     }
+        // }
+
+        // // Gọi hàm lấy tọa độ khi click vào nút
+        // document.getElementById("getLocationBtn").addEventListener("click", getLocation);
+
+
+
+        function getLocation() {
+            // $newAddress = document.getElementById("new-address");
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        let latitude = position.coords.latitude;
+                        let longitude = position.coords.longitude;
+                        // alert("Vĩ độ: " + latitude + "\nKinh độ: " + longitude);
+                        document.getElementById("new-address").value = latitude + ", " + longitude;
+
+                    },
+                    function (error) {
+                        alert("Lỗi: " + error.message);
+                    }
+                );
+            } else {
+                alert("Trình duyệt không hỗ trợ Geolocation.");
+            }
+        }
+
+        // Gọi hàm lấy tọa độ khi click vào nút
+        document.getElementById("getLocationBtn").addEventListener("click", getLocation);
+    </script>
+
     <!-- End my account -->
 
 @endsection

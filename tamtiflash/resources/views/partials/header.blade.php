@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tam Ti Flash</title>
@@ -11,7 +12,11 @@
     <link rel="stylesheet" href="public/css/grid.css" />
     <link rel="stylesheet" href="public/css/base.css" /> -->
     @vite(['resources/bootstrap-5.3.3-dist/css/bootstrap.min.css'])
+<<<<<<< HEAD
     {{-- @vite(['resources/css/normalize/8.0.1/normalize.min.css']) --}}
+=======
+    @vite(['resources/css/normalize/8.0.1/normalize.min.css'])
+>>>>>>> 099d72f4419847dff79ccbb218859d85d04b0e8e
     @vite(['resources/fonts/fontawesome-free-6.7.2-web/css/all.min.css'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
     @vite(['resources/css/grid.css'])
@@ -102,7 +107,7 @@
             <li class="header-right__item">
                 <a href="/cart">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="cart-quantity">1</span>
+                    <span class="cart-quantity">{{ count(session('cart', [])) }}</span>
                 </a>
             </li>
         </ul>

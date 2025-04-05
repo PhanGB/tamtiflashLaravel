@@ -80,6 +80,7 @@ class UserController extends Controller
         // Validate dữ liệu nhập vào
         $request->validate([
             'new-address' => 'required|string',
+            'name-address' => 'required|string',
             // 'id_user' => 'required|exists:users,id',
         ]);
 
@@ -89,7 +90,8 @@ class UserController extends Controller
         // Tạo địa chỉ mới
         Address::create([
             'id_user' => $user->id,
-            'address' => $request->input('new-address'),
+            'address' => $request->input('name-address'),
+            'coordinates' => $request->input('new-address'),
         ]);
 
         // Quay lại trang cá nhân với thông báo thành công

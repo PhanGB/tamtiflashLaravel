@@ -95,13 +95,31 @@
     gap: 12px;
     font-size: 1.4rem;
     font-weight: 600;
-    max-height: 2rem;
+    max-height: 4rem;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     max-width: 500px;
     color: #333;
+}
+.select-address{
+    /* display: flex; */
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+    width: 27rem;
+    border: none;
+    background: none;
+}
+.select-address:hover{
+    cursor: pointer;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    /* padding: 10px; */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .address-icon {

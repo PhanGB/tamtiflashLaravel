@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Payment extends Model
+class Payment_method extends Model
 {
     use HasFactory;
+    protected $table = 'banking';
 }
