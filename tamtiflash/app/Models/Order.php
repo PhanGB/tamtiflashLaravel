@@ -17,7 +17,8 @@ class Order extends Model
         'update_at',
         'shipping_fee',
         'payment_method',
-        'note'
+        'note',
+        'id_driver'
     ];
 
     protected $attributes = [
@@ -27,4 +28,15 @@ class Order extends Model
     // Khai báo lại timestamps để Laravel hiểu
     const CREATED_AT = 'create_at';
     const UPDATED_AT = 'update_at';
+
+     // Định nghĩa quan hệ nếu cần
+     public function user()
+     {
+         return $this->belongsTo(User::class, 'id_user');
+     }
+
+     public function admin()
+     {
+         return $this->belongsTo(Admin::class, 'id_driver');
+     }
 }

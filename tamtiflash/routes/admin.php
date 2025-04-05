@@ -45,7 +45,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/products/variant_edit/{id}', [ProductVariantController::class, 'viewEdit'])->name('product.variant_edit');
     Route::put('/products/variant_edit/{id}', [ProductVariantController::class, 'edit'])->name('editVariant');
-    
+
     // Quản lý danh mục
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
 
@@ -67,6 +67,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Quản lý đơn hàng
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
+    Route::patch('/orders/{id}/driver/update', [OrdersController::class, 'updateDriver']);
     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking');
 
     // Quản lý nhân viên
