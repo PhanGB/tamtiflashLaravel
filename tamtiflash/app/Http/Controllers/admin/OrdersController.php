@@ -5,13 +5,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class OrdersController extends Controller
 {
     public function index()
     {
         $drivers = User::where('role', 2)->where('work', 0)->get();
-        $orders = Order::where('status', 'Chờ xác nhận')->get();
+        $orders = Order::where('status', 0)->get();
         return view('admin.orders', compact('orders', 'drivers'));
     }
 
@@ -19,7 +20,7 @@ class OrdersController extends Controller
         try {
             $order = Order::find($id);
             $order->update([
-                'status' => 'Đang giao hàng',
+                'status' => 1,
                 'id_driver' => $request->input('id_driver')
             ]);
             return redirect('/admin/orders');

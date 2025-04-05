@@ -41,11 +41,15 @@
                                     @csrf
                                     @method('PATCH')
                                     <td>
+                                        @if($drivers->isEmpty())
+                                            <span class="text-danger">Chưa có shipper</span>
+                                        @else
                                         <select class="form-select" name="id_driver">
                                             @foreach ($drivers as $driver)
                                                 <option value="{{ $driver->id }}">{{ $driver->name }}</option>
                                             @endforeach
                                         </select>
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="order_details.html">
