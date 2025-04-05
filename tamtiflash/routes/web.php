@@ -48,6 +48,11 @@ Route::middleware('auth')->group(function () {
 
 });
 
+// Nhận hàng và Theo dõi đơn hàng
+Route::get('order/{order}/receive', [OrderTrackingController::class, 'receive'])->name('order.receive');
+Route::get('ordertracking/{order}', [OrderTrackingController::class, 'show'])->name('ordertracking.show');
+Route::get('ordertracking/{order}/complete', [OrderTrackingController::class, 'complete'])->name('ordertracking.complete');
+
 
 // Giỏ hàng
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');

@@ -9,16 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+    public function up()
+{
+    if (!Schema::hasTable('banking')) {
         Schema::create('banking', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name_bank');
             $table->string('acc_number');
             $table->string('name');
             $table->string('qr_img')->nullable();
+            $table->timestamps();
         });
     }
+}
 
     /**
      * Reverse the migrations.

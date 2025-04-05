@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductVariant;
@@ -12,9 +13,11 @@ use Illuminate\Http\Request;
 
 class ProductVariantController extends Controller
 {
-    public function product_variant($id){
+    public function product_variant($id)
+    {
         $product = Product::find($id);
         $productVariant = ProductVariant::with('product.shop', 'product.category')->where('id_product', "LIKE", $id)->get();
+        $product = Product::find($id);
         $productVariant->transform(function ($product) {
             switch ($product->status) {
                 case 1:
@@ -40,28 +43,38 @@ class ProductVariantController extends Controller
             'productVariant' => $productVariant,
             'product' => $product,
         ];
-        return view('admin.product_variant', $data);
-     }
+        return view('admin.product_variant', $data, compact('product', 'id'));
+    }
 
-     public function viewAdd($id){
+    public function product_variant_add($id)
+    {
+        $productVariant = ProductVariant::where('id_product', "LIKE", $id)->get();
+        $product = Product::find($id);
+        $productVariant = $product->variants;
+
+        return view('admin.add_product_variant', compact('productVariant', 'id', 'product'));
+    }
+
+    public function viewAdd($id)
+    {
         $product = Product::find($id);
         $category = Category::find($product->id_cate);
         $shop = Shop::find($product->id_shop);
-        $data =[
+        $data = [
             'product' => $product,
             'category' => $category,
             'shop' => $shop,
         ];
         return view('admin.variant_add', $data);
-     }
+    }
 
-     public function add(Request $request, $id){
-
+    public function add(Request $request, $id)
+    {
         try {
             $request->validate([
-                'name' => 'required|string|max:255', // Kiểm tra tên biến thể
-                'price' => 'required|numeric|min:0', // Kiểm tra giá là số hợp lệ và >= 0
-                'status' => 'required|in:1,2,3', // Kiểm tra trạng thái hợp lệ
+                'name' => 'required|string|max:255',
+                'price' => 'required|numeric|min:0',
+                'status' => 'required|in:1,2,3',
             ]);
 
             $variant = new ProductVariant();
@@ -75,23 +88,25 @@ class ProductVariantController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('admin.product_variant', $id)->with('error', 'Đã xảy ra lỗi khi thêm biến thể. Vui lòng thử lại!');
         }
-     }
+    }
 
-     public function viewEdit($id){
+    public function viewEdit($id)
+    {
         $productVariant = ProductVariant::find($id);
         $product = Product::find($productVariant->id_product);
         $category = Category::find($product->id_cate);
         $shop = Shop::find($product->id_shop);
-        $data =[
+        $data = [
             'productVariant' => $productVariant,
             'product' => $product,
             'category' => $category,
             'shop' => $shop,
         ];
         return view('admin.variant_edit', $data);
-     }
+    }
 
-     public function edit(Request $request, $id){
+    public function edit(Request $request, $id)
+    {
         // Tìm biến thể sản phẩm
         $variant = ProductVariant::find($id);
         $request->validate([
@@ -107,11 +122,12 @@ class ProductVariantController extends Controller
         ]);
 
         return redirect()->route('admin.product_variant', $variant->id_product)->with('success', 'Sửa thành công');
-     }
+    }
 
-     public function delete($id){
+    public function delete($id)
+    {
         $variant = ProductVariant::find($id);
         $variant->delete();
         return redirect()->route('admin.product_variant', $variant->id_product)->with('success', 'Xóa thành công');
-     }
+    }
 }

@@ -23,12 +23,16 @@ class OrdersController extends Controller
                 'status' => 1,
                 'id_driver' => $request->input('id_driver')
             ]);
+
+            $driver = User::find($request->input('id_driver'));
+            if ($driver) {
+                $driver->update(['work' => 1]);
+            }
+
             return redirect('/admin/orders');
         } catch (\Exception $e) {
             Log::error("Error updating order {$id}: " . $e->getMessage());
             return redirect('/admin/orders');
         }
-
-
     }
 }

@@ -13,6 +13,13 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * Constants for roles
+     */
+    const ROLE_ADMIN = 0;
+    const ROLE_USER = 1;
+    const ROLE_SHIPPER = 2;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -23,6 +30,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'password',
         'my_code',
+        'status',
+        'role',
+        'work',
     ];
 
     /**
@@ -45,6 +55,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
+    /**
+     * Relationships
+     */
     public function addresses()
     {
         return $this->hasMany(Address::class, 'id_user');
@@ -53,5 +66,41 @@ class User extends Authenticatable implements MustVerifyEmail
     public function orders()
     {
         return $this->hasMany(Order::class, 'id_user');
+    }
+
+    /**
+     * Scopes for roles
+     */
+    public function scopeAdmins($query)
+    {
+        return $query->where('role', self::ROLE_ADMIN);
+    }
+
+    public function scopeUsers($query)
+    {
+        return $query->where('role', self::ROLE_USER);
+    }
+
+    public function scopeShippers($query)
+    {
+        return $query->where('role', self::ROLE_SHIPPER);
+    }
+
+    /**
+     * Role checking methods
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isUser(): bool
+    {
+        return $this->role === self::ROLE_USER;
+    }
+
+    public function isShipper(): bool
+    {
+        return $this->role === self::ROLE_SHIPPER;
     }
 }
