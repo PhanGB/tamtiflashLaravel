@@ -21,10 +21,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <form action="" class="mb-4">
+            <form action="{{ route('admin.category_search') }}" method="get" class="mb-4">
                 <div class="row g-2 align-items-center">
                     <div class="col-9 col-sm-11">
-                        <input type="text" placeholder="Tìm kiếm danh mục..." class="form-control" />
+                        <input type="text" name="search" placeholder="Tìm kiếm danh mục..." class="form-control" />
                     </div>
                     <div class="col-3 col-sm-1 text-center">
                         <button class="btn btn-primary w-100"><i
@@ -32,13 +32,19 @@
                     </div>
                 </div>
             </form>
-            <a class="btn btn-primary rounded-pill m-2" href="{{ route('admin.category_add') }}">Thêm danh mục</a>
-            <!-- <label for="" style="margin-left: 650px; font-size: 20px;">Quán:</label> -->
-            {{-- <select name="" id="" class="form-select w-25" style="float: right;">
-                <option value="">Tất cả</option>
-                <option value="">Thức ăn</option>
-                <option value="">Nước uống</option>
-            </select> --}}
+            <div style="display: flex; justify-content: space-between; ">
+                <form action=" {{ route('admin.category_sort') }} " method="get">
+                    <a class="btn btn-primary rounded-pill m-2" href="{{ route('admin.category_add') }}">Thêm danh mục</a>
+
+                    <label for="" style="margin-left: 650px; font-size: 20px;"></label>
+                    <select id="categorySelect" onchange="this.form.submit()" class="form-select w-25" style="float: left;">
+                        <option>-- Chọn danh mục --</option>
+                        <option value="">Tất cả danh mục</option>
+                    </select>
+                </form>
+            </div>
+
+
             <div class="table-responsive">
                 <table class="table">
                     <thead>
