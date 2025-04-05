@@ -9,7 +9,17 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
-    <div class="container-fluid py-4 px-4">
+        <div class="container-fluid py-4 px-4">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="card border-0 shadow">
@@ -34,27 +44,27 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="discount" class="form-label">Giá trị (số % giảm)</label>
-                                <input type="number" class="form-control" id="discount" name="discount"
+                                <label for="value" class="form-label">Giá trị (số % giảm)</label>
+                                <input type="number" class="form-control" id="value" name="value"
                                     value="{{ $voucher->value }}" required />
                             </div>
 
                             <div class="mb-3">
-                                <label for="max_discount" class="form-label">Số tiền được giảm tối đa (VND)</label>
-                                <input type="number" class="form-control" id="max_discount" name="max_discount"
+                                <label for="max_value" class="form-label">Số tiền được giảm tối đa (VND)</label>
+                                <input type="number" class="form-control" id="max_value" name="max_value"
                                     value="{{ $voucher->max_value }}" required />
                             </div>
 
                             <div class="mb-3">
-                                <label for="start_date" class="form-label">Ngày bắt đầu</label>
-                                <input type="text" class="form-control date-picker" id="start_date" name="start_date"
-                                    value="{{ \Carbon\Carbon::parse($voucher->start_date)->format('d/m/Y') }}" required />
+                                <label for="start_date" class="form-label">Ngày bắt đầu (định dạng tháng/ngày/năm)<br/> <span style="color: red;">*Lưu ý ngày bắt đầu phải lớn hơn hoặc bằng ngày hôm nay</span></label>
+                                <input type="date" class="form-control" id="start_date" name="start_date"
+                                    value="{{ $voucher->start_date }}" required />
                             </div>
 
                             <div class="mb-3">
-                                <label for="end_date" class="form-label">Ngày kết thúc</label>
-                                <input type="text" class="form-control date-picker" id="end_date" name="end_date"
-                                    value="{{ \Carbon\Carbon::parse($voucher->end_date)->format('d/m/Y') }}" required />
+                                <label for="end_date" class="form-label">Ngày kết thúc (định dạng tháng/ngày/năm)<br/> <span style="color: red;">*Lưu ý ngày kết thúc phải lớn hơn ngày bắt đầu</span></label>
+                                <input type="date" class="form-control" id="end_date" name="end_date"
+                                    value="{{ $voucher->end_date }}" required />
                             </div>
 
                             <div class="mb-3">
