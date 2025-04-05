@@ -20,7 +20,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Quản lý sản phẩm
     Route::get('/products', [ProductsController::class, 'index'])->name('products');
-    Route::get('/products/product_add', [ProductsController::class, 'viewAdd'])->name('admin.product_add');
+    Route::get('/products/product_add', [ProductsController::class, 'viewAdd'])->name('product_add');
     Route::post('/products/add', [ProductsController::class, 'add'])->name('addPro');
     Route::get('/products/product_edit/{id}', [ProductsController::class, 'viewEdit'])->name('admin.product_edit');
     Route::put('/products/product_edit/{id}', [ProductsController::class, 'edit'])->name('editPro');

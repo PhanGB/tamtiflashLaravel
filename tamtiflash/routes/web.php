@@ -20,6 +20,7 @@ Route::get('/shopdetail/{id}', [ShopController::class, 'shop_detail']);
 Route::get('/productdetail/{id}', [ProductController::class, 'product_detail'])->name('product_detail');
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
 Route::get('/MAH', [MarketAtHomeController::class, 'MAH'])->name('MAH');
+Route::get('/market-at-home/category/{id}', [MarketAtHomeController::class, 'filterByCategory'])->name('mah.filter.category');
 
 
 
