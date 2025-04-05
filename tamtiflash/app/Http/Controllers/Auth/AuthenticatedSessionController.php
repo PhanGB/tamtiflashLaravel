@@ -39,6 +39,7 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
         if ($user && $user->isShipper()) {
             $user->status = 0; // Offline
+            $user->work = 2; // Không làm việc
             $user->save();
         }
 
