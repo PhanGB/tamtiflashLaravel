@@ -20,29 +20,9 @@
         <div class="container mt-4">
             <h1 class="mt-4" style="font-weight: 700;">Bộ Sưu Tập Món Ăn</h1>
             <div class="row text-center food-collection">
-                <!-- <div class="col-3 image-container">
-                                        <img src="/images/products/mon-canh.png" class="img-fluid rounded" alt="Món canh">
-                                        <p>Món canh</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <img src="/images/products/mon-xao.png" class="img-fluid rounded" alt="Món xào">
-                                        <p>Món xào</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <img src="/images/products/mon-chien.png" class="img-fluid rounded" alt="Món chiên">
-                                        <p>Món chiên</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <img src="/images/products/mon-luoc.png" class="img-fluid rounded" alt="Món luộc">
-                                        <p>Món luộc</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <img src="/images/products/mon-luoc.png" class="img-fluid rounded" alt="Món luộc">
-                                        <p>Món luộc</p>
-                                    </div> -->
                 @foreach ($categories as $category)
                     <div class="col-3">
-                        <a href="">
+                    <a href="{{ route('mah.filter.category', $category->id) }}">
                             <img src="{{ asset('images/categories/' . $category->image) }}" class="img-fluid rounded"
                                 alt="{{ $category->image }}">
                             <p>{{ $category->name }}</p>

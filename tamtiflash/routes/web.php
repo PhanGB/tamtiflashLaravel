@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Admin\OrdertrackingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -20,6 +21,7 @@ Route::get('/shopdetail/{id}', [ShopController::class, 'shop_detail']);
 Route::get('/productdetail/{id}', [ProductController::class, 'product_detail'])->name('product_detail');
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
 Route::get('/MAH', [MarketAtHomeController::class, 'MAH'])->name('MAH');
+Route::get('/market-at-home/category/{id}', [MarketAtHomeController::class, 'filterByCategory'])->name('mah.filter.category');
 
 
 
@@ -49,7 +51,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Nhận hàng và Theo dõi đơn hàng
-Route::get('order/{order}/receive', [OrderTrackingController::class, 'receive'])->name('order.receive');
+Route::get('order/{order}/receive', [OrdertrackingController::class, 'receive'])->name('order.receive');
 Route::get('ordertracking/{order}', [OrderTrackingController::class, 'show'])->name('ordertracking.show');
 Route::get('ordertracking/{order}/complete', [OrderTrackingController::class, 'complete'])->name('ordertracking.complete');
 
