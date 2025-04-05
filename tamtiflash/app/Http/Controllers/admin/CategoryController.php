@@ -93,4 +93,56 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('admin.category')->with('success', 'Xoá thành công!');
     }
+
+    public function search(Request $request){
+        $search = $request->input('search');
+        $categoryList = Category::with('products')->get();
+        $categoryList = Category::where('name', 'LIKE', '%' . $search . '%')->get();
+        if($categoryList -> isEmpty()){
+            return redirect()->route('admin.category')->with('error', 'Không tìm thấy danh mục nào!');
+        }
+        $categoryList->transform(function ($category) {
+            switch ($category->status) {
+                case 1:
+                    $category->status_text = 'Hoạt động';
+                    $category->status_class = 'bg-success'; // Bootstrap class
+                    break;
+                case 2:
+                    $category->status_text = 'Tạm ngưng';
+                    $category->status_class = 'bg-warning';
+                    break;
+                default:
+                    $category->status_text = 'Không xác định';
+                    $category->status_class = 'bg-secondary';
+                    break;
+            }
+            return $category;
+        });
+        return view('admin.category', ['categoryList' => $categoryList]);
+    }
+
+    public function sortByCate(){
+        $categoryList = Category::with('products')->get();
+        $categoryList->transform(function ($category) {
+            switch ($category->status) {
+                case 1:
+                    $category->status_text = 'Hoạt động';
+                    $category->status_class = 'bg-success'; // Bootstrap class
+                    break;
+                case 2:
+                    $category->status_text = 'Tạm ngưng';
+                    $category->status_class = 'bg-warning';
+                    break;
+                default:
+                    $category->status_text = 'Không xác định';
+                    $category->status_class = 'bg-secondary';
+                    break;
+            }
+            return $category;
+        });
+        $data = [
+            'categoryList' => $categoryList,
+        ];
+        return view('admin.category', $data);
+    }
 }

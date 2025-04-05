@@ -19,3 +19,32 @@ tabTitles.forEach((title, index) => {
         tabContents[index].classList.add('active');
     });
 });
+// Lắng nghe sự kiện nhấp vào nút "Thức ăn"
+document.querySelector('.filter-btn.active').addEventListener('click', function() {
+    showFoodProducts();
+});
+
+// Lắng nghe sự kiện nhấp vào nút "Nước uống"
+document.querySelector('.filter-btn:nth-child(2)').addEventListener('click', function() {
+    showDrinkProducts();
+});
+
+function showFoodProducts() {
+    // Hiển thị sản phẩm thức ăn và ẩn sản phẩm nước uống
+    document.getElementById('food').classList.add('active');
+    document.getElementById('drink').classList.remove('active');
+
+    // Thay đổi trạng thái của các nút
+    document.querySelector('.filter-btn.active').classList.remove('active');
+    document.querySelector('.filter-btn:nth-child(2)').classList.add('active');
+}
+
+function showDrinkProducts() {
+    // Hiển thị sản phẩm nước uống và ẩn sản phẩm thức ăn
+    document.getElementById('food').classList.remove('active');
+    document.getElementById('drink').classList.add('active');
+
+    // Thay đổi trạng thái của các nút
+    document.querySelector('.filter-btn.active').classList.remove('active');
+    document.querySelector('.filter-btn:nth-child(1)').classList.add('active');
+}

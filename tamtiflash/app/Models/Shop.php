@@ -13,6 +13,7 @@ class Shop extends Model
     protected $fillable = ['name', 'short_description', 'time_open', 'id'];
 
     // Một shop có nhiều sản phẩm
+    public $timestamps = true;
     public function products()
     {
         return $this->hasMany(Product::class, 'id_shop');
