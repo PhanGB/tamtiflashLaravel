@@ -26,77 +26,40 @@
                             <th>Mã</th>
                             <th>Khách hàng</th>
                             <th>Tổng tiền</th>
-                            <th>Trạng thái</th>
+                            <th>Shipper</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td data-label="Ngày">2025-02-22 09:46:49</td>
-                            <td data-label="Mã">INV-0123</td>
-                            <td data-label="Khách hàng">Phan Quốc Dương</td>
-                            <td data-label="Tổng tiền">325.000đ</td>
-                            <td>
-                                <select class="form-select">
-                                    <option value="">Chờ xác nhận</option>
-                                    <option value="">Đang giao hàng</option>
-                                    <option value="">Đã hoàn thành</option>
-                                    <option value="">Đã huỷ</option>
-                                </select>
-                            </td>
-                            <td>
-                                <a href="order_details.html">
-                                    <button class="btn btn-primary"><i class="fa-solid fa-eye"></i></button>
-                                </a>
-                                <a href="">
-                                    <button class="btn btn-success">Nhận đơn</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td data-label="Ngày">2025-02-22 09:46:49</td>
-                            <td data-label="Mã">INV-0123</td>
-                            <td data-label="Khách hàng">Phan Quốc Dương</td>
-                            <td data-label="Tổng tiền">325.000đ</td>
-                            <td>
-                                <select class="form-select">
-                                    <option value="">Chờ xác nhận</option>
-                                    <option value="">Đang giao hàng</option>
-                                    <option value="">Đã hoàn thành</option>
-                                    <option value="">Đã huỷ</option>
-                                </select>
-                            </td>
-                            <td>
-                                <a href="order-details.html">
-                                    <button class="btn btn-primary"><i class="fa-solid fa-eye"></i></button>
-                                </a>
-                                <a href="">
-                                    <button class="btn btn-success">Nhận đơn</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td data-label="Ngày">2025-02-22 09:46:49</td>
-                            <td data-label="Mã">INV-0123</td>
-                            <td data-label="Khách hàng">Phan Quốc Dương</td>
-                            <td data-label="Tổng tiền">325.000đ</td>
-                            <td>
-                                <select class="form-select">
-                                    <option value="">Chờ xác nhận</option>
-                                    <option value="">Đang giao hàng</option>
-                                    <option value="">Đã hoàn thành</option>
-                                    <option value="">Đã huỷ</option>
-                                </select>
-                            </td>
-                            <td>
-                                <a href="">
-                                    <button class="btn btn-primary"><i class="fa-solid fa-eye"></i></button>
-                                </a>
-                                <a href="">
-                                    <button class="btn btn-success">Nhận đơn</button>
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach ($orders as $order)
+                            <tr>
+                                <td data-label="Ngày">{{ $order->create_at }}</td>
+                                <td data-label="Mã">{{ $order->id }}</td>
+                                <td data-label="Khách hàng">{{ $order->user->name }}</td>
+                                <td data-label="Tổng tiền">{{ number_format($order->total) }}đ</td>
+                                <form action="{{ url('/admin/orders/'.$order->id.'/driver/update') }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <td>
+                                        @if($drivers->isEmpty())
+                                            <span class="text-danger">Chưa có shipper</span>
+                                        @else
+                                        <select class="form-select" name="id_driver">
+                                            @foreach ($drivers as $driver)
+                                                <option value="{{ $driver->id }}">{{ $driver->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="order_details.html">
+                                            <button class="btn btn-primary"><i class="fa-solid fa-eye"></i></button>
+                                        </a>
+                                        <button class="btn btn-success">Nhận đơn</button>
+                                    </td>
+                                </form>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('voucher')) {
         Schema::create('voucher', function (Blueprint $table) {
             $table->id();
             $table->string('code', 10)->unique();
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
+}
 
     /**
      * Reverse the migrations.

@@ -95,65 +95,61 @@
 
                     <!-- Start content info -->
                     <!-- $status = "";
-                        if ($item['status'] == 1) {
-                            $status = "Đã giao";
-                            $class = "myOrder-success";
-                        } else if ($item['status'] == 2) {
-                            $status = "Đang vận chuyển";
-                            $class = "myOrder-in-progress";
-                        } else if ($item['status'] == 3) {
-                            $status = "Đã huỷ";
-                            $class = "myOrder-cancel";
-                        } else {
-                            $status = "Cần đánh giá";
-                            $class = "myOrder-need-review";
-                        } -->
-
-                   @foreach ($orders as $order)
-                     @php
-                            $status = "";
-                            if ($order->status == 0) {
-                             $status = "Đang chờ xác nhận";
-                             $class = "myOrder-waiting";
-                            } else if ($order->status == 1) {
-                             $status = "Đã xác nhận";
-                             $class = "myOrder-success";
-                            } else if ($order->status == 2) {
-                             $status = "Đang vận chuyển";
-                             $class = "myOrder-in-progress";
-                            } else if ($order->status == 3) {
-                             $status = "Đã giao";
-                             $class = "myOrder-success";
-                            } else if ($order->status == 4) {
-                             $status = "Đã huỷ";
-                             $class = "myOrder-cancel";
+                            if ($item['status'] == 1) {
+                                $status = "Đã giao";
+                                $class = "myOrder-success";
+                            } else if ($item['status'] == 2) {
+                                $status = "Đang vận chuyển";
+                                $class = "myOrder-in-progress";
+                            } else if ($item['status'] == 3) {
+                                $status = "Đã huỷ";
+                                $class = "myOrder-cancel";
                             } else {
-                             $status = "Cần đánh giá";
-                             $class = "myOrder-need-review";
-                            }
-                      @endphp
-                   <div class="myOrder__content-info l-12 m-12 c-12">
-                        <div class="myOrder__info-title border-top-radius">
-                            <h2>Mã đơn hàng: {{ $order->order_id }}</h2>
-                        </div>
+                                $status = "Cần đánh giá";
+                                $class = "myOrder-need-review";
+                            } -->
 
-                        <div class="myOrder__info-item">
-                            <strong>Quán: </strong> <span>{{ $order->shop_name }}</span>
-                        </div>
+                    @foreach ($orders as $order)
+                                    @php
+                                        $status = "";
+                                        if ($order->status == 0) {
+                                            $status = "Đang chờ xác nhận";
+                                            $class = "myOrder-waiting";
+                                        } else if ($order->status == 1) {
+                                            $status = "Đang vận chuyển";
+                                            $class = "myOrder-in-progress";
+                                        } else if ($order->status == 2) {
+                                            $status = "Đã giao";
+                                            $class = "myOrder-success";
+                                        } else {
+                                            $status = "Cần đánh giá";
+                                            $class = "myOrder-need-review";
+                                        }
+                                      @endphp
+                                    <div class="myOrder__content-info l-12 m-12 c-12">
+                                        <div class="myOrder__info-title border-top-radius">
+                                            <h2>Mã đơn hàng: {{ $order->order_id }}</h2>
+                                        </div>
 
-                        <div class="myOrder__info-item">
-                            <strong>Tổng tiền: </strong> <span>{{ number_format($order->total,3) }}đ</span>
-                        </div>
+                                        <div class="myOrder__info-item">
+                                            <strong>Quán: </strong> <span>{{ $order->shop_name }}</span>
+                                        </div>
 
-                        <div class="myOrder__info-item">
-                            <strong>Ngày đặt hàng: </strong> <span>{{ \Carbon\Carbon::parse($order->order_date)->format('d/m/Y H:i') }}</span>
-                        </div>
-                        <div class="row myOrder__info-item">
-                            <span class="col l-6 m-6 c-6 {{ $class }}">{{ $status }}</span>
-                            <a class="col l-6 m-6 c-6 myOrder__item-link" href="/ordertracking/{{ $order->order_id }}">Xem chi tiết</a>
-                        </div>
-                    </div>
-                   @endforeach
+                                        <div class="myOrder__info-item">
+                                            <strong>Tổng tiền: </strong> <span>{{ number_format($order->total, 0) }}đ</span>
+                                        </div>
+
+                                        <div class="myOrder__info-item">
+                                            <strong>Ngày đặt hàng: </strong>
+                                            <span>{{ \Carbon\Carbon::parse($order->order_date)->format('d/m/Y') }}</span>
+                                        </div>
+                                        <div class="row myOrder__info-item">
+                                            <span class="col l-6 m-6 c-6 {{ $class }}">{{ $status }}</span>
+                                            <a class="col l-6 m-6 c-6 myOrder__item-link" href="/ordertracking/{{ $order->order_id }}">Xem
+                                                chi tiết</a>
+                                        </div>
+                                    </div>
+                    @endforeach
                     <!-- End content info -->
 
 

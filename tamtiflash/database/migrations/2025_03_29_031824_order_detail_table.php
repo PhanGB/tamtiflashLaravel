@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('order_detail')) {
         Schema::create('order_detail', function (Blueprint $table) {
             $table->id();
             $table->integer('unit_price');
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->foreignId('id_product')->constrained('products')->onDelete('cascade');
         });
     }
-
+    }
     /**
      * Reverse the migrations.
      */

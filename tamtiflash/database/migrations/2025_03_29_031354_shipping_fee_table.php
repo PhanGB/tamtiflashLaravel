@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('shipping_fee')) {
         Schema::create('shipping_fee', function (Blueprint $table) {
             $table->id();
             $table->integer('min_distance');
@@ -19,6 +20,7 @@ return new class extends Migration
             $table->integer('extra_price_per_km');
         });
     }
+}
 
     /**
      * Reverse the migrations.
