@@ -26,6 +26,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('/products/product_edit/{id}', [ProductsController::class, 'edit'])->name('editPro');
     Route::delete('/products/product_delete/{id}', [ProductsController::class, 'delete'])->name('deletePro');
 
+
     // Product variant
     Route::get('/products/product_variant/{id}', [ProductVariantController::class, 'product_variant'])->name('product_variant');
     Route::get('/products/variant_add/{id}', [ProductVariantController::class, 'viewAdd'])->name('product.variant_add');
