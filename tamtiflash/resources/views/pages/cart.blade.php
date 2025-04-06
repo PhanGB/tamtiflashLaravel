@@ -57,24 +57,26 @@
                         </table>
                         <div class="cart-mobile">
                             <div class="cart-container">
-                                <div class="cart-item">
-                                    <img
-                                        src="{{ asset('images/products/banhkemtrungmuoi.jpg') }}"
-                                        class="cart-img"
-                                    />
-                                    <div class="cart-details">
-                                        <h3 class="cart-name">{{ $item['name'] }}</h3>
-                                        <span class="cart-res"><i class="fa-solid fa-location-dot"></i>{{ $item['variant'] }}</span>
-                                        <span class="cart-price">{{ number_format($item['price']) }}đ</span>
-                                        <form class="quantity-form cart-quantity-mobile">
-                                            <input type="hidden" name="index" value="<?=$index?>">
-                                            <button class="quantity-btn quantity-minus">−</button>
-                                            <input type="text" value="{{ $item['quantity'] }}" class="quantity-input quantity" />
-                                            <button class="quantity-btn quantity-plus">+</button>
-                                        </form>
+                                @foreach ($cart as $index => $item)
+                                    <div class="cart-item">
+                                        <img
+                                            src="{{ asset('images/products/banhkemtrungmuoi.jpg') }}"
+                                            class="cart-img"
+                                        />
+                                        <div class="cart-details">
+                                            <h3 class="cart-name">{{ $item['name'] }}</h3>
+                                            <span class="cart-res"><i class="fa-solid fa-location-dot"></i>{{ $item['variant'] }}</span>
+                                            <span class="cart-price">{{ number_format($item['price']) }}đ</span>
+                                            <form class="quantity-form cart-quantity-mobile">
+                                                <input type="hidden" name="index" value="<?=$index?>">
+                                                <button type="button" class="quantity-btn quantity-minus">−</button>
+                                                <input type="text" value="{{ $item['quantity'] }}" class="quantity-input quantity" />
+                                                <button type="button" class="quantity-btn quantity-plus">+</button>
+                                            </form>
+                                        </div>
+                                        <button onclick="deleteProduct(<?=$index?>)" class="remove-btn"><i class="fa-solid fa-xmark"></i></button>
                                     </div>
-                                    <button onclick="deleteProduct(<?=$index?>)" class="remove-btn"><i class="fa-solid fa-xmark"></i></button>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

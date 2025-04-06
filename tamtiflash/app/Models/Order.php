@@ -21,10 +21,6 @@ class Order extends Model
         'id_driver'
     ];
 
-    protected $attributes = [
-        'status' => 0,
-    ];
-
     // Khai báo lại timestamps để Laravel hiểu
     const CREATED_AT = 'create_at';
     const UPDATED_AT = 'update_at';
