@@ -110,7 +110,7 @@
                             <div class="cart-item">
                                 <div class="item-box">
                                     <div class="item-thumbnail">
-                                        <img src="{{ asset('images/products/' . $item['image']) }}" alt="{{ $item['image'] }}"
+                                        <img src="{{ asset('images/products/' . $item['image']) }}" width="50px" alt="{{ $item['image'] }}"
                                             class="product-img" />
                                         <span class="item-quantity">{{ $item['quantity'] }}</span>
                                     </div>
