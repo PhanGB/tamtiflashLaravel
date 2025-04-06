@@ -70,8 +70,8 @@ class StaffController extends Controller
             $staff->email = $request->email;
             $staff->password = Hash::make($request->password);
             $staff->phone = $request->phone;
-            $staff->status = 0; // Mặc định trạng thái là hoạt động
-            $staff->work = 0; // Mặc định làm việc
+            $staff->status = 0; // Mặc định trạng thái là không hoạt động
+            $staff->work = 2; // Mặc định là không làm việc
             $staff->role = 2;
             $staff->my_code = $myCode; // Gán my_code cho nhân viên
             $staff->save();
