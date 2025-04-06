@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            // Add the deleted_at column to the categories table
-            $table->timestamp('deleted_at')->nullable()->after('updated_at');
+            // Kiểm tra nếu cột 'deleted_at' chưa tồn tại
+            if (!Schema::hasColumn('categories', 'deleted_at')) {
+                $table->timestamp('deleted_at')->nullable()->after('updated_at'); // Thêm cột 'deleted_at'
+            }
         });
     }
 
@@ -23,8 +25,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            // Drop the deleted_at column from the categories table
-            $table->dropColumn('deleted_at');
+            $table->dropColumn('deleted_at'); // Xóa cột 'deleted_at'
         });
     }
 };
+

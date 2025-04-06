@@ -20,7 +20,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Quản lý sản phẩm
     Route::get('/products', [ProductsController::class, 'index'])->name('products');
-
     Route::get('/products/product_add', [ProductsController::class, 'viewAdd'])->name('product_add');
     Route::post('/products/add', [ProductsController::class, 'add'])->name('addPro');
 
@@ -44,6 +43,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
     Route::get('/category/category_add', [CategoryController::class, 'viewAdd'])->name('category_add');
     Route::post('/category/add', [CategoryController::class, 'add'])->name('addCate');
+
     Route::get('category/category_edit/{id}', [CategoryController::class, 'viewEdit'])->name('category_edit');
     Route::put('category/category_edit/{id}', [CategoryController::class, 'edit'])->name('editCate');
     Route::delete('/category/delete/{id}', [CategoryController::class, 'delete'])->name('deleteCate');
@@ -62,7 +62,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Quản lý đơn hàng
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
+    Route::patch('/orders/{id}/driver/update', [OrdersController::class, 'updateDriver'])->name('orders.update_driver');
+
+    // Quản lý theo dõi đơn hàng
     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking');
+    Route::get('/ordertracking/{id}', [OrdertrackingController::class, 'show'])->name('ordertracking.show');
+    Route::patch('/admin/orders/{id}/complete', [OrdertrackingController::class, 'markAsCompleted'])->name('orders.complete');
+
 
     // Quản lý nhân viên
     Route::get('/staff', [StaffController::class, 'index'])->name('staff');
