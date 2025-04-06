@@ -104,4 +104,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->role === self::ROLE_SHIPPER;
     }
+    public function deliveredOrders()
+    {
+        return $this->hasMany(Order::class, 'id_driver')->where('status', 2);
+    }
 }

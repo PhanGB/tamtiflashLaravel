@@ -17,14 +17,29 @@ class Order extends Model
         'update_at',
         'shipping_fee',
         'payment_method',
-        'note'
+        'note',
+        'id_driver'
     ];
 
     protected $attributes = [
         'status' => 0,
     ];
 
-    // Khai báo lại timestamps để Laravel hiểu
     const CREATED_AT = 'create_at';
     const UPDATED_AT = 'update_at';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'id_driver');
+    }
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class, 'id_order'); // Sửa cột khóa ngoại
+    }
 }
