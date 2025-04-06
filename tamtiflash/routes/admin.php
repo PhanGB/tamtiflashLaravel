@@ -73,7 +73,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Quản lý nhân viên
     Route::get('/staff', [StaffController::class, 'index'])->name('staff');
     Route::get('/staff/add', [StaffController::class, 'add_staff'])->name('add_staff');
-    Route::post('/staff/add', [StaffController::class, 'add'])->name('add');
+    Route::post('/staff/add', [StaffController::class, 'add'])->name('addStaff');
     Route::get('/staff/detail/{id}', [StaffController::class, 'staffDetail'])->name('staff.detail');
     Route::get('/staff/delete/{id}', [StaffController::class, 'staffDelete'])->name('staff.delete');
     Route::get('/staff/status/{id}', [StaffController::class, 'getStatus'])->name('staff.status');
