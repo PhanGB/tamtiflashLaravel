@@ -28,17 +28,18 @@ class Order extends Model
     const CREATED_AT = 'create_at';
     const UPDATED_AT = 'update_at';
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_user');
-    }
+     // Định nghĩa quan hệ nếu cần
+     public function user()
+     {
+         return $this->belongsTo(User::class, 'id_user');
+     }
 
-    public function admin()
-    {
-        return $this->belongsTo(Admin::class, 'id_driver');
-    }
+     public function admin()
+     {
+         return $this->belongsTo(Admin::class, 'id_driver');
+     }
 
-    public function orderDetails()
+        public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class, 'id_order'); // Sửa cột khóa ngoại
     }

@@ -9,6 +9,7 @@
                 <div class="col-12">
                     <div class="bg-light rounded h-100 p-4">
                         <h6 class="mb-4">Thêm danh mục</h6>
+                        <a class="btn btn-secondary rounded-pill m-2" href="{{ route('admin.category') }}">Trở lại</a>
                         <form action="{{ route('admin.addCate') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <label class="fw-bold col-sm-3 col-form-label" for="">Tên danh mục:</label>

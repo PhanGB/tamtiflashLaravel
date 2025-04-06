@@ -5,7 +5,7 @@
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light rounded h-100 p-4">
             <h6 class="mb-4">Sửa cửa hàng</h6>
-            <form action="{{ route('admin.edit', ['id' => $shop->id]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.shops.update', ['id' => $shop->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
                     <label class="fw-bold col-sm-3 col-form-label">Tên cửa hàng:</label>

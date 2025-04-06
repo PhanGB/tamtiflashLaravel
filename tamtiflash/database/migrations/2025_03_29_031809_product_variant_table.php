@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('product_variant')) {
         Schema::create('product_variant', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('id_product')->constrained('products')->onDelete('cascade');
         });
-    }
+    }}
 
     /**
      * Reverse the migrations.

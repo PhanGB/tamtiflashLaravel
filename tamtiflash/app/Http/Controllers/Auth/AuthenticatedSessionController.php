@@ -24,6 +24,7 @@ class AuthenticatedSessionController extends Controller
             // Kiểm tra nếu là Shipper
             if ($user->isShipper()) {
                 $user->status = 1; // Online
+                $user->work = 0; // Làm việc
                 $user->save();
 
                 $request->session()->regenerate();
