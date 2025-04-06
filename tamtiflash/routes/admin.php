@@ -55,7 +55,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Quản lý cửa hàng
     Route::get('/shops', [ShopsController::class, 'index'])->name('shops');
-    Route::get('/shops/add', [ShopsController::class, 'add_shop'])->name('shops.add');
+    Route::get('/shops/add', [ShopsController::class, 'add_shop'])->name('add_shop');
     Route::post('/shops/add', [ShopsController::class, 'add'])->name('shops.store');
     Route::get('/shops/edit/{id}', [ShopsController::class, 'edit_shop'])->name('shops.edit');
     Route::post('/shops/edit/{id}', [ShopsController::class, 'edit'])->name('shops.update');
@@ -73,8 +73,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Quản lý nhân viên
     Route::get('/staff', [StaffController::class, 'index'])->name('staff');
-    Route::get('/staff/add', [StaffController::class, 'add_staff'])->name('add_staff');
-    Route::post('/staff/add', [StaffController::class, 'add'])->name('add');
+    Route::get('/staff/add', [StaffController::class, 'add_staff'])->name('staff.add_staff');
+    Route::post('/staff/add', [StaffController::class, 'add'])->name('addStaff');
     Route::get('/staff/detail/{id}', [StaffController::class, 'staffDetail'])->name('staff.detail');
     Route::get('/staff/delete/{id}', [StaffController::class, 'staffDelete'])->name('staff.delete');
     Route::get('/staff/status/{id}', [StaffController::class, 'getStatus'])->name('staff.status');

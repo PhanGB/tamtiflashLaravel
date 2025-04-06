@@ -14,7 +14,7 @@
                             <div class="product-card">
                                 <a href="" class="product-img-link">
                                     <div class="product-img" style="
-                                                    background-image: url('https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg');
+                                                    background-image: url('{{ asset('images/products/'.$product->image) }}');
                                                 "></div>
                                 </a>
                                 <a href="product_detail.html">
