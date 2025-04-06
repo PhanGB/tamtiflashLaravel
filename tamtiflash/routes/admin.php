@@ -13,112 +13,97 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:0'])->group(function () {
-    // Dashboard
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    // Dashboard (Chỉ Admin)
+    Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('role:0');
 
-    // Quản lý sản phẩm
-    Route::get('/products', [ProductsController::class, 'index'])->name('products');
+    // Quản lý sản phẩm (Chỉ Admin)
+    Route::get('products', [ProductsController::class, 'index'])->name('products')->middleware('role:0');
+    Route::get('/products/product_add', [ProductsController::class, 'viewAdd'])->name('product_add')->middleware('role:0');
+    Route::post('/products/add', [ProductsController::class, 'add'])->name('addPro')->middleware('role:0');
+    Route::get('/products/product_edit/{id}', [ProductsController::class, 'viewEdit'])->name('product_edit')->middleware('role:0');
+    Route::put('/products/product_edit/{id}', [ProductsController::class, 'edit'])->name('editPro')->middleware('role:0');
+    Route::get('/products/search', [ProductsController::class, 'search'])->name('product_search')->middleware('role:0');
+    Route::get('/products/sort', [ProductsController::class, 'sortByShop'])->name('product_sort')->middleware('role:0');
+    Route::delete('/products/product_delete/{id}', [ProductsController::class, 'delete'])->name('deletePro')->middleware('role:0');
 
-    Route::get('/products/product_add', [ProductsController::class, 'viewAdd'])->name('product_add');
-    Route::post('/products/add', [ProductsController::class, 'add'])->name('addPro');
+    // Product Variant (Chỉ Admin)
+    Route::get('/products/product_variant/{id}', [ProductVariantController::class, 'product_variant'])->name('product_variant')->middleware('role:0');
+    Route::get('/products/variant_add/{id}', [ProductVariantController::class, 'viewAdd'])->name('product.variant_add')->middleware('role:0');
+    Route::post('/products/variant_add/{id}', [ProductVariantController::class, 'add'])->name('addVariant')->middleware('role:0');
+    Route::get('/products/variant_edit/{id}', [ProductVariantController::class, 'viewEdit'])->name('product.variant_edit')->middleware('role:0');
+    Route::put('/products/variant_edit/{id}', [ProductVariantController::class, 'edit'])->name('editVariant')->middleware('role:0');
+    Route::delete('/products/variant_delete/{id}', [ProductVariantController::class, 'delete'])->name('deleteVariant')->middleware('role:0');
 
-    Route::get('/products/product_edit/{id}', [ProductsController::class, 'viewEdit'])->name('product_edit');
-    Route::put('/products/product_edit/{id}', [ProductsController::class, 'edit'])->name('editPro');
+    // Quản lý danh mục (Chỉ Admin)
+    Route::get('/category', [CategoryController::class, 'index'])->name('category')->middleware('role:0');
+    Route::get('/category/category_add', [CategoryController::class, 'viewAdd'])->name('category_add')->middleware('role:0');
+    Route::post('/category/add', [CategoryController::class, 'add'])->name('addCate')->middleware('role:0');
+    Route::get('category/category_edit/{id}', [CategoryController::class, 'viewEdit'])->name('category_edit')->middleware('role:0');
+    Route::put('category/category_edit/{id}', [CategoryController::class, 'edit'])->name('editCate')->middleware('role:0');
+    Route::delete('/category/delete/{id}', [CategoryController::class, 'delete'])->name('deleteCate')->middleware('role:0');
+    Route::get('/category/search', [CategoryController::class, 'search'])->name('category_search')->middleware('role:0');
+    Route::get('/category/sort', [CategoryController::class, 'sortByCate'])->name('category_sort')->middleware('role:0');
 
-    Route::get('/products/search', [ProductsController::class, 'search'])->name('product_search');
-    Route::get('/products/sort', [ProductsController::class, 'sortByShop'])->name('product_sort');
+    // Quản lý cửa hàng (Chỉ Admin)
+    Route::get('/shops', [ShopsController::class, 'index'])->name('shops')->middleware('role:0');
+    Route::get('/shops/add', [ShopsController::class, 'add_shop'])->name('shops.add')->middleware('role:0');
+    Route::post('/shops/add', [ShopsController::class, 'add'])->name('shops.store')->middleware('role:0');
+    Route::get('/shops/edit/{id}', [ShopsController::class, 'edit_shop'])->name('shops.edit')->middleware('role:0');
+    Route::post('/shops/edit/{id}', [ShopsController::class, 'edit'])->name('shops.update')->middleware('role:0');
+    Route::get('/shops/delete/{id}', [ShopsController::class, 'delete'])->name('shops.delete')->middleware('role:0');
 
-    Route::delete('/products/product_delete/{id}', [ProductsController::class, 'delete'])->name('deletePro');
+    // Quản lý đơn hàng (Admin và Shipper)
+    Route::get('/orders', [OrdersController::class, 'index'])->name('orders')->middleware('role:0,2');
+    Route::patch('/orders/{id}/driver/update', [OrdersController::class, 'updateDriver'])->name('orders.update_driver')->middleware('role:0,2');
 
-    // Product Variant
-    Route::get('/products/product_variant/{id}', [ProductVariantController::class, 'product_variant'])->name('product_variant');
-    Route::get('/products/variant_add/{id}', [ProductVariantController::class, 'viewAdd'])->name('product.variant_add');
-    Route::post('/products/variant_add/{id}', [ProductVariantController::class, 'add'])->name('addVariant');
-    Route::get('/products/variant_edit/{id}', [ProductVariantController::class, 'viewEdit'])->name('product.variant_edit');
-    Route::put('/products/variant_edit/{id}', [ProductVariantController::class, 'edit'])->name('editVariant');
-    Route::delete('/products/variant_delete/{id}', [ProductVariantController::class, 'delete'])->name('deleteVariant');
+    //Quản lý theo dõi đơn hàng (Admin và Shipper)
+    Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking')->middleware('role:0,2');
+    Route::get('/ordertracking/{id}', [OrdertrackingController::class, 'show'])->name('ordertracking.show')->middleware('role:0,2');
+    Route::patch('/admin/orders/{id}/complete', [OrdertrackingController::class, 'markAsCompleted'])->name('orders.complete')->middleware('role:0,2');
 
-    // Quản lý danh mục
-    Route::get('/category', [CategoryController::class, 'index'])->name('category');
-    Route::get('/category/category_add', [CategoryController::class, 'viewAdd'])->name('category_add');
-    Route::post('/category/add', [CategoryController::class, 'add'])->name('addCate');
+    // Quản lý nhân viên (Chỉ Admin)
+    Route::get('/staff', [StaffController::class, 'index'])->name('staff')->middleware('role:0');
+    Route::get('/staff/add', [StaffController::class, 'add_staff'])->name('add_staff')->middleware('role:0');
+    Route::post('/staff/add', [StaffController::class, 'add'])->name('add')->middleware('role:0');
+    Route::get('/staff/detail/{id}', [StaffController::class, 'staffDetail'])->name('staff.detail')->middleware('role:0');
+    Route::get('/staff/delete/{id}', [StaffController::class, 'staffDelete'])->name('staff.delete')->middleware('role:0');
+    Route::get('/staff/status/{id}', [StaffController::class, 'getStatus'])->name('staff.status')->middleware('role:0');
 
-    Route::get('category/category_edit/{id}', [CategoryController::class, 'viewEdit'])->name('category_edit');
-    Route::put('category/category_edit/{id}', [CategoryController::class, 'edit'])->name('editCate');
-    Route::delete('/category/delete/{id}', [CategoryController::class, 'delete'])->name('deleteCate');
+    // Quản lý người dùng (Chỉ Admin)
+    Route::get('/users', [UsersController::class, 'index'])->name('users')->middleware('role:0');
 
-    // Thêm tuyến đường tìm kiếm và sắp xếp cho danh mục
-    Route::get('/category/search', [CategoryController::class, 'search'])->name('category_search');
-    Route::get('/category/sort', [CategoryController::class, 'sortByCate'])->name('category_sort');
+    // Quản lý đánh giá (Chỉ Admin)
+    Route::get('/review', [ReviewController::class, 'index'])->name('review')->middleware('role:0');
+    Route::get('review/approve/{id}', [ReviewController::class, 'approve'])->name('review.approve')->middleware('role:0');
+    Route::get('review/hide/{id}', [ReviewController::class, 'hide'])->name('review.hide')->middleware('role:0');
+    Route::get('review/show/{id}', [ReviewController::class, 'show'])->name('review.show')->middleware('role:0');
 
-    // Quản lý cửa hàng
-    Route::get('/shops', [ShopsController::class, 'index'])->name('shops');
-    Route::get('/shops/add', [ShopsController::class, 'add_shop'])->name('add_shop');
-    Route::post('/shops/add', [ShopsController::class, 'add'])->name('shops.store');
-    Route::get('/shops/edit/{id}', [ShopsController::class, 'edit_shop'])->name('shops.edit');
-    Route::post('/shops/edit/{id}', [ShopsController::class, 'edit'])->name('shops.update');
-    Route::get('/shops/delete/{id}', [ShopsController::class, 'delete'])->name('shops.delete');
+    // Quản lý voucher (Chỉ Admin)
+    Route::get('/voucher', [VoucherController::class, 'index'])->name('voucher')->middleware('role:0');
+    Route::get('/voucher/add-voucher', [VoucherController::class, 'create'])->name('voucher.create')->middleware('role:0');
+    Route::get('/voucher/edit-voucher/{id}', [VoucherController::class, 'view_edit'])->name('voucher.edit')->middleware('role:0');
+    Route::put('/voucher/update', [VoucherController::class, 'update'])->name('voucher.update')->middleware('role:0');
+    Route::post('/voucher/store', [VoucherController::class, 'store'])->name('voucher.store')->middleware('role:0');
+    Route::delete('/voucher/{id}', [VoucherController::class, 'destroy'])->name('voucher.destroy')->middleware('role:0');
+    Route::get('/voucher/restore/{id}', [VoucherController::class, 'restore'])->name('voucher.restore')->middleware('role:0');
 
-    // Quản lý đơn hàng
-    Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
-    Route::patch('/orders/{id}/driver/update', [OrdersController::class, 'updateDriver'])->name('orders.update_driver');
-
-
-
-    // Quản lý theo dõi đơn hàng
-    Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking');
-    Route::get('/ordertracking/{id}', [OrdertrackingController::class, 'show'])->name('ordertracking.show');
-    Route::patch('/admin/orders/{id}/complete', [OrdertrackingController::class, 'markAsCompleted'])->name('orders.complete');
-
-    // Quản lý nhân viên
-    Route::get('/staff', [StaffController::class, 'index'])->name('staff');
-    Route::get('/staff/add', [StaffController::class, 'add_staff'])->name('staff.add_staff');
-    // Route::post('/staff/add', [StaffController::class, 'add'])->name('add');
-    Route::post('/staff/add', [StaffController::class, 'add'])->name('addStaff');
-    Route::get('/staff/detail/{id}', [StaffController::class, 'staffDetail'])->name('staff.detail');
-    Route::get('/staff/delete/{id}', [StaffController::class, 'staffDelete'])->name('staff.delete');
-    Route::get('/staff/status/{id}', [StaffController::class, 'getStatus'])->name('staff.status');
-
-    // Quản lý người dùng
-    Route::get('/users', [UsersController::class, 'index'])->name('users');
-
-    // Quản lý đánh giá
-    Route::get('/review', [ReviewController::class, 'index'])->name('review');
-    Route::get('review/approve/{id}', [ReviewController::class, 'approve'])->name('review.approve');
-    Route::get('review/hide/{id}', [ReviewController::class, 'hide'])->name('review.hide');
-    Route::get('review/show/{id}', [ReviewController::class, 'show'])->name('review.show');
-
-    // Quản lý voucher
-    Route::get('/voucher', [VoucherController::class, 'index'])->name('voucher');
-    Route::get('/voucher/add-voucher', [VoucherController::class, 'create'])->name('voucher.create');
-    Route::get('/voucher/edit-voucher/{id}', [VoucherController::class, 'view_edit'])->name('voucher.edit');
-    Route::put('/voucher/update', [VoucherController::class, 'update'])->name('voucher.update');
-    Route::post('/voucher/store', [VoucherController::class, 'store'])->name('voucher.store');
-    Route::delete('/voucher/{id}', [VoucherController::class, 'destroy'])->name('voucher.destroy');
-    Route::get('/voucher/restore/{id}', [VoucherController::class, 'restore'])->name('voucher.restore');
-
-
-    // Cài đặt
+    // Cài đặt (Chỉ Admin)
     Route::group(['prefix' => 'settings'], function () {
-        Route::get('/', [SettingsController::class, 'index'])->name('settings');
-        Route::get('/payment-method', [SettingsController::class, 'payment_method'])->name('payment_method');
-        Route::get('/payment-method/edit', [SettingsController::class, 'edit_payment'])->name('edit_payment');
-        Route::put('/payment-method/update', [SettingsController::class, 'update_payment'])->name('update_payment');
-
-        // Quản lý phí vận chuyển
-        Route::get('/shipping-fee', [SettingsController::class, 'shipping_fee'])->name('shipping_fee');
-        Route::get('/shipping-fee/{id}', [SettingsController::class, 'edit_shipping'])->name('edit_shipping');
-        Route::put('/shipping-fee/update', [SettingsController::class, 'update_shipping'])->name('update_shipping');
+        Route::get('/', [SettingsController::class, 'index'])->name('settings')->middleware('role:0');
+        Route::get('/payment-method', [SettingsController::class, 'payment_method'])->name('payment_method')->middleware('role:0');
+        Route::get('/payment-method/edit', [SettingsController::class, 'edit_payment'])->name('edit_payment')->middleware('role:0');
+        Route::put('/payment-method/update', [SettingsController::class, 'update_payment'])->name('update_payment')->middleware('role:0');
+        Route::get('/shipping-fee', [SettingsController::class, 'shipping_fee'])->name('shipping_fee')->middleware('role:0');
+        Route::get('/shipping-fee/{id}', [SettingsController::class, 'edit_shipping'])->name('edit_shipping')->middleware('role:0');
+        Route::put('/shipping-fee/update', [SettingsController::class, 'update_shipping'])->name('update_shipping')->middleware('role:0');
     });
-
 });
 
-// Chỉ cho role = 2 (shipper)
-// Route::prefix('shipper')->name('shipper.')->middleware(['auth', 'role:2'])->group(function () {
-//     // Quản lý theo dõi đơn hàng
-//     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking');
-//     Route::get('/ordertracking/{id}', [OrdertrackingController::class, 'show'])->name('ordertracking.show');
-//     Route::patch('/admin/orders/{id}/complete', [OrdertrackingController::class, 'markAsCompleted'])->name('orders.complete');
-// });
+// Route đăng xuất
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout')->middleware('auth');

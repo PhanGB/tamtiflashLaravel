@@ -11,7 +11,7 @@
                     <h3 class="mb-4">Cửa hàng</h3>
                 </div>
                 <div class="col-4 col-sm-2 text-center">
-                    <a href="{{ route('admin.add_shop') }}" type="button" class="btn btn-primary w-100 mb-4">Thêm cửa hàng</a>
+                    <a href="{{ route('admin.shops.add') }}" type="button" class="btn btn-primary w-100 mb-4">Thêm cửa hàng</a>
                 </div>
             </div>
             <form action="{{ route('admin.shops') }}" class="mb-4" method="GET">

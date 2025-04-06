@@ -30,6 +30,17 @@
 </head>
 <body>
     @include('admin.partials.header')
+
+    <!-- Hiển thị thông báo lỗi -->
+    @if (session('error'))
+        <div class="container-fluid pt-4 px-4">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
+
     @yield('content')
     @include('admin.partials.footer')
 
