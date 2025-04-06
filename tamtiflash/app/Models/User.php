@@ -13,6 +13,13 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * Constants for roles
+     */
+    const ROLE_ADMIN = 0;
+    const ROLE_USER = 1;
+    const ROLE_SHIPPER = 2;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -60,39 +67,27 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Order::class, 'id_user');
     }
-    /**
-     * Constants for roles
-     */
-    const ROLE_ADMIN = 0;
-    const ROLE_USER = 1;
-    const ROLE_SHIPPER = 2;
 
     /**
-     * Scope để lấy Admin
+     * Scopes for roles
      */
     public function scopeAdmins($query)
     {
         return $query->where('role', self::ROLE_ADMIN);
     }
 
-    /**
-     * Scope để lấy User
-     */
     public function scopeUsers($query)
     {
         return $query->where('role', self::ROLE_USER);
     }
 
-    /**
-     * Scope để lấy Shipper
-     */
     public function scopeShippers($query)
     {
         return $query->where('role', self::ROLE_SHIPPER);
     }
 
     /**
-     * Kiểm tra vai trò
+     * Role checking methods
      */
     public function isAdmin(): bool
     {
