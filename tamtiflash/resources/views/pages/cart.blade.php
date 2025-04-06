@@ -101,4 +101,4 @@
     </div>
 </main>
 <script src="/js/cart.js"></script>
-@endsection
+@endsection 

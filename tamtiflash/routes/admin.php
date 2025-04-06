@@ -95,6 +95,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/voucher/store', [VoucherController::class, 'store'])->name('voucher.store');
     Route::delete('/voucher/{id}', [VoucherController::class, 'destroy'])->name('voucher.destroy');
     Route::get('/voucher/restore/{id}', [VoucherController::class, 'restore'])->name('voucher.restore');
+    
 
     // Cài đặt
     Route::group(['prefix' => 'settings'], function () {

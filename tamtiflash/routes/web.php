@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Admin\OrdertrackingController;
+use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -61,6 +62,8 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add']);
 Route::post('/cart/update', [CartController::class, 'update']);
 Route::get('/cart/remove/{id}', [CartController::class, 'remove']);
+
+Route::post('/apply-voucher', [VoucherController::class, 'applyVoucher'])->middleware('auth');
 
 // Thanh toán
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->middleware('auth')->name('checkout');

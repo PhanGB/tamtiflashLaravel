@@ -84,7 +84,7 @@ class ProductsController extends Controller
             $imageName = time() . '.' . $image->getClientOriginalExtension();
 
             // Di chuyển tệp ảnh vào thư mục public/img
-            $image->move(public_path('img'), $imageName);
+            $image->move(public_path('images/products/'), $imageName);
 
             Product::create([
                 'name' => $request->input('name'),

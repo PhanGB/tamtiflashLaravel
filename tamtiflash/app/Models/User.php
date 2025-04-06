@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Voucher;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -102,5 +103,14 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isShipper(): bool
     {
         return $this->role === self::ROLE_SHIPPER;
+    }
+
+
+
+    public function vouchers()
+    {
+        return $this->belongsToMany(Voucher::class, 'voucher_user')
+            ->withTimestamps()
+            ->withPivot('used_at');
     }
 }
