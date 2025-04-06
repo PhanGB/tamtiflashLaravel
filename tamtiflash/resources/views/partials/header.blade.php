@@ -80,8 +80,20 @@
                     </div>
                 </li> -->
 
-            @if (Auth::check())
+            @if (Auth::check() && Auth::user()->role == 0)
                 <li class="header-right__item">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <i class="fa-solid fa-circle-user"></i>
+                        <div class="user-action">
+                            <a href="/admin">Tray cập admin</a>
+                            <a href="/info">Thông tin</a>
+                            <button type="submit">Đăng xuất</button>
+                        </div>
+                    </form>
+                </li>
+            @elseif (Auth::check())
+            <li class="header-right__item">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <i class="fa-solid fa-circle-user"></i>
@@ -91,7 +103,7 @@
                         </div>
                     </form>
                 </li>
-            @else
+                @else
                 <li class="header-right__item">
                     <i class="fa-solid fa-circle-user"></i>
                     <div class="user-action">

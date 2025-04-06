@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:0'])->group(function () {
     // Dashboard
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -65,11 +65,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
     Route::patch('/orders/{id}/driver/update', [OrdersController::class, 'updateDriver'])->name('orders.update_driver');
 
+
+
     // Quản lý theo dõi đơn hàng
     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking');
     Route::get('/ordertracking/{id}', [OrdertrackingController::class, 'show'])->name('ordertracking.show');
     Route::patch('/admin/orders/{id}/complete', [OrdertrackingController::class, 'markAsCompleted'])->name('orders.complete');
-
 
     // Quản lý nhân viên
     Route::get('/staff', [StaffController::class, 'index'])->name('staff');
@@ -78,7 +79,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/staff/add', [StaffController::class, 'add'])->name('addStaff');
     Route::get('/staff/detail/{id}', [StaffController::class, 'staffDetail'])->name('staff.detail');
     Route::get('/staff/delete/{id}', [StaffController::class, 'staffDelete'])->name('staff.delete');
-    Route::get('/staff/status/{id}', [StaffController::class, 'getStatus'])->name('staff.status');  
+    Route::get('/staff/status/{id}', [StaffController::class, 'getStatus'])->name('staff.status');
 
     // Quản lý người dùng
     Route::get('/users', [UsersController::class, 'index'])->name('users');
@@ -97,7 +98,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/voucher/store', [VoucherController::class, 'store'])->name('voucher.store');
     Route::delete('/voucher/{id}', [VoucherController::class, 'destroy'])->name('voucher.destroy');
     Route::get('/voucher/restore/{id}', [VoucherController::class, 'restore'])->name('voucher.restore');
-    
+
 
     // Cài đặt
     Route::group(['prefix' => 'settings'], function () {
@@ -111,4 +112,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/shipping-fee/{id}', [SettingsController::class, 'edit_shipping'])->name('edit_shipping');
         Route::put('/shipping-fee/update', [SettingsController::class, 'update_shipping'])->name('update_shipping');
     });
+
 });
+
+// Chỉ cho role = 2 (shipper)
+// Route::prefix('shipper')->name('shipper.')->middleware(['auth', 'role:2'])->group(function () {
+//     // Quản lý theo dõi đơn hàng
+//     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking');
+//     Route::get('/ordertracking/{id}', [OrdertrackingController::class, 'show'])->name('ordertracking.show');
+//     Route::patch('/admin/orders/{id}/complete', [OrdertrackingController::class, 'markAsCompleted'])->name('orders.complete');
+// });

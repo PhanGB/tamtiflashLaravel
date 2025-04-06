@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
                 $user->save();
 
                 $request->session()->regenerate();
-                return redirect()->intended('/admin/orders');
+                return redirect()->intended('/admin/ordertracking');
             }
 
         }
