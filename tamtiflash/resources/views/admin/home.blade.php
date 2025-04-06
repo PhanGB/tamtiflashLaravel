@@ -32,7 +32,7 @@
                     <i class="fa fa-dollar-sign fa-3x text-primary"></i>
                     <div class="ms-5">
                         <p class="mb-2">Doanh thu hôm nay</p>
-                        <h6 class="mb-0">${{ number_format($todayRevenue, 0, ',', '.') }}</h6>
+                        <h6 class="mb-0">{{ number_format($todayRevenue, 0, ',', '.') }}đ</h6>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     <i class="fa fa-calendar-alt fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Doanh thu tháng này</p>
-                        <h6 class="mb-0">${{ number_format($monthRevenue, 0, ',', '.') }}</h6>
+                        <h6 class="mb-0">{{ number_format($monthRevenue, 0, ',', '.') }}đ</h6>
                     </div>
                 </div>
             </div>
