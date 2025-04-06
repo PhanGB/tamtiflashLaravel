@@ -28,7 +28,14 @@
                             <span class="shop-item_race split_race">{{ $shop->rate }}<i class="fa-regular fa-star"></i></span>
                             <span class="shop-item_time split_time">Giờ mở:{{ $shop->time_open }}</span>
                         </div>
-                        <a href="/shopdetail/{{ $shop->id }}" class="buttons shop-item_btn">Ghé quán</a>
+                        @php
+                        if($shop->name == 'Market At Home'){
+                        $link = '/MAH';
+                        }else{
+                        $link = '/shopdetail/' . $shop->id;
+                        }
+                        @endphp
+                        <a href="{{ $link }}" class="buttons shop-item_btn">Ghé quán</a>
                     </div>
                 </div>
             </div>

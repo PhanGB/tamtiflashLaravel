@@ -14,6 +14,13 @@
         </div>
     @endif
 
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
     <div class="payment-body">
         <div class="grid wide">
             <div class="row">
@@ -72,7 +79,7 @@
                                     Thanh toán khi giao hàng (COD)
                                 </label>
                                 <label class="payment-option">
-                                    <input type="radio" name="method" value="bank" />
+                                    <input type="radio" name="method" value="bank_transfer" />
                                     <img src="../images/icons/bank-icon.svg" alt="Bank Transfer" />
                                     Chuyển khoản qua ngân hàng
                                 </label>
@@ -88,7 +95,7 @@
                             <p><strong>Nội dung chuyển khoản:</strong> Thanh toán đơn hàng từ khách hàng <span
                                     style="color: red;">{{ $user->name }}</span> </p>
                             <p style="color: red;">*Lưu ý: Đơn hàng có thể được xác nhận trong vài phút</p>
-                            <img src="{{ asset('images/bank/' . $banking->qr_img) }}" alt="Mã QR Chuyển khoản"
+                            <img src="{{ asset("images/bank/{$banking->qr_img}") }}" alt="Mã QR Chuyển khoản"
                                 style="width: 200px; height: 200px; margin-top: 10px;">
                         </div>
 
@@ -105,7 +112,7 @@
                 </div>
                 <div class="col l-5 m-12 c-12">
                     <div class="cart-container">
-                        @foreach ($cart as $index => $item)
+                        @foreach ($cart as $item)
 
                             <div class="cart-item">
                                 <div class="item-box">
@@ -131,14 +138,22 @@
                         @endforeach
 
                         <div class="discount-section">
-                            <input type="text" placeholder="Nhập mã giảm giá..." class="discount-input" />
-                            <button class="apply-button">Sử dụng</button>
+                            <form method="POST" action="{{ url('/apply-voucher') }}">
+                                @csrf
+                                <input type="text" placeholder="Nhập mã giảm giá..." class="discount-input" name="code" />
+                                <button class="apply-button" type="submit">Sử dụng</button>
+                            </form>
                         </div>
 
                         <div class="payment-details">
                             <div class="provisional">
                                 <span class="provisional-title">Tạm tính</span>
-                                <span class="provisional-price">{{ number_format($grand_total, 0) }}đ</span>
+                                <span class="provisional-price">{{ number_format($grand_total, 0, ',', '.') }}</span>
+
+                                @if (isset($voucher_discount) && $voucher_discount > 0 && isset($discount_amount))
+                                    <p>Giảm giá ({{ $voucher_discount }}%): -{{ number_format($discount_amount, 0, ',', '.') }}
+                                        đ</p>
+                                @endif
                             </div>
 
                             <!-- khoảng cách -->
@@ -320,7 +335,7 @@
 
             paymentOptions.forEach(option => {
                 option.addEventListener("change", function () {
-                    if (this.value === "bank") {
+                    if (this.value === "bank_transfer") {
                         bankInfo.style.display = "block";
                     } else {
                         bankInfo.style.display = "none";

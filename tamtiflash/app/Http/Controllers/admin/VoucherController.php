@@ -180,4 +180,45 @@ class VoucherController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
+
+    public function applyVoucher(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|string'
+        ]);
+
+        $voucherCode = $request->input('code');
+        $user = auth()->user();
+
+        // 1. Tìm voucher hợp lệ
+        $voucher = Voucher::where('code', $voucherCode)
+            ->where('quantity', '>', 0)
+            ->where('status', 1)
+            ->whereDate('start_date', '<=', now())
+            ->whereDate('end_date', '>=', now())
+            ->first();
+
+        if (!$voucher) {
+            return back()->withErrors(['code' => 'Mã giảm giá không hợp lệ hoặc đã hết']);
+        }
+
+        // 2. Kiểm tra user đã dùng voucher chưa
+        if ($user->vouchers()->where('voucher_id', $voucher->id)->exists()) {
+            return back()->withErrors(['code' => 'Bạn đã sử dụng mã giảm giá này rồi']);
+        }
+
+        // 3. Gắn voucher và cập nhật số lượng
+        $user->vouchers()->attach($voucher->id, ['used_at' => now()]);
+        $voucher->decrement('quantity');
+
+        // 4. Thực hiện logic giảm giá đơn hàng ở đây nếu cần
+        session([
+            'voucher_discount' => $voucher->value,
+            'voucher_code' => $voucher->code
+        ]);
+
+        return back()->with('success', 'Áp dụng mã giảm giá thành công!');
+    }
+
 }

@@ -119,10 +119,10 @@
   }
   .filter-category {
     flex-direction: column;
-    position: absolute;
-    z-index: 10;
-    top: 600px;
-    left: 230px;
+    /* position: absolute; */
+    z-index: 100;
+    top: 10px;
+    left: -400px;
     width: 300px;
     /* align-items: center; */
   }

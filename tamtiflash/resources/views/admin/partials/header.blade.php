@@ -143,6 +143,7 @@
                         <span class="d-none d-lg-inline-flex">{{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                        <a href="/" class="dropdown-item">Truy cập website</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                                 <button class="dropdown-item" type="submit">Đăng xuất</button>

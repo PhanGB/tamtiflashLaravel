@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Admin\OrdertrackingController;
+use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -30,16 +31,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('verify-email', EmailVerificationPromptController::class)
     ->name('verification.notice');
 
-// my account
-Route::get('/info', [UserController::class, 'index'])->name('info')->middleware('auth');
-Route::post('/account/update', [UserController::class, 'update'])->name('account.update');
-Route::post('/account/change-password', [UserController::class, 'changePassword'])->name('account.change-password');
-Route::post('/add-address', [UserController::class, 'addAddress'])->name('add.address');
-Route::delete('/delete-address/{id}', [UserController::class, 'destroy']);
 
-// my order
-Route::get('/my_order', [OrderController::class, 'getOrderDetails'])->name('my.order');
-Route::get('/ordertracking/{id}', [OrderController::class, 'orderTracking'])->name('order.tracking');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::middleware('auth')->group(function () {
@@ -47,13 +39,23 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // my account
+    Route::get('/info', [UserController::class, 'index'])->name('info')->middleware('auth');
+    Route::post('/account/update', [UserController::class, 'update'])->name('account.update');
+    Route::post('/account/change-password', [UserController::class, 'changePassword'])->name('account.change-password');
+    Route::post('/add-address', [UserController::class, 'addAddress'])->name('add.address');
+    Route::delete('/delete-address/{id}', [UserController::class, 'destroy']);
 
+    // my order
+    Route::get('/my_order', [OrderController::class, 'getOrderDetails'])->name('my.order');
+    Route::get('/ordertracking/{id}', [OrderController::class, 'orderTracking'])->name('order.tracking');
+
+
+    // Nhận hàng và Theo dõi đơn hàng
+    Route::get('order/{order}/receive', [OrdertrackingController::class, 'receive'])->name('order.receive');
+    Route::get('ordertracking/{order}', [OrderTrackingController::class, 'show'])->name('ordertracking.show');
+    Route::get('ordertracking/{order}/complete', [OrderTrackingController::class, 'complete'])->name('ordertracking.complete');
 });
-
-// Nhận hàng và Theo dõi đơn hàng
-Route::get('order/{order}/receive', [OrdertrackingController::class, 'receive'])->name('order.receive');
-Route::get('ordertracking/{order}', [OrderTrackingController::class, 'show'])->name('ordertracking.show');
-Route::get('ordertracking/{order}/complete', [OrderTrackingController::class, 'complete'])->name('ordertracking.complete');
 
 
 // Giỏ hàng
@@ -61,6 +63,8 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add']);
 Route::post('/cart/update', [CartController::class, 'update']);
 Route::get('/cart/remove/{id}', [CartController::class, 'remove']);
+
+Route::post('/apply-voucher', [VoucherController::class, 'applyVoucher'])->middleware('auth');
 
 // Thanh toán
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->middleware('auth')->name('checkout');

@@ -12,11 +12,7 @@
     <link rel="stylesheet" href="public/css/grid.css" />
     <link rel="stylesheet" href="public/css/base.css" /> -->
     @vite(['resources/bootstrap-5.3.3-dist/css/bootstrap.min.css'])
-<<<<<<< HEAD
-    {{-- @vite(['resources/css/normalize/8.0.1/normalize.min.css']) --}}
-=======
     @vite(['resources/css/normalize/8.0.1/normalize.min.css'])
->>>>>>> 099d72f4419847dff79ccbb218859d85d04b0e8e
     @vite(['resources/fonts/fontawesome-free-6.7.2-web/css/all.min.css'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
     @vite(['resources/css/grid.css'])
@@ -84,8 +80,20 @@
                     </div>
                 </li> -->
 
-            @if (Auth::check())
+            @if (Auth::check() && Auth::user()->role == 0)
                 <li class="header-right__item">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <i class="fa-solid fa-circle-user"></i>
+                        <div class="user-action">
+                            <a href="/admin">Tray cập admin</a>
+                            <a href="/info">Thông tin</a>
+                            <button type="submit">Đăng xuất</button>
+                        </div>
+                    </form>
+                </li>
+            @elseif (Auth::check())
+            <li class="header-right__item">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <i class="fa-solid fa-circle-user"></i>
@@ -95,7 +103,7 @@
                         </div>
                     </form>
                 </li>
-            @else
+                @else
                 <li class="header-right__item">
                     <i class="fa-solid fa-circle-user"></i>
                     <div class="user-action">

@@ -94,7 +94,7 @@
                         </div>
                     @endforeach
                 </div>
-                <a href="" class="primary-btn section-btn">Xem thêm</a>
+                <!-- <a href="" class="primary-btn section-btn">Xem thêm</a> -->
             </div>
         </section>
 

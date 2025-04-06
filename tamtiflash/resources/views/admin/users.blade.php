@@ -23,15 +23,15 @@
                     <thead>
                         <tr>
                             <th>Ngày tạo</th>
-                            <th>Mã</th>
+                            <th>Mã giới thiệu</th>
                             <th>Họ tên</th>
                             <th>Số điện thoại</th>
                             <th>Trạng thái</th>
-                            <th>Hành động</th>
+                            <!-- <th>Hành động</th> -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <td data-label="Ngày tạo">2025-02-22 09:46:49</td>
                             <td data-label="Mã">INV-0123</td>
                             <td data-label="Họ tên">Phan Quốc Dương</td>
@@ -66,7 +66,28 @@
                                     <button class="btn btn-warning"><i class="fa-solid fa-pen"></i></button>
                                 </a>
                             </td>
+                        </tr> -->
+
+                        @foreach ($users as $user )
+                        <tr>
+                            <td data-label="Ngày tạo">{{ $user->create_at }}</td>
+                            <td data-label="Mã giới thiệu">{{ $user->my_code }}</td>
+                            <td data-label="Họ tên">{{ $user->name }}</td>
+                            <td data-label="Số điện thoại">{{ $user->phone }}</td>
+                            <td data-label="Trạng thái">
+                                @if ($user->status == 1)
+                                    <i style="color: green" class="fa-solid fa-circle"></i>
+                                @else
+                                    <i style="color: red" class="fa-solid fa-circle"></i>
+                                @endif
+                            </td>
+                            <!-- <td data-label="Hành động">
+                                <a href="">
+                                    <button class="btn btn-warning"><i class="fa-solid fa-pen"></i></button>
+                                </a>
+                            </td> -->
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

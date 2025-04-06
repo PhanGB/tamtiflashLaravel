@@ -23,4 +23,14 @@ class Voucher extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'voucher_user')
+            ->withTimestamps()
+            ->withPivot('used_at');
+    }
+
+
+
 }
