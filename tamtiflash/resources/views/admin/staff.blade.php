@@ -14,7 +14,7 @@
                         <option value="0" {{ request('role') == '0' ? 'selected' : '' }}>Admin</option>
                         <option value="2" {{ request('role') == '2' ? 'selected' : '' }}>Shipper</option>
                     </select>
-                    <a href="{{ route('admin.add_staff') }}" class="btn btn-primary">Thêm nhân viên</a>
+                    <a href="{{ route('admin.staff.add_staff') }}" class="btn btn-primary">Thêm nhân viên</a>
                 </div>
             </div>
             <div class="row g-2 align-items-center w-100">

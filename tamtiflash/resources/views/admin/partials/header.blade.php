@@ -7,12 +7,20 @@
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
-                    <img class="rounded-circle" src="{{ asset('/images/user.jpg') }}" alt="" style="width: 40px; height: 40px" />
+                    <img class="rounded-circle" src="{{ asset('/images/user.png') }}" alt="" style="width: 40px; height: 40px" />
                     <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                 </div>
                 <div class="ms-3">
-                    <h6 class="mb-0">Jhon Doe</h6>
-                    <span>Admin</span>
+                    <h6 class="mb-0">{{ Auth::user()->name }}</h6>
+                    <span>
+                        @if (Auth::user()->role == 0)
+                            Admin
+                        @elseif (Auth::user()->role == 2)
+                            Shipper
+                        @else
+                            Không xác định
+                        @endif
+                    </span>
                 </div>
             </div>
             <div class="navbar-nav w-100">
@@ -67,14 +75,14 @@
 
             <div class="navbar-nav align-items-center ms-auto">
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    {{-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <i class="fa fa-envelope me-lg-2"></i>
                         <span class="d-none d-lg-inline-flex">Message</span>
-                    </a>
+                    </a> --}}
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                         <a href="#" class="dropdown-item">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="{{ asset('/images/user.jpg') }}" alt="" style="width: 40px; height: 40px" />
+                                <img class="rounded-circle" src="{{ asset('/images/user.png') }}" alt="" style="width: 40px; height: 40px" />
                                 <div class="ms-2">
                                     <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                     <small>15 minutes ago</small>
@@ -84,7 +92,7 @@
                         <hr class="dropdown-divider" />
                         <a href="#" class="dropdown-item">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="{{ asset('/images/user.jpg') }}" alt="" style="width: 40px; height: 40px" />
+                                <img class="rounded-circle" src="{{ asset('/images/user.png') }}" alt="" style="width: 40px; height: 40px" />
                                 <div class="ms-2">
                                     <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                     <small>15 minutes ago</small>
@@ -94,7 +102,7 @@
                         <hr class="dropdown-divider" />
                         <a href="#" class="dropdown-item">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="{{ asset('/images/user.jpg') }}" alt="" style="width: 40px; height: 40px" />
+                                <img class="rounded-circle" src="{{ asset('/images/user.png') }}" alt="" style="width: 40px; height: 40px" />
                                 <div class="ms-2">
                                     <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                     <small>15 minutes ago</small>
@@ -106,10 +114,10 @@
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    {{-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <i class="fa fa-bell me-lg-2"></i>
                         <span class="d-none d-lg-inline-flex">Notification</span>
-                    </a>
+                    </a> --}}
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                         <a href="#" class="dropdown-item">
                             <h6 class="fw-normal mb-0">Profile updated</h6>
@@ -131,13 +139,14 @@
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <img class="rounded-circle me-lg-2" src="{{ asset('/images/user.jpg') }}" alt="" style="width: 40px; height: 40px" />
-                        <span class="d-none d-lg-inline-flex">John Doe</span>
+                        <img class="rounded-circle me-lg-2" src="{{ asset('/images/user.png') }}" alt="" style="width: 40px; height: 40px" />
+                        <span class="d-none d-lg-inline-flex">{{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">My Profile</a>
-                        <a href="#" class="dropdown-item">Settings</a>
-                        <a href="#" class="dropdown-item">Log Out</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                                <button class="dropdown-item" type="submit">Đăng xuất</button>
+                            </form>
                     </div>
                 </div>
             </div>

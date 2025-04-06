@@ -113,4 +113,9 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withTimestamps()
             ->withPivot('used_at');
     }
+    public function deliveredOrders()
+    {
+        return $this->hasMany(Order::class, 'id_driver')->where('status', 2);
+    }
 }
+
