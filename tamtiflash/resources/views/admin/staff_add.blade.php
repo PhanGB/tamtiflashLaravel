@@ -16,7 +16,7 @@
             <a class="btn btn-secondary rounded-pill m-2" href="{{ route('admin.staff') }}">Trở lại</a>
 
 
-            <form action="{{ route('admin.addStaff') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.add') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
 

@@ -62,7 +62,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     //Quản lý theo dõi đơn hàng (Admin và Shipper)
     Route::get('/ordertracking', [OrdertrackingController::class, 'index'])->name('ordertracking')->middleware('role:0,2');
     Route::get('/ordertracking/{id}', [OrdertrackingController::class, 'show'])->name('ordertracking.show')->middleware('role:0,2');
-    Route::patch('/admin/orders/{id}/complete', [OrdertrackingController::class, 'markAsCompleted'])->name('orders.complete')->middleware('role:0,2');
+    Route::patch('/admin/orders/{id}/complete', [OrdertrackingController::class, 'markAsCompleted'])->name('orders.complete');
 
     // Quản lý nhân viên (Chỉ Admin)
     Route::get('/staff', [StaffController::class, 'index'])->name('staff')->middleware('role:0');
