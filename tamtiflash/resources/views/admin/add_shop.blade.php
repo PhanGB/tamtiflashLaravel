@@ -8,11 +8,7 @@
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light rounded h-100 p-4">
             <h6 class="mb-4">Thêm cửa hàng</h6>
-<<<<<<< HEAD
-            <<form action="{{ route('admin.shops.add') }}" method="POST" enctype="multipart/form-data">
-=======
             <form action="{{ route('admin.shops.add') }}" method="POST" enctype="multipart/form-data">
->>>>>>> d1ec7779be4f04bd876bd43cec93e68688ebeaee
                 @csrf
                 <div class="row mb-3">
                     <label class="fw-bold col-sm-3 col-form-label">Tên cửa hàng:</label>
@@ -43,11 +39,11 @@
                     <label class="fw-bold col-sm-3 col-form-label">Giờ mở cửa:</label>
                     <div class="col-sm-9 col-form-label">
                         <div class="d-flex align-items-center">
-                            <input type="text" class="form-control me-2" min="0" max="23" style="width: 80px;"
-                                name="time_open" placeholder="0h00" required>
+                            <input type="text" class="form-control me-2" min="0" max="23"
+                                style="width: 80px;" name="time_open" placeholder="0h00" required>
                             <span class="me-2"> - </span>
-                            <input type="text" class="form-control" min="0" max="23" style="width: 80px;" name="time_close"
-                                placeholder="23h00" required>
+                            <input type="text" class="form-control" min="0" max="23" style="width: 80px;"
+                                name="time_close" placeholder="23h00" required>
                         </div>
                     </div>
                 </div>
@@ -56,14 +52,15 @@
                     <label class="fw-bold col-sm-3 col-form-label">Địa chỉ:</label>
                     <div class="col-sm-9 col-form-label">
                         <input type="text" class="form-control"
-                            placeholder="Nhập link địa chỉ cửa hàng (được lấy từ Google maps)" id="mapLink" name="address" required>
-                            <!-- -------------------------- -->
-                        <input type="hidden" id="targetLat" class="form-control"
-                            placeholder="Toạ độ quán" name="coordinates" readonly>
-                        </div>
+                            placeholder="Nhập link địa chỉ cửa hàng (được lấy từ Google maps)" id="mapLink" name="address"
+                            required>
+                        <!-- -------------------------- -->
+                        <input type="hidden" id="targetLat" class="form-control" placeholder="Toạ độ quán"
+                            name="coordinates" readonly>
                     </div>
-                    <div class="row mb-3">
-                        <label class="fw-bold col-sm-3 col-form-label">Trạng thái:</label>
+                </div>
+                <div class="row mb-3">
+                    <label class="fw-bold col-sm-3 col-form-label">Trạng thái:</label>
                     <div class="col-sm-9">
                         <select class="form-select" name="status" required>
                             <option value="" disabled selected>Chọn trạng thái</option>
@@ -79,9 +76,9 @@
         </div>
     </div>
     <!-- Table End -->
-     <script>
-         // Trích xuất tọa độ từ link Google Maps
-         function extractCoordinates(event) {
+    <script>
+        // Trích xuất tọa độ từ link Google Maps
+        function extractCoordinates(event) {
             const mapLink = document.getElementById("mapLink").value.trim();
             if (!mapLink) {
                 alert("Vui lòng nhập link Google Maps!");
@@ -114,5 +111,5 @@
                 alert("Không thể trích xuất tọa độ từ link. Vui lòng kiểm tra lại!");
             }
         }
-     </script>
+    </script>
 @endsection

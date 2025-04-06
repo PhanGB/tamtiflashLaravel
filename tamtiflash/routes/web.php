@@ -66,6 +66,13 @@ Route::get('/cart/remove/{id}', [CartController::class, 'remove']);
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->middleware('auth')->name('checkout');
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->middleware('auth')->name('checkout.process');
 
+//Thông Tin Shipper
+Route::get('/shipper', function () {
+    return view('pages.shipper');
+});
+
+
+
 require __DIR__ . '/admin.php';
 
 require __DIR__ . '/auth.php';

@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Tamtiflash - Admin - Cửa hàng')
-@section ('content')
+@section('content')
     <!-- Navbar End -->
 
     <div class="container-fluid pt-4 px-4">
@@ -11,17 +11,15 @@
                     <h3 class="mb-4">Cửa hàng</h3>
                 </div>
                 <div class="col-4 col-sm-2 text-center">
-<<<<<<< HEAD
-                    <a href="{{ route('admin.shops.add_shop') }}" type="button" class="btn btn-primary w-100 mb-4">Thêm cửa hàng</a>
-=======
-                    <a href="{{ route('admin.shops.add') }}" type="button" class="btn btn-primary w-100 mb-4">Thêm cửa hàng</a>
->>>>>>> d1ec7779be4f04bd876bd43cec93e68688ebeaee
+                    <a href="{{ route('admin.shops.add') }}" type="button" class="btn btn-primary w-100 mb-4">Thêm cửa
+                        hàng</a>
                 </div>
             </div>
             <form action="{{ route('admin.shops') }}" class="mb-4" method="GET">
                 <div class="row g-2 align-items-center">
                     <div class="col-9 col-sm-11">
-                        <input type="text" name="search" placeholder="Tìm kiếm cửa hàng..." class="form-control" value="{{ request()->get('search') }}" />
+                        <input type="text" name="search" placeholder="Tìm kiếm cửa hàng..." class="form-control"
+                            value="{{ request()->get('search') }}" />
                     </div>
                     <div class="col-3 col-sm-1 text-center">
                         <button class="btn btn-primary w-100"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -43,26 +41,29 @@
                     </thead>
                     <tbody>
                         @foreach ($shops as $shop)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td><img src="{{ asset('images/shops/'.$shop->image) }}" alt="{{ $shop->image }}" style="width: 40px; height: 40px" /></td>
-                            <td>{{ $shop->name }}</td>
-                            <td>{{ $shop->short_description }}</td>
-                            <td>{{ $shop->rate }} <i class="fas fa-star text-warning"></i></td>
-                            <td>
-                                <span value="1" >{{ $shop->status == 0 ? 'Ẩn' : 'Hiển' }}</span>
-                            </td>
-                            <td>
-                                <a href="{{ route('admin.shops.edit', $shop->id) }}">Sửa</a>
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td><img src="{{ asset('images/shops/' . $shop->image) }}" alt="{{ $shop->image }}"
+                                        style="width: 40px; height: 40px" /></td>
+                                <td>{{ $shop->name }}</td>
+                                <td>{{ $shop->short_description }}</td>
+                                <td>{{ $shop->rate }} <i class="fas fa-star text-warning"></i></td>
+                                <td>
+                                    <span value="1">{{ $shop->status == 0 ? 'Ẩn' : 'Hiển' }}</span>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.shops.edit', $shop->id) }}">Sửa</a>
 
-                                <!-- Form xóa -->
-                                <form action="{{ route('admin.shops.delete', $shop->id) }}" method="Get" style="display:inline;" id="deleteForm{{ $shop->id }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="#" onclick="confirmDelete({{ $shop->id }}); return false;">Xóa</a>
-                                </form>
-                            </td>
-                        </tr>
+                                    <!-- Form xóa -->
+                                    <form action="{{ route('admin.shops.delete', $shop->id) }}" method="Get"
+                                        style="display:inline;" id="deleteForm{{ $shop->id }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="#"
+                                            onclick="confirmDelete({{ $shop->id }}); return false;">Xóa</a>
+                                    </form>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
