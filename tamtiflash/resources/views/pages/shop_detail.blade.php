@@ -127,7 +127,7 @@
                                     data-image="image1.jpg">
                                     <div class="card p-3 shadow-sm">
                                         <div class="d-flex">
-                                            <img src="image1.jpg" class="img-fluid rounded"
+                                            <img src="{{ asset('images/products/'.$product->image) }}" class="img-fluid rounded"
                                                 style="width: 100px; height: 100px; object-fit: cover;">
                                             <div class="ms-3">
                                                 <a href="/productdetail/{{ $product->id }}">
@@ -152,8 +152,6 @@
                             @endforeach
                         @endif
                         <!-- ---------------------------------------------------------------------------- -->
-
-
                     </div>
                 </div>
                 <!-- <div class="col-md-3 ">

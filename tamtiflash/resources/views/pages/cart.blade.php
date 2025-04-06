@@ -32,7 +32,7 @@
                                     <tr>
                                         <td class="product-box">
                                             <img
-                                                src="{{ asset('images/products/banhkemtrungmuoi.jpg') }}"
+                                                src="{{ asset('images/products/'.$item['image']) }}"
                                                 class="product-img"
                                             />
                                             <div class="product-dsc">

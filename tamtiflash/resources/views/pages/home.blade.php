@@ -30,7 +30,7 @@
                             <div class="product-card">
                                 <a href="" class="product-img-link">
                                     <div class="product-img" style="
-                                                                background-image: url('https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg');
+                                                                background-image: url('{{ asset('images/products/'.$product->image) }}');
                                                             "></div>
                                 </a>
                                 <a href="product_detail.html">
@@ -62,7 +62,7 @@
                     @endforeach
                 </div>
 
-                
+
                 <!-- drink -->
                 <div id="drink" class="row products-box active">
                     @foreach ($drinks as $products)
@@ -70,7 +70,7 @@
                             <div class="product-card">
                                 <a href="" class="product-img-link">
                                     <div class="product-img" style="
-                                                background-image: url('https://demo.htmlcodex.com/2463/organic-food-website-template/img/product-1.jpg');
+                                                background-image: url('{{ asset('images/products/'.$products->image) }}');
                                             "></div>
                                 </a>
                                 <a href="product_detail.html">
@@ -108,7 +108,7 @@
                     @foreach ($shops as $shop)
                         <div class="col l-4 m-12 c-12">
                             <div class="restaurant-card">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Marks_%26_Spencer_original_penny_bazaar_%2824th_June_2013%29.jpg"
+                                <img src="{{ asset('images/shops/'.$shop->image) }}"
                                     alt="" />
                                 <h3>{{ $shop->name }}</h3>
                                 <p>{{ $shop->short_description }}</p>
