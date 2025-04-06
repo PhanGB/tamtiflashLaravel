@@ -11,7 +11,11 @@
                     <h3 class="mb-4">Cửa hàng</h3>
                 </div>
                 <div class="col-4 col-sm-2 text-center">
+<<<<<<< HEAD
                     <a href="{{ route('admin.shops.add_shop') }}" type="button" class="btn btn-primary w-100 mb-4">Thêm cửa hàng</a>
+=======
+                    <a href="{{ route('admin.shops.add') }}" type="button" class="btn btn-primary w-100 mb-4">Thêm cửa hàng</a>
+>>>>>>> d1ec7779be4f04bd876bd43cec93e68688ebeaee
                 </div>
             </div>
             <form action="{{ route('admin.shops') }}" class="mb-4" method="GET">
@@ -49,10 +53,10 @@
                                 <span value="1" >{{ $shop->status == 0 ? 'Ẩn' : 'Hiển' }}</span>
                             </td>
                             <td>
-                                <a href="{{ route('admin.edit_shop', $shop->id) }}">Sửa</a>
+                                <a href="{{ route('admin.shops.edit', $shop->id) }}">Sửa</a>
 
                                 <!-- Form xóa -->
-                                <form action="{{ route('admin.delete', $shop->id) }}" method="Get" style="display:inline;" id="deleteForm{{ $shop->id }}">
+                                <form action="{{ route('admin.shops.delete', $shop->id) }}" method="Get" style="display:inline;" id="deleteForm{{ $shop->id }}">
                                     @csrf
                                     @method('DELETE')
                                     <a href="#" onclick="confirmDelete({{ $shop->id }}); return false;">Xóa</a>

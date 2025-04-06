@@ -36,4 +36,31 @@ class MarketAtHomeController extends Controller
             'productsHot',
         ));
     }
+
+    public function filterByCategory($id)
+    {
+        $categories = Category::where('mah', 1)->get();
+
+        $products = Product::with('category')
+            ->where('id_cate', $id)
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+            // ->paginate(8);
+
+        $productsHot = Product::with('category')
+            ->where('id_cate', $id)
+            ->where('status', 1)
+            ->where('sold', '>', 10)
+            ->orderBy('id', 'desc')
+            ->get();
+            // ->paginate(8);
+
+        return view('pages.MarketAtHome', compact(
+            'products',
+            'categories',
+            'productsHot'
+        ));
+    }
+
 }

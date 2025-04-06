@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('review')) {
         Schema::create('review', function (Blueprint $table) {
             $table->id();
             $table->timestamp('create_at')->useCurrent();
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->foreignId('id_order')->constrained('orders')->onDelete('cascade');
         });
     }
+}
 
     /**
      * Reverse the migrations.
