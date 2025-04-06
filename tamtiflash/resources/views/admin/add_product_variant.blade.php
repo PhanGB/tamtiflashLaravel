@@ -20,7 +20,6 @@
                     <input class="form-control mb-3" type="text" name="price" placeholder="Giá sản phẩm"
                     aria-label="default input example">
                 <button type="submit" class="btn btn-success m-2">Thêm sản phẩm</button>
-
             </form>
 
         </div>
