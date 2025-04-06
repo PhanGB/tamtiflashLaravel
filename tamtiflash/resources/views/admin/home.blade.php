@@ -3,7 +3,6 @@
 @section('title', 'Tamtiflash - Admin - Trang chủ')
 @section('dashboard', 'active')
 
-
 @section('content')
     <!-- Sale & Revenue Start -->
     <div class="container-fluid pt-4 px-4">
@@ -14,7 +13,7 @@
                     <i class="fa fa-shopping-cart fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Đơn hàng hôm nay</p>
-                        <h6 class="mb-0">150</h6>
+                        <h6 class="mb-0">{{ $todayOrdersCount }}</h6>
                     </div>
                 </div>
             </div>
@@ -23,7 +22,7 @@
                     <i class="fa fa-calendar-alt fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Đơn hàng tháng này</p>
-                        <h6 class="mb-0">4500</h6>
+                        <h6 class="mb-0">{{ $monthOrdersCount }}</h6>
                     </div>
                 </div>
             </div>
@@ -33,7 +32,7 @@
                     <i class="fa fa-dollar-sign fa-3x text-primary"></i>
                     <div class="ms-5">
                         <p class="mb-2">Doanh thu hôm nay</p>
-                        <h6 class="mb-0">$1234</h6>
+                        <h6 class="mb-0">{{ number_format($todayRevenue, 0, ',', '.') }}đ</h6>
                     </div>
                 </div>
             </div>
@@ -42,13 +41,12 @@
                     <i class="fa fa-calendar-alt fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Doanh thu tháng này</p>
-                        <h6 class="mb-0">$45000</h6>
+                        <h6 class="mb-0">{{ number_format($monthRevenue, 0, ',', '.') }}đ</h6>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
     <!-- Chart End -->
 
@@ -60,7 +58,7 @@
                     <i class="fa fa-thumbs-down fa-3x text-danger"></i>
                     <div class="ms-3">
                         <p class="mb-2">Khiếu nại khách hàng</p>
-                        <h6 class="mb-0">20</h6>
+                        <h6 class="mb-0">{{ $complaintsCount }}</h6>
                     </div>
                 </div>
             </div>
@@ -69,7 +67,7 @@
                     <i class="fa fa-thumbs-up fa-3x text-success"></i>
                     <div class="ms-3">
                         <p class="mb-2">Đánh giá tốt khách hàng</p>
-                        <h6 class="mb-0">200</h6>
+                        <h6 class="mb-0">{{ $goodReviewsCount }}</h6>
                     </div>
                 </div>
             </div>
@@ -92,29 +90,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Bánh kẹo</td>
-                            <td>500</td>
-                        </tr>
-                        <tr>
-                            <td>Đồ uống</td>
-                            <td>300</td>
-                        </tr>
-                        <tr>
-                            <td>Thực phẩm</td>
-                            <td>200</td>
-                        </tr>
+                        @foreach ($topCategories as $categoryName => $quantity)
+                            <tr>
+                                <td>{{ $categoryName }}</td>
+                                <td>{{ $quantity }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <!-- Widgets Start -->
+
+        <!-- Widgets Start -->
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-light rounded h-100 p-4">
-                    <h6 class="mb-4">Nhân viên năng xuất</h6>
+                    <h6 class="mb-4">Nhân viên năng suất</h6>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -125,34 +118,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>jhon@email.com</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>mark@email.com</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>jacob@email.com</td>
-                            </tr>
+                            @forelse ($topShippers as $index => $shipper)
+                                <tr>
+                                    <th scope="row">{{ $index + 1 }}</th>
+                                    <td>{{ $shipper->first_name }} {{ $shipper->last_name }}</td>
+                                    <td>{{ $shipper->delivered_orders_count }}</td>
+                                    <td>{{ $shipper->email }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4">Chưa có dữ liệu nhân viên năng suất</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-xl-4">
-                <div class="h-100 bg-light rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Lịch</h6>
-                    </div>
-                    <div id="calender"></div>
                 </div>
             </div>
         </div>

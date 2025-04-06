@@ -25,7 +25,6 @@ class Order extends Model
         'status' => 0,
     ];
 
-    // Khai báo lại timestamps để Laravel hiểu
     const CREATED_AT = 'create_at';
     const UPDATED_AT = 'update_at';
 
@@ -39,4 +38,9 @@ class Order extends Model
      {
          return $this->belongsTo(Admin::class, 'id_driver');
      }
+
+        public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class, 'id_order'); // Sửa cột khóa ngoại
+    }
 }
