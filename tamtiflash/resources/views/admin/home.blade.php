@@ -74,6 +74,30 @@
         </div>
     </div>
 
+    <!-- Doanh thu tamtiflash theo ngày/tháng -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-6 col-xl-6">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-dollar-sign fa-3x text-primary"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">Doanh thu Tamtiflash hôm nay</p>
+                        <h6 class="mb-0">{{ number_format($todayTamtiflashRevenue, 0, ',', '.') }}đ</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-6">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-calendar-alt fa-3x text-primary"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">Doanh thu Tamtiflash tháng này</p>
+                        <h6 class="mb-0">{{ number_format($monthTamtiflashRevenue, 0, ',', '.') }}đ</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Loại hàng hóa được giao nhiều nhất -->
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">
@@ -102,12 +126,12 @@
         </div>
     </div>
 
-        <!-- Widgets Start -->
+    <!-- Widgets Start -->
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-light rounded h-100 p-4">
-                    <h6 class="mb-4">Nhân viên năng suất</h6>
+                    <h6 class="mb-4">Số đơn hàng của nhân viên trong tháng</h6>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -121,7 +145,7 @@
                             @forelse ($topShippers as $index => $shipper)
                                 <tr>
                                     <th scope="row">{{ $index + 1 }}</th>
-                                    <td>{{ $shipper->first_name }} {{ $shipper->last_name }}</td>
+                                    <td>{{ $shipper->name }}</td>
                                     <td>{{ $shipper->delivered_orders_count }}</td>
                                     <td>{{ $shipper->email }}</td>
                                 </tr>
