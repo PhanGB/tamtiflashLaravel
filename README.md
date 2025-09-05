@@ -1,2 +1,2 @@
 # tamtiflashLaravel
-Online food ordering website project
+Sales website project
